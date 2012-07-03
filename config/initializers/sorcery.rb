@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :http_basic_auth, :external]
+Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -70,7 +70,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :google, :liveid] .
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:facebook, :twitter]
 
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
@@ -82,16 +82,26 @@ Rails.application.config.sorcery.configure do |config|
 
   # Twitter wil not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
-  #
-  # config.twitter.key = ""
-  # config.twitter.secret = ""
-  # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
-  # config.twitter.user_info_mapping = {:email => "screen_name"}
-  #
-  # config.facebook.key = ""
-  # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_mapping = {:email => "name"}
+  
+  if Rails.env.development?
+    # Facebook
+    config.facebook.key               = "326246034130327"
+    config.facebook.secret            = "cac30ca1574b810cd0dc63bb24806286"
+    config.facebook.callback_url      = "http://lvh.me:3000/oauth/callback?provider=facebook"
+    config.facebook.user_info_mapping = { :email => "email", :username => "username" }
+    config.facebook.scope             = "email,offline_access,user_hometown,user_interests,user_likes,user_photos"
+
+    # Twitter
+    config.twitter.key                = "jTFQ5sKUJmoixLlOmfFTMw"
+    config.twitter.secret             = "qpX5G9aSfhToIvwg8J9ydeL74sPKthJ977hQnKocp8"
+    config.twitter.callback_url       = "http://lvh.me:3000/oauth/callback?provider=twitter"
+    config.twitter.user_info_mapping  = { :username => 'screen_name', :avatar => 'profile_image_url'}
+
+  elsif Rails.env.production?
+    # Facebook
+
+    # Twitter
+  end
   #
   # config.github.key = ""
   # config.github.secret = ""
@@ -131,7 +141,7 @@ Rails.application.config.sorcery.configure do |config|
     # downcase the username before trying to authenticate, default is false
     # Default: `false`
     #
-    # user.downcase_username_before_authenticating =
+    user.downcase_username_before_authenticating = true
 
 
     # change default email attribute.
@@ -379,7 +389,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
 
     # User's identifier in authentications class.

@@ -426,3 +426,20 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 .clear{clear:both;}
 .floatLeft{float:left;}
 .floatRight{float:right;}
+
+
+#flash-notice {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+    border: 2px solid #CCCCCC;
+    border-radius: 7px 7px 7px 7px;
+    bottom: 130px;
+    color: white;
+    display: none;
+    font-size: 22px;
+    margin: 0 auto;
+    max-width: 515px;
+    padding: 4px;
+    position: fixed;
+    text-align: center;
+    z-index: 1200;
+}
