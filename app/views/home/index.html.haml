@@ -8,6 +8,8 @@
       %p 
         Logged in as
         = current_user.username
+      %p
+        = link_to 'Logout', logout_path
     - else
       = link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook)
       = link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)

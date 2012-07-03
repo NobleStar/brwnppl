@@ -5,7 +5,6 @@ class OauthController < ApplicationController
   end
 
   def callback
-    binding.pry
     provider = params[:provider]
     if @user = login_from(provider)
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
