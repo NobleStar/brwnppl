@@ -6,6 +6,7 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'thin'
 
 
 # Gems used only for assets and not required
@@ -27,7 +28,6 @@ gem 'sorcery'
 gem 'spine-rails'
 
 group :test, :development do
-  gem 'thin'
   gem 'sqlite3'
   gem 'turn', '< 0.8.3'
   gem 'rspec-rails', '~> 2.0'
