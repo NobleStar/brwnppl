@@ -108,7 +108,7 @@ Rails.application.config.sorcery.configure do |config|
     # Twitter
     config.twitter.key                = "oSHCdhFySVK9AKu35hF9w"
     config.twitter.secret             = "22FAKjS17wfl1svhMggdPs5yCGn8HxaAOdeNFyfKlsc"
-    config.twitter.callback_url       = "http://lvh.me:3000/oauth/callback?provider=twitter"
+    config.twitter.callback_url       = "http://brwnppl.herokuapp.com/oauth/callback?provider=twitter"
     config.twitter.user_info_mapping  = { :username => 'screen_name', :avatar => 'profile_image_url'}
   end
   #
