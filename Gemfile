@@ -30,6 +30,7 @@ gem 'sorcery'
 gem 'spine-rails'
 
 group :test, :development do
+  gem 'jasminerice'
   gem 'sqlite3'
   gem 'turn', '< 0.8.3'
   gem 'rspec-rails', '~> 2.0'
