@@ -36,7 +36,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'
   gem 'guard-rspec'
-  gem 'growl_notify'
+  # gem 'growl_notify'
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'minitest'
