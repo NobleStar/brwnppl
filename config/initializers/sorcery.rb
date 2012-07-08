@@ -83,53 +83,18 @@ Rails.application.config.sorcery.configure do |config|
   # Twitter wil not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   
-  if Rails.env.development?
     # Facebook
-    config.facebook.key               = "326246034130327"
-    config.facebook.secret            = "cac30ca1574b810cd0dc63bb24806286"
-    config.facebook.callback_url      = "http://lvh.me:3000/oauth/callback?provider=facebook"
-    config.facebook.user_info_mapping = { :email => "email", :username => "username" }
+    config.facebook.key               = ENV['FACEBOOK_APP_KEY']
+    config.facebook.secret            = ENV['FACEBOOK_SECRET_KEY']
+    config.facebook.callback_url      = ENV['APP_URL'].to_s + "/oauth/callback?provider=facebook"
+    config.facebook.user_info_mapping = { :email => "email", :username => "username", :name => 'name'  }
     config.facebook.scope             = "email,offline_access,user_hometown,user_interests,user_likes,user_photos"
 
     # Twitter
-    config.twitter.key                = "jTFQ5sKUJmoixLlOmfFTMw"
-    config.twitter.secret             = "qpX5G9aSfhToIvwg8J9ydeL74sPKthJ977hQnKocp8"
-    config.twitter.callback_url       = "http://lvh.me:3000/oauth/callback?provider=twitter"
-    config.twitter.user_info_mapping  = { :username => 'screen_name', :avatar => 'profile_image_url'}
-
-  elsif Rails.env.production?
-    # Facebook
-    config.facebook.key               = "335259899881893"
-    config.facebook.secret            = "36c6a1f3d7e5f0c515b860b03ae9c36f"
-    config.facebook.callback_url      = "http://brwnppl.herokuapp.com/oauth/callback?provider=facebook"
-    config.facebook.user_info_mapping = { :email => "email", :username => "username" }
-    config.facebook.scope             = "email,offline_access,user_hometown,user_interests,user_likes,user_photos"
-
-    # Twitter
-    config.twitter.key                = "oSHCdhFySVK9AKu35hF9w"
-    config.twitter.secret             = "22FAKjS17wfl1svhMggdPs5yCGn8HxaAOdeNFyfKlsc"
-    config.twitter.callback_url       = "http://brwnppl.herokuapp.com/oauth/callback?provider=twitter"
-    config.twitter.user_info_mapping  = { :username => 'screen_name', :avatar => 'profile_image_url'}
-  end
-  #
-  # config.github.key = ""
-  # config.github.secret = ""
-  # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
-  # config.github.user_info_mapping = {:email => "name"}
-  #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
-  #
-  # To use liveid in development mode you have to replace mydomain.com with
-  # a valid domain even in development. To use a valid domain in development
-  # simply add your domain in your /etc/hosts file in front of 127.0.0.1
-  #
-  # config.liveid.key = ""
-  # config.liveid.secret = ""
-  # config.liveid.callback_url = "http://mydomain.com:3000/oauth/callback?provider=liveid"
-  # config.liveid.user_info_mapping = {:username => "name"}
+    config.twitter.key                = ENV['TWITTER_APP_KEY']
+    config.twitter.secret             = ENV['TWITTER_SECRET_KEY']
+    config.twitter.callback_url       = ENV['APP_URL'].to_s + "/oauth/callback?provider=twitter"
+    config.twitter.user_info_mapping  = { :username => 'screen_name', :avatar => 'profile_image_url', :name => 'name', :avatar => 'profile_image_url' }
 
 
   # --- user config ---

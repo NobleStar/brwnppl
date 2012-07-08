@@ -1,8 +1,9 @@
 #content
   .content
     .shareSection
+    - if logged_in?
       .userPhoto
-        = current_user
+        = image_tag current_user.avatar
 
     - if logged_in?
       %p 

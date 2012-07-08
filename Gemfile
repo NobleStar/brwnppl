@@ -7,6 +7,8 @@ gem 'rails', '3.2.1'
 
 gem 'pg'
 gem 'thin'
+gem 'twitter'
+gem 'delayed_job_active_record'
 
 
 # Gems used only for assets and not required
