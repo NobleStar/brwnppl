@@ -1,16 +1,18 @@
 #content
-  .content
-    .shareSection
+  #container
     - if logged_in?
-      .userPhoto
-        = image_tag current_user.avatar
+      .userOptions
+        %a
+          = current_user.name 
+        %a 
+          = link_to 'Logout', logout_path
+        %a.icon.plus.floatRight
+        %a.icon.user.floatRight
+      .clear
+      .shareSection
+    - else 
+      .userOptions
+        = link_to 'Login with FB', auth_at_provider_path(:provider => :facebook)
+        = link_to 'Login with TW', auth_at_provider_path(:provider => :twitter)
 
-    - if logged_in?
-      %p 
-        Logged in as
-        = current_user.username
-      %p
-        = link_to 'Logout', logout_path
-    - else
-      = link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook)
-      = link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)
+    .ribbon

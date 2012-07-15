@@ -1,0 +1,3 @@
+class WebLink < Story
+
+end
