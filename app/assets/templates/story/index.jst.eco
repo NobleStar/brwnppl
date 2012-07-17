@@ -1,0 +1,35 @@
+<% for story in @stories.models: %>
+  <div class='post'>
+      <!-- user avatar-->
+      <div class='postUser'><img src="http://graph.facebook.com/narang.jasdeep/picture?type=small"></div>
+
+      <!-- story content -->
+      <div class='postContent'>
+        <!-- story posted by-->
+        <a class='postUsername' href='#'>Manpreet Singh</a>
+        <br>
+        <span class="icon posted link"></span>
+        <!-- story title -->
+        <h2><a href='<%= story.get('title') %>'><%= story.get('title') %></a></h2>
+
+        <div class='clear'></div>
+
+        <!-- story details -->
+        <div class='postDetails'>
+          
+          <!-- Counts -->
+          <a href="#"><span class="icon details thumb"></span>255</a>
+          <a href="#"><span class="icon details comments"></span>255</a>
+          <a href="#"><span class="icon details repost"></span>255</a>
+        </div>
+      </div>
+
+      <!-- Post thumbnail -->
+      <div class='postThumbnail'>
+        <img src='http://www.kiddaa.ca/humblevision.jpg' width='125' height='85'>
+      </div>
+
+      <div class='clear'></div>
+
+  </div>
+<% end %>

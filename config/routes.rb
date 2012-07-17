@@ -2,7 +2,7 @@ Brwnppl::Application.routes.draw do
 
   namespace :api do
     resources :stories
-    resources :users
+    resources :users, :constraints  => { :id => /[0-z\.]+/ }
   end
 
   match 'oauth/callback'    => 'oauth#callback'

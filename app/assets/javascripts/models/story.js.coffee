@@ -1,0 +1,1 @@
+class Brwnppl.Models.Story extends Backbone.Model

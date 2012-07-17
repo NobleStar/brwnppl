@@ -1,0 +1,33 @@
+<!-- User Photo -->
+<div class='userPhoto'>
+
+</div>
+
+<!-- Share box-->
+<div class='shareBox'>
+
+  <!--say Bulb-->
+  <div class='sayBulb'></div>
+
+  <a class="icon share photo" href="#"></a>
+  <a class="icon share video" href="#"></a>
+  <a class="icon share music" href="#"></a>
+  <a class="icon share link selected" href="#"></a>
+  <a class="icon share chat" href="#"></a>
+  <a class="icon share text" href="#"></a>
+
+  <div class='clear'></div>
+
+  <input type="text" name="linkBar" class="linkBar" placeholder="Please enter your link here">
+  <textarea class='linkBar hidden'>Link Description Images/Text Will Appear in this box</textarea>
+
+  <a class="uploadLink" href="#">Upload</a>
+  <img src="/assets/loader.gif" class='loader hidden'>
+</div>
+
+<!-- shareButton -->
+<div class='shareButton'>
+  <a href='' id='shareThis'>Share</a>
+</div>
+
+<div class='clear'></div>

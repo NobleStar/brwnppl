@@ -17,11 +17,8 @@ gem 'newrelic_rpm'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'eco'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'libv8', '3.3.10.4'
-
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -29,7 +26,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'sorcery'
-gem 'spine-rails'
+gem 'backbone-on-rails'
 
 group :test, :development do
   gem 'jasminerice'
