@@ -19,7 +19,7 @@
   <div class='clear'></div>
 
   <input type="text" name="linkBar" class="linkBar" placeholder="Please enter your link here">
-  <textarea class='linkBar hidden'>Link Description Images/Text Will Appear in this box</textarea>
+  <textarea class='linkBar hidden'>Give your story a title</textarea>
 
   <a class="uploadLink" href="#">Upload</a>
   <img src="/assets/loader.gif" class='loader hidden'>

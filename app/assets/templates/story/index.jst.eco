@@ -6,7 +6,7 @@
       <!-- story content -->
       <div class='postContent'>
         <!-- story posted by-->
-        <a class='postUsername' href='#'>Manpreet Singh</a>
+        <a class='postUsername' href='#'><%= story.get('user')['name'] %></a>
         <br>
         <span class="icon posted link"></span>
         <!-- story title -->

@@ -11,6 +11,7 @@ gem 'twitter'
 gem 'delayed_job_active_record'
 gem 'spine-rails'
 gem 'newrelic_rpm'
+gem 'jbuilder'
 
 # Gems used only for assets and not required
 # in production environments by default.

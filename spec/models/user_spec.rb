@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   
   it { should have_many(:authentications).dependent(:destroy) }
+  it { should have_many(:stories) }
 
   describe "#update_avatar" do
     let(:user)         { stub_model(User, username: 'someuser', save: true ) }
