@@ -5,7 +5,6 @@ gem 'rails', '3.2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
 gem 'thin'
 gem 'twitter'
 gem 'delayed_job_active_record'
@@ -31,6 +30,10 @@ gem 'haml'
 gem 'haml-rails'
 gem 'sorcery'
 gem 'backbone-on-rails'
+
+group :production do
+  gem 'pg'
+end
 
 group :test, :development do
   gem 'taps'
