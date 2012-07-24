@@ -14,6 +14,7 @@ gem 'newrelic_rpm'
 gem 'jbuilder'
 gem 'opengraph'
 gem 'httparty'
+gem 'htmlentities'
 
 # Gems used only for assets and not required
 # in production environments by default.

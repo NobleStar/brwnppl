@@ -15,6 +15,17 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align: baseline;
 	background: transparent;
 }
+body #notification {
+    color: white;
+    display: none;
+    background-color: green;
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    padding-top: 12px;
+}
+
+
 ol, ul {
 	list-style: none;
 }
