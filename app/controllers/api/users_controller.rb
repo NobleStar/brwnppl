@@ -8,4 +8,8 @@ class Api::UsersController < Api::BaseController
     render json: User.find_by_username(params[:id])
   end
 
+  def me
+  	render json: current_user
+  end
+
 end

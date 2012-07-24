@@ -12,6 +12,8 @@ gem 'delayed_job_active_record'
 gem 'spine-rails'
 gem 'newrelic_rpm'
 gem 'jbuilder'
+gem 'opengraph'
+gem 'httparty'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,7 +38,8 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'
   gem 'guard-rspec'
-  # gem 'growl_notify'
+  gem 'growl_notify'
+  gem 'growl'
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'minitest'

@@ -1,6 +1,6 @@
 <!-- User Photo -->
 <div class='userPhoto'>
-
+  <img id="photo" src="<%= @user.get('avatar') %>">
 </div>
 
 <!-- Share box-->

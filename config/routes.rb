@@ -2,7 +2,12 @@ Brwnppl::Application.routes.draw do
 
   namespace :api do
     resources :stories
-    resources :users, :constraints  => { :id => /[0-z\.]+/ }
+    resources :url_fetcher
+
+    resources :users, :constraints  => { :id => /[0-z\.]+/ } do
+    	get :me, :on => :collection
+    end
+
   end
 
   match 'oauth/callback'    => 'oauth#callback'
