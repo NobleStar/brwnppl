@@ -37,6 +37,13 @@ class Brwnppl.Views.Sharer extends Backbone.View
       story = new Brwnppl.Models.Story({ title: title, url: link })
       story.save()
       console.log(story)
-      
+      @success('Successfully Posted your Story!')
     else 
       alert('Unable to share your story without a proper Link or Description')
+
+
+  success: (message) ->
+    $success = $('#success')
+    $success.append('<p>'+message+'</p>')
+    $success.slideToggle 'fast', ->
+      $success.delay(3000).fadeOut('slow');

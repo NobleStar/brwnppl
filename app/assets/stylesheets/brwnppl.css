@@ -15,14 +15,15 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align: baseline;
 	background: transparent;
 }
-body #notification {
+body #success {
     color: white;
     display: none;
     background-color: green;
     width: 100%;
     text-align: center;
-    height: 30px;
+    height: 56px;
     padding-top: 12px;
+    position: absolute;
 }
 
 

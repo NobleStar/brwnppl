@@ -11,7 +11,7 @@ describe User do
     let(:tw_user_hash) { {:user_info => { :profile_image_url => 'http://example.com/someimage.png' }} }
 
     it "should update the Facebook avatar on every login" do
-      user.update_avatar('facebook', fb_user_hash).avatar.should == 'http://graph.facebook.com/123456/picture'
+      user.update_avatar('facebook', fb_user_hash).avatar.should == 'https://graph.facebook.com/123456/picture'
     end
 
     it "should update the Twitter avatar on every login" do

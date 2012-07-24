@@ -10,7 +10,7 @@
         <br>
         <span class="icon posted link"></span>
         <!-- story title -->
-        <h2><a href='<%= story.get('title') %>'><%= story.get('title') %></a></h2>
+        <h2><a href='<%= story.get('url') %>'><%= story.get('title') %></a></h2>
 
         <div class='clear'></div>
 
