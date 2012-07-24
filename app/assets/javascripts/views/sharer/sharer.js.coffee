@@ -6,7 +6,7 @@ class Brwnppl.Views.Sharer extends Backbone.View
     @model.on('change', @render, this)
 
   events:
-    'keyup .linkBar'    :  'fetch_link_details'
+    'keyup input.linkBar'    :  'fetch_link_details'
     'click #shareThis'  :  'share_link'
 
   render: ->
@@ -29,7 +29,7 @@ class Brwnppl.Views.Sharer extends Backbone.View
           else
             $('textarea.linkBar').val('Error fetching the URL')
     
-  share_link: ->
+  share_link: (event) ->
     event.preventDefault()
     link = $('input.linkBar').val()
     title = $('textarea.linkBar').val()
@@ -37,5 +37,6 @@ class Brwnppl.Views.Sharer extends Backbone.View
       story = new Brwnppl.Models.Story({ title: title, url: link })
       story.save()
       console.log(story)
+      
     else 
-      alert('Cannot share an empty story')
+      alert('Unable to share your story without a proper Link or Description')

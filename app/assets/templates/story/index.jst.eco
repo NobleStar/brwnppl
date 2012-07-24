@@ -1,7 +1,7 @@
 <% for story in @stories.models: %>
   <div class='post'>
       <!-- user avatar-->
-      <div class='postUser'><img src="http://graph.facebook.com/narang.jasdeep/picture?type=small"></div>
+      <div class='postUser'><img src='<%= story.get('user')['avatar'] %>'></div>
 
       <!-- story content -->
       <div class='postContent'>
