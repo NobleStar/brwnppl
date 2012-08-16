@@ -3,7 +3,7 @@
     - if logged_in?
       .userOptions
         %a
-          = current_user.name 
+          = link_to current_user.name, '#'
         %a 
           = link_to 'Logout', logout_path
         %a.icon.plus.floatRight

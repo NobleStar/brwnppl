@@ -26,6 +26,16 @@ body #success {
     position: absolute;
 }
 
+body #alert {
+    color: white;
+    display: none;
+    background-color: red;
+    width: 100%;
+    text-align: center;
+    height: 56px;
+    padding-top: 12px;
+    position: absolute;
+}
 
 ol, ul {
 	list-style: none;

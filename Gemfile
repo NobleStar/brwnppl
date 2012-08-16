@@ -30,6 +30,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'sorcery'
 gem 'backbone-on-rails'
+gem 'validate_url'
 
 group :production do
   gem 'pg'

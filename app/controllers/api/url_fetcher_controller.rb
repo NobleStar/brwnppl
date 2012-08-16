@@ -3,11 +3,10 @@ class Api::UrlFetcherController < ApplicationController
   before_filter :validate_url, :only => :index
   
   def index
-    @data = OpenGraph.fetch(params[:url]) 
-    if @data == false
-    	coder = HTMLEntities.new
-  		string = HTTParty.get(params['url']).html_safe.match(/<title>(.*?)<\/title>/)[1]
-  		@data = {:title => coder.decode(string) }
+    @data = OpenGraph.fetch(params[:url])
+    unless @data
+      page = Nokogiri::HTML( HTTParty.get(params[:url], :headers => {"User-Agent" => 'Mozilla/5.0'}) )
+      @data = { title: page.title }
     end
     render json: @data.to_json
   end

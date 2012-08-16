@@ -13,7 +13,7 @@ class Brwnppl.Routers.RootRouter extends Backbone.Router
     user.fetch
       url: '/api/users/me'
 
-    sharer  = new Brwnppl.Views.Sharer({model: user})
+    sharer  = new Brwnppl.Views.Sharer({model: user, stories: @stories})
     stories = new Brwnppl.Views.StoryIndex(collection: @stories)
 
     $('.shareSection').html(sharer.render().el)

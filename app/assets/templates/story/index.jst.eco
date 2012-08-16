@@ -6,7 +6,7 @@
       <!-- story content -->
       <div class='postContent'>
         <!-- story posted by-->
-        <a class='postUsername' href='#'><%= story.get('user')['name'] %></a>
+        <a class='postUsername' href='/#/<%= story.get('user')['username'] %>'><%= story.get('user')['name'] %></a>
         <br>
         <span class="icon posted link"></span>
         <!-- story title -->
@@ -26,7 +26,7 @@
 
       <!-- Post thumbnail -->
       <div class='postThumbnail'>
-        <img src='http://www.kiddaa.ca/humblevision.jpg' width='125' height='85'>
+        <!-- <img src='http://www.kiddaa.ca/humblevision.jpg' width='125' height='85'> -->
       </div>
 
       <div class='clear'></div>

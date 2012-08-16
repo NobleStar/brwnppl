@@ -6,5 +6,6 @@ class Brwnppl.Views.UserProfile extends Backbone.View
     @model.on('change', @render, this)
 
   render: ->
+    $('title').html("#{@model.get('name')} on Brwnppl")
     $(@el).html(@template(user: @model))
     this
