@@ -1,13 +1,9 @@
 class Api::UrlFetcherController < ApplicationController
   before_filter :require_login
   before_filter :validate_url, :only => :index
-  
+
   def index
-    @data = OpenGraph.fetch(params[:url])
-    unless @data
-      page = Nokogiri::HTML( HTTParty.get(params[:url], :headers => {"User-Agent" => 'Mozilla/5.0'}) )
-      @data = { title: page.title }
-    end
+    @data = Brwnppl::UrlFetcher.new(params[:url], params[:type])
     render json: @data.to_json
   end
 

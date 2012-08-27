@@ -20,8 +20,10 @@
   <form id='shareForm'>
     <input type="text" name="linkBar" class="linkBar" placeholder="Please enter your link here">
     <center><img id='linkBarImage' class='hidden' src=""></center>
+    <center><div id='preview'></div></center>
     <textarea class='linkBar hidden'>Give your story a title</textarea>
     <input type='hidden' name="story_type" id='story_type' value=''>
+    <input type='hidden' name="story_image" id='story_image' value=''>
   </form>
 
   <a class="uploadLink" href="#">Upload</a>

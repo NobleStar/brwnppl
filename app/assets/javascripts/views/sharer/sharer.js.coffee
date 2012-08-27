@@ -28,33 +28,31 @@ class Brwnppl.Views.Sharer extends Backbone.View
         error: ->
           $('textarea.linkBar').val('Error fetching the URL or Invalid URL')
           $('.loader').hide()
-        success: ->
+        success: (model, response) ->
           $('.loader').hide()
-          if url.get('title')
-            $('textarea.linkBar').val(url.get('title'))
-            if url.get('image')
-              $('img#linkBarImage').attr('src', url.get('image'))
-              $('img#linkBarImage').show()
-          else
-            $('textarea.linkBar').val('Unable to grab a title from the given link!')
+          model.loadElementsOnShareForm(url)
 
   
   share_link: (event) ->
-    debugger
     event.preventDefault()
     link = $('input.linkBar').val()
     title = $('textarea.linkBar').val()
-    @stories.create({ title: title, url: link},
+    image = $('input#story_image').val()
+    @stories.create({ title: title, url: link, image: image },
       {
-        wait: true
         error: (model, response) =>
-          errors = JSON.parse(response.responseText).errors
-          error_messages = _.map errors, (error) ->
-            "<p>#{error}</p>"
-          @error("Unable to post this story: #{error_messages}")
-        success: =>
-          @success('Successfully Posted your Story!')
-          @clearShareForm()
+          notification = {}
+          notification.messages = JSON.parse(response.responseText).errors
+          notification.header = "Error!!"
+          error = new Brwnppl.Views.Notifications({ model: notification })
+          $('#notifications').html(error.render().el)
+        success: (model, response) =>
+          notification = {}
+          notification.header = "You are awesome!!"
+          notification.messages = ['Thanks for sharing that awesome story with the community!! Wanna share some more?']
+          success = new Brwnppl.Views.Notifications({ model: notification })
+          @.clearShareForm()
+          $('#notifications').html(success.render().el)
       }
     )
 
@@ -68,19 +66,6 @@ class Brwnppl.Views.Sharer extends Backbone.View
     storyType = storyTypeSelector.data('type')
     $('#story_type').val(storyType)
 
-  success: (message) ->
-    $success = $('#success')
-    $success.html('')
-    $success.append('<p>'+message+'</p>')
-    $success.slideToggle 'fast', ->
-      $success.delay(3000).fadeOut('slow');
-
-  error: (message) ->
-    $alert = $('#alert')
-    $alert.html('')
-    $alert.append('<p>'+message+'</p>')
-    $alert.slideToggle 'fast', ->
-      $alert.delay(3000).fadeOut('slow');
-
   clearShareForm: ->
-    $('.linkBar').val("")
+    $('form#shareForm').find(':input').val('').removeAttr('checked').removeAttr('selected')
+    $('form#shareForm #preview').html('')

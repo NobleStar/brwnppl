@@ -26,7 +26,7 @@
 
       <!-- Post thumbnail -->
       <div class='postThumbnail'>
-        <!-- <img src='http://www.kiddaa.ca/humblevision.jpg' width='125' height='85'> -->
+        <img src='<%= story.get('image') %>' max-height='85' max-width='125'>
       </div>
 
       <div class='clear'></div>
