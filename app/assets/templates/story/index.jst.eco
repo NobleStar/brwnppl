@@ -4,11 +4,11 @@
       <div class='postUser'><img src='<%= story.get('user')['avatar'] %>'></div>
 
       <!-- story content -->
-      <div class='postContent'>
+      <div class='postContent' data-story-id='<%= story.get('id') %>'>
         <!-- story posted by-->
         <a class='postUsername' href='/#/<%= story.get('user')['username'] %>'><%= story.get('user')['name'] %></a>
         <br>
-        <span class="icon posted link"></span>
+        <!-- <span class="icon posted link"></span> -->
         <!-- story title -->
         <h2><a href='<%= story.get('url') %>'><%= story.get('title') %></a></h2>
 
@@ -18,7 +18,7 @@
         <div class='postDetails'>
           
           <!-- Counts -->
-          <a href="#"><span class="icon details thumb"></span>255</a>
+          <a href="#" data-story-id='<%= story.get('id') %>' class='like-button'><span class="icon details thumb"></span><%= story.get('likes_count') %></a>
           <a href="#"><span class="icon details comments"></span>255</a>
           <a href="#"><span class="icon details repost"></span>255</a>
         </div>

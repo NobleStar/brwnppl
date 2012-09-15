@@ -224,6 +224,7 @@ html{
     padding:7px 10px;
     color:#707070;
     margin-left:8px;
+    margin-top: 15px;
 }
 .uploadLink{
     margin-left:10px;
@@ -264,7 +265,7 @@ html{
     background:url("ribbonBackground.png") repeat;
     padding:10px;
     border-radius:20px;
-    margin-top:70px;
+    margin-top:20px;
 }
 .categories{
     margin:15px 0px 0px 10px;
@@ -296,7 +297,7 @@ html{
     background:#fff;
     border:1px solid #d3d3d3;
     border-radius:10px;
-    width:700px;
+    width:100%;
 }
 .post{
     padding:15px;
@@ -353,7 +354,7 @@ img#linkBarImage {
 
 .postContent{
     float:left;
-    width:450px;
+    width:75%;
 }
 .postUsername{text-decoration:none; margin-bottom:10px; display:inline-block;}
 .postUsername:hover{color:#cb5b2b;}

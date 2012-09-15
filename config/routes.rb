@@ -3,6 +3,7 @@ Brwnppl::Application.routes.draw do
   namespace :api do
     resources :stories
     resources :url_fetcher
+    resources :likes
 
     resources :users, :constraints  => { :id => /[0-z\.]+/ } do
     	get :me, :on => :collection
