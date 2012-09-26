@@ -1,7 +1,9 @@
 Brwnppl::Application.routes.draw do
 
   namespace :api do
-    resources :stories
+    resources :stories do
+      resources :comments
+    end
     resources :url_fetcher
     resources :likes
 

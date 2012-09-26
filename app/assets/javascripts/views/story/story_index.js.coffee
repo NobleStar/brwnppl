@@ -24,7 +24,8 @@ class Brwnppl.Views.StoryIndex extends Backbone.View
     event.preventDefault()
     story_id = @.getStoryId(event)
     story = @.collection.get(story_id)
-    debugger
+    story_viewer = new Brwnppl.Views.StoryViewer({ model: story })
+    # $('#storyViewer').html(story_viewer.render().el);
 
   render: ->
     $(@el).html(@template(stories: @collection))

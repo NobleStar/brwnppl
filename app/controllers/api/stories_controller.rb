@@ -4,7 +4,7 @@ class Api::StoriesController < Api::BaseController
 
   def index
     @stories = Story.latest.includes(:user).limit(10)
-    render json: @stories.to_json(:include => :user, :methods => :likes_count )
+    render json: @stories.to_json(:include => [:user, :comments], :methods => :likes_count )
   end
 
   def show

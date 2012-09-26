@@ -1,0 +1,61 @@
+<div class='fader'></div>
+<div class="storyViewerBoxContainer">
+  <div class='storyViewerBox'>
+    <a href='#' class='storyViewerClose'> </a>
+    <div class='mediaGutter'>
+      <% if @story.get('html'): %>
+        <%- @story.get('html') %>
+      <% else if @story.get('image'): %>
+        <img src="<%- @story.get('image') %>" >
+      <% end %>
+    </div>
+
+    <div class='commentsGutter'>
+
+      <div class="commentsRoll">
+
+        <div class="userInfo">
+          <div class='commentAvatar'>
+            <img src='<%= @story.get('user')["avatar"] %>' >
+          </div>
+
+          <h3><%= @story.get('user')["name"] %></h3>
+
+          <p><%= @story.get('title') %></p>
+        </div>
+
+        <div id='comments'>
+          
+          <% for comment in @story.get('comments'): %>
+            
+            <div id='comment'>
+              <div id='commenterAvatar'>
+                <img src='http://profile.ak.fbcdn.net/hprofile-ak-snc7/371568_1114383333_1396282_q.jpg' height='32px' width='32px'>
+              </div>
+              <div id="commentText"><%= comment.content %></div>
+            </div>
+
+            <div class="clear"></div>
+
+          <% end %>
+
+          <div id="comment">
+            <div id="commenterAvatar">
+              <img src='<%= @story.get('user')["avatar"] %>' width='32px' height='32px'>
+            </div>
+
+            <div id="commentText">
+              <textarea id="newComment"></textarea>
+            </div>
+          </div>
+
+          <div class="clear"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

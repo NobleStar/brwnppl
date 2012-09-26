@@ -3,12 +3,18 @@ class Brwnppl::UrlFetcher
   def initialize(url, story_type=nil)
     @url = url
     @story_type = story_type
-    if open_graph_url?
+
+    if invalid_url?
+      @story_data = { title: 'Sample' }
+    elsif open_graph_url?
       @story_data.decorate_preview
-    else 
+    elsif image_file_link?
+      @story_data = { title: 'Give your image a custom title!', image: @url}
+    else
       page = Nokogiri::HTML( HTTParty.get(url, :headers => {"User-Agent" => 'Mozilla/5.0'}) )
       @story_data = { title: page.title }
     end
+
     @story_data
   end
 
@@ -18,6 +24,19 @@ class Brwnppl::UrlFetcher
 
   def to_json
     @story_data.to_json
+  end
+
+  def image_file_link?
+    ['.png', '.gif', '.jpg'].include? @url[-4..-1]
+  end
+
+  def invalid_url?
+    begin
+      link = URI.parse(@url)
+      return false if %w(http https).include?(link.scheme)
+    rescue
+      return true
+    end
   end
     
 end
@@ -43,7 +62,11 @@ class OpenGraph::Object
   def decorate_preview
     preview_class = PREVIEW_NAMESPACE + self.site_name.downcase.classify
     # rescue for cases where we might not support the remote site preview decoration
-    self[:html] = preview_class.constantize.new.send(:html, self) rescue NameError 
+    begin
+      self[:html] = preview_class.constantize.new.send(:html, self)
+    rescue
+      self[:html] = nil
+    end
   end
 
 end

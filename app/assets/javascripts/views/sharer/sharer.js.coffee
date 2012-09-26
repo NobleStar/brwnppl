@@ -11,7 +11,7 @@ class Brwnppl.Views.Sharer extends Backbone.View
     'keyup input.linkBar'    :  'fetch_link_details'
     'paste input.linkBar'    :  'fetch_link_details'
     'click #shareThis'       :  'share_link'
-    # 'click .icon'            :  'toggleStoryType'
+    'submit #shareForm'      :  'share_link'
 
   
   render: ->
@@ -60,14 +60,11 @@ class Brwnppl.Views.Sharer extends Backbone.View
   addStoryToHome: ->
     # alert('story need to be added to the home page or no? if yes, this call back need to tackle that')
 
-  # toggleStoryType: (event) ->
-  #   $('.icon').removeClass('selected')
-  #   storyTypeSelector = $(event.target)
-  #   storyTypeSelector.addClass('selected')
-  #   storyType = storyTypeSelector.data('type')
-  #   $('#story_type').val(storyType)
+  renderStoryViewer: ->
+    
 
   clearShareForm: ->
     $('form#shareForm').find(':input').val('').removeAttr('checked').removeAttr('selected')
-    $('form#shareForm textarea').hide()
+    $('form#shareForm textarea').remove()
     $('form#shareForm #preview').html('')
+    $('form#shareForm #linkBarImage').remove()

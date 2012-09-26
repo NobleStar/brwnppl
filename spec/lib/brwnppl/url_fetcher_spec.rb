@@ -21,6 +21,13 @@ describe Brwnppl::UrlFetcher do
       OpenGraph.stub(:fetch) { false }
     end
 
+    it "should give a pre-defined title and image link if provided url is image" do
+      OpenGraph.stub(:fetch) { false }
+      url_fetcher.stub(:image_file_link?) { true }
+      url_fetcher.instance_variable_get(:@story_data).should be_an_instance_of(Hash)
+      url_fetcher.instance_variable_get(:@story_data)[:title].should be_present
+    end
+
   end
 
   describe "#open_graph_url?" do
@@ -35,6 +42,26 @@ describe Brwnppl::UrlFetcher do
       url_fetcher.open_graph_url?.should be_false
     end
     
+  end
+
+  describe "#image_file_link?" do
+
+    it "should return true if file extension ends in gif, png, jpg etc" do
+      ['.png', '.gif', '.jpg'].each do |extension|
+        url_fetcher.instance_variable_set(:@url, "http://example.com/image#{extension}" )
+        url_fetcher.image_file_link?.should be_true
+      end
+    end
+
+    it "should return false if file extension is may be something like html" do
+      url_fetcher.instance_variable_set(:@url, "http://example.com/page.html" )
+      url_fetcher.image_file_link?.should be_false
+    end
+
+    it "should return false if file extension is not there" do
+      url_fetcher.image_file_link?.should be_false
+    end
+
   end
 
 end
