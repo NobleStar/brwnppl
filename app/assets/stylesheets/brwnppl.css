@@ -113,7 +113,7 @@ html{
 
 .commentsGutter #comments {
     padding: 0px;
-    padding-top: 80px;
+    padding-top: 95px;
 }
 
 .commentsGutter #comments #comment {
@@ -408,6 +408,7 @@ img#linkBarImage {
     position: fixed;
     top: 182px;
     width: 100%;
+    z-index: 200;
 }
 
 .notificationBox {

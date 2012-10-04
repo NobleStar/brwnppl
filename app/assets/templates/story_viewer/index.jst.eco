@@ -22,6 +22,7 @@
           <h3><%= @story.get('user')["name"] %></h3>
 
           <p><%= @story.get('title') %></p>
+          <p>Posted about <%= @story.get('posted_ago') %> ago</p>
         </div>
 
         <div id='comments'>
@@ -30,7 +31,7 @@
             
             <div id='comment'>
               <div id='commenterAvatar'>
-                <img src='http://profile.ak.fbcdn.net/hprofile-ak-snc7/371568_1114383333_1396282_q.jpg' height='32px' width='32px'>
+                <img src='<%= comment.avatar %>' height='32px' width='32px'>
               </div>
               <div id="commentText"><%= comment.content %></div>
             </div>
@@ -39,18 +40,18 @@
 
           <% end %>
 
-          <div id="comment">
-            <div id="commenterAvatar">
-              <img src='<%= @story.get('user')["avatar"] %>' width='32px' height='32px'>
-            </div>
-
-            <div id="commentText">
-              <textarea id="newComment"></textarea>
-            </div>
-          </div>
-
           <div class="clear"></div>
 
+        </div>
+
+        <div id="comment">
+          <div id="commenterAvatar">
+            <img src='<%= @story.get('user')["avatar"] %>' width='32px' height='32px'>
+          </div>
+
+          <div id="commentText">
+            <textarea id="newComment"></textarea>
+          </div>
         </div>
 
       </div>

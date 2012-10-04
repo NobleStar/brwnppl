@@ -20,6 +20,10 @@ class Story < ActiveRecord::Base
     likes.count
   end
 
+  def comments_count
+    comments.count
+  end
+
   def liked_by(user)
     likes << likes.build(:user => user)
   end

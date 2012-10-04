@@ -65,6 +65,6 @@ class Brwnppl.Views.Sharer extends Backbone.View
 
   clearShareForm: ->
     $('form#shareForm').find(':input').val('').removeAttr('checked').removeAttr('selected')
-    $('form#shareForm textarea').remove()
+    $('form#shareForm textarea').val('').hide()
     $('form#shareForm #preview').html('')
     $('form#shareForm #linkBarImage').remove()

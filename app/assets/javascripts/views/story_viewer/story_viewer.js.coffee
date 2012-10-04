@@ -45,4 +45,18 @@ class Brwnppl.Views.StoryViewer extends Backbone.View
         content: $('textarea#newComment').val() 
       })
       comment.story_id = this.model.get('id')
-      comment.save()
+      if comment.save()
+        @comment = comment
+        @.triggerCommentAnimation()
+
+  triggerCommentAnimation: ->
+    data =
+      story:
+        user:
+          avatar: @model.get('user')["avatar"]
+      comment:
+        text: @comment.get("content")
+    $('#comment textarea').val('')
+    template = Handlebars.compile $('#comment_template').html()
+    html = template(data)
+    $('#comments').append(html)
