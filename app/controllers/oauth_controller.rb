@@ -8,7 +8,10 @@ class OauthController < ApplicationController
     provider = params[:provider]
     if @user = login_from(provider)
       @user.delay.update_avatar(provider, Config.send(provider.to_sym).get_user_hash)
-      session[:oauth_token] = Config.facebook.access_token.token if provider == "facebook"
+      if provider == "facebook"
+        @user.oauth_token = Config.facebook.access_token.token
+        @user.save
+      end
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
       begin

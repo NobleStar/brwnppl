@@ -32,9 +32,10 @@ class Story < ActiveRecord::Base
   end
 
   def post_to_facebook
-    facebook = Koala::Facebook::API.new(oauth_token)
+    facebook = Koala::Facebook::API.new(user.oauth_token)
     facebook.put_connections("me", "brwnppl:post", story: self.public_url)
   end
+  handle_asynchronously :post_to_facebook, :run_at => Proc.new { 15.seconds.from_now }
 
   def public_url
     ENV['APP_URL'] + '/story/' + self.slug

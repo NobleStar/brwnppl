@@ -1,10 +1,9 @@
 = content_for(:head) do 
-  %head{:prefix => "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# brwnppl: http://ogp.me/ns/fb/brwnppl#" }
-    %meta{:property => "fb:app_id", :content => ENV['FACEBOOK_APP_KEY']  }
-    %meta{:property => "og:type",   :content => "brwnppl:story"          }
-    %meta{:property => "og:url",    :content => @story.public_url        }
-    %meta{:property => "og:title",  :content => @story.title             }
-    %meta{:property => "og:image",  :content => @story.fb_image          }
+  %meta{:property => "fb:app_id", :content => ENV['FACEBOOK_APP_KEY']  }
+  %meta{:property => "og:type",   :content => "brwnppl:story"          }
+  %meta{:property => "og:url",    :content => @story.public_url        }
+  %meta{:property => "og:title",  :content => @story.title             }
+  %meta{:property => "og:image",  :content => @story.fb_image          }
 
 
 #content
