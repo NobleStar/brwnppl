@@ -42,7 +42,7 @@ class Story < ActiveRecord::Base
   end
 
   def fb_image
-    self.image ? self.image : ENV['APP_URL'] + '/assets/brwnppl-default.png'
+    self.image.blank? ? ENV['APP_URL'] + '/assets/brwnppl-default.png' : self.image
   end
 
 end
