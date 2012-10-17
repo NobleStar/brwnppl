@@ -1,5 +1,5 @@
 class Brwnppl.Routers.RootRouter extends Backbone.Router
-  
+
   routes: 
     ''                : 'index'
     'me'              : 'dashboard'
@@ -9,11 +9,12 @@ class Brwnppl.Routers.RootRouter extends Backbone.Router
     @stories = new Brwnppl.Collections.Stories()
     @stories.fetch()
 
-    user = new Brwnppl.Models.User()
-    user.fetch
+    sessionUser = new Brwnppl.Models.User()
+    sessionUser.fetch
       url: '/api/users/me'
+    window.sessionUser = sessionUser
 
-    sharer  = new Brwnppl.Views.Sharer({model: user, stories: @stories})
+    sharer  = new Brwnppl.Views.Sharer({model: sessionUser, stories: @stories})
     stories = new Brwnppl.Views.StoryIndex(collection: @stories)
 
     $('.shareSection').html(sharer.render().el)

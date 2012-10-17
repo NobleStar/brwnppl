@@ -53,7 +53,7 @@ class Brwnppl.Views.StoryViewer extends Backbone.View
     data =
       story:
         user:
-          avatar: @model.get('user')["avatar"]
+          avatar: window.sessionUser.get('avatar')
       comment:
         text: @comment.get("content")
     $('#comment textarea').val('')

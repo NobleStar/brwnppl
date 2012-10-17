@@ -18,6 +18,7 @@ class Api::StoriesController < Api::BaseController
   def create
     @story = Story.new(params[:story])
     @story.user = current_user
+    @story.oauth_token = session[:oauth_token]
     if @story.save
       render json: @story.to_json
     else

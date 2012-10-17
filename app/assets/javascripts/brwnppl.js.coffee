@@ -9,3 +9,7 @@ window.Brwnppl =
 
 $(document).ready ->
   Brwnppl.init()
+
+  # Fix for #_=_ problem after Facebook Sign In
+  if window.location.hash.search('#_') >= 0
+    window.location.hash = ''

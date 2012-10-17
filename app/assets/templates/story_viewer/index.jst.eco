@@ -44,15 +44,17 @@
 
         </div>
 
-        <div id="comment">
-          <div id="commenterAvatar">
-            <img src='<%= @story.get('user')["avatar"] %>' width='32px' height='32px'>
-          </div>
+        <% if window.sessionUser.get('id'): %>
+          <div id="comment">
+            <div id="commenterAvatar">
+              <img src='<%= window.sessionUser.get('avatar') %>' width='32px' height='32px'>
+            </div>
 
-          <div id="commentText">
-            <textarea id="newComment"></textarea>
+            <div id="commentText">
+              <textarea id="newComment"></textarea>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
 

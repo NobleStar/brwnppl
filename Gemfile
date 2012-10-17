@@ -15,6 +15,7 @@ gem 'opengraph'
 gem 'httparty'
 gem 'htmlentities'
 gem 'friendly_id', '~> 4.0.1'
+gem 'koala'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,6 +39,7 @@ group :production do
 end
 
 group :test, :development do
+  #gem 'sexy-logger', :path => '~/personal/sexy-logger'
   gem 'taps'
   gem 'jasminerice'
   gem 'sqlite3'

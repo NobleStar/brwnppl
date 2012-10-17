@@ -1,5 +1,8 @@
 class Story < ActiveRecord::Base
 
+  attr_accessor :oauth_token
+  after_save :post_to_facebook
+
   scope :latest, :order => 'created_at DESC'
 
   belongs_to :user
@@ -26,6 +29,19 @@ class Story < ActiveRecord::Base
 
   def liked_by(user)
     likes << likes.build(:user => user)
+  end
+
+  def post_to_facebook
+    facebook = Koala::Facebook::API.new(oauth_token)
+    facebook.put_connections("me", "brwnppl:post", website: self.public_url)
+  end
+
+  def public_url
+    ENV['APP_URL'] + '/story/' + self.slug
+  end
+
+  def fb_image
+    self.image ? self.image : nil
   end
 
 end

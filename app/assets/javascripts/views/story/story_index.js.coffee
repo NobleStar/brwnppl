@@ -15,10 +15,13 @@ class Brwnppl.Views.StoryIndex extends Backbone.View
     $(event_obj.currentTarget).closest('.postContent').data('story-id')
 
   likeStory: (event) ->
-    event.preventDefault()
-    story_id = @.getStoryId(event)
-    story = @.collection.get(story_id)
-    story.likeStory( $(event.currentTarget) )
+    if window.sessionUser.get('id')
+      event.preventDefault()
+      story_id = @.getStoryId(event)
+      story = @.collection.get(story_id)
+      story.likeStory( $(event.currentTarget) )
+    else
+      console.log "not signed in"
 
   launchViewer: (event) ->
     event.preventDefault()
