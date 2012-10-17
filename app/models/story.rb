@@ -33,7 +33,7 @@ class Story < ActiveRecord::Base
 
   def post_to_facebook
     facebook = Koala::Facebook::API.new(oauth_token)
-    facebook.put_connections("me", "brwnppl:post", website: self.public_url)
+    facebook.put_connections("me", "brwnppl:post", story: self.public_url)
   end
 
   def public_url
