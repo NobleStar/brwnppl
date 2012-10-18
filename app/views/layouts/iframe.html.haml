@@ -1,0 +1,16 @@
+!!!
+%html
+  %head{:prefix => "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# brwnppl: http://ogp.me/ns/fb/brwnppl#" }
+    = yield(:head)
+    %title Brwnppl
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'permalink'
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js'
+    = csrf_meta_tags
+  %body
+    #wrapper
+      = render partial: 'shared/home/header'
+      = yield
+
+      %footer#footer

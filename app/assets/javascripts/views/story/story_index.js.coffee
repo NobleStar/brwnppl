@@ -9,6 +9,7 @@ class Brwnppl.Views.StoryIndex extends Backbone.View
 
   events:
     'click .like-button'     :   'likeStory'
+    'click .comments'        :   'launchViewer'
     'click .postContent h2'  :   'launchViewer'
 
   getStoryId: (event_obj) ->
@@ -21,7 +22,7 @@ class Brwnppl.Views.StoryIndex extends Backbone.View
       story = @.collection.get(story_id)
       story.likeStory( $(event.currentTarget) )
     else
-      console.log "not signed in"
+      console.warn "User not signed in but tried liking Story."
 
   launchViewer: (event) ->
     event.preventDefault()

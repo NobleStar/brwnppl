@@ -1,7 +1,7 @@
 class Story < ActiveRecord::Base
 
   attr_accessor :oauth_token
-  after_save :post_to_facebook
+  after_save :post_to_facebook, :if => :owner_is_from_facebook?
 
   scope :latest, :order => 'created_at DESC'
 
@@ -43,6 +43,10 @@ class Story < ActiveRecord::Base
 
   def fb_image
     self.image.blank? ? ENV['APP_URL'] + '/assets/brwnppl-default.png' : self.image
+  end
+
+  def owner_is_from_facebook?
+    self.user.authentications.map(&:provider).include?('facebook')
   end
 
 end

@@ -23,8 +23,7 @@
     <center><img id='linkBarImage' class='hidden' src=""></center>
     <center><div id='preview'></div></center>
     <input type='hidden' name="story_type" id='story_type' value=''>
-    <input type='hidden' name="story_image" id='story_image' value=''>
-  </form>
+    <input type='hidden' name="story_image_display" id='story_image' value=''>
 
   <a class="uploadLink" href="#">Upload</a>
   <img src="/assets/loader.gif" class='loader hidden'>
@@ -33,6 +32,9 @@
 <!-- shareButton -->
 <div class='shareButton'>
   <a href='' id='shareThis'>Share</a>
+  <input type='hidden' name="story_image" id='story_image' value=''>
 </div>
+ 
+</form>
 
 <div class='clear'></div>

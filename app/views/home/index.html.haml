@@ -3,16 +3,20 @@
     - if logged_in?
       .userOptions
         %a
-          = link_to current_user.name, '#'
+          = link_to current_user.name, "##{current_user.username}"
         %a 
           = link_to 'Logout', logout_path
         %a.icon.plus.floatRight
         %a.icon.user.floatRight
       .clear
-      .shareSection
     - else 
       .userOptions
         = link_to 'Login with FB', auth_at_provider_path(:provider => :facebook)
         = link_to 'Login with TW', auth_at_provider_path(:provider => :twitter)
+
+    = render partial: 'shared/flash_messages'
+
+    - if logged_in?
+      .shareSection
 
     .ribbon

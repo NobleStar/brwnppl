@@ -1,0 +1,10 @@
+:javascript
+  $(document).ready(function() {
+    height  = window.innerHeight;
+    width   = window.innerWidth;
+    $('iframe').height(height);
+    $('iframe').width(width);
+    $('iframe').css('margin-top', '-27px');
+  });
+
+%iframe{:src => @story.url}

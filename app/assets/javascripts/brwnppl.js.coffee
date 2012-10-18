@@ -3,13 +3,14 @@ window.Brwnppl =
   Collections: {}
   Views: {}
   Routers: {}
+  geoLocationFound: (position)->
+    new Brwnppl.Models.Location(position)
   init: ->
     new Brwnppl.Routers.RootRouter()
-    Backbone.history.start()
+    Backbone.history.start({pushState: true})
 
 $(document).ready ->
   Brwnppl.init()
 
-  # Fix for #_=_ problem after Facebook Sign In
-  if window.location.hash.search('#_') >= 0
-    window.location.hash = ''
+  if navigator.geolocation
+    navigator.geolocation.getCurrentPosition( Brwnppl.geoLocationFound, null )

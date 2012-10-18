@@ -14,11 +14,13 @@ Brwnppl::Application.routes.draw do
   end
   
   match '/_=_' => redirect('/')
-  match '/story/:slug' => 'stories#index'
+  match 'story/:slug' => 'stories#index'
   match 'oauth/callback'    => 'oauth#callback'
-  match 'logout'            => 'sessions#destroy',  :as => :logout
-  match 'oauth/:provider'   => 'oauth#start',       :as => :auth_at_provider
-  
+  match 'logout'            => 'sessions#destroy',    :as => :logout
+  match 'oauth/:provider'   => 'oauth#start',         :as => :auth_at_provider
+  match 'v/:slug'           => 'story_viewer#index',  :as => :external_viewer
+  match ':username' => 'home#index'
+
   root :to => 'home#index'
 
 end

@@ -41,8 +41,9 @@
                 %span.icon.details.posted_ago
                 = time_ago_in_words(@story.created_at)
 
-          .postThumbnail
-            = image_tag @story.image, :max_width => 125, :max_height => 85
+          - if @story.image.present?
+            .postThumbnail
+              = image_tag @story.image, :max_width => 125, :max_height => 85
 
 
           .clear
