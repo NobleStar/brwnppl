@@ -1,0 +1,1 @@
+class Brwnppl.Models.Community extends Backbone.Model

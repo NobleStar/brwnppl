@@ -4,6 +4,7 @@ class Brwnppl.Views.Sharer extends Backbone.View
 
   initialize: ->
     @stories = @.options.stories
+    @communities = @.options.communities
     @model.on('change', @render, this)
     @stories.on('add', @addStoryToHome, this)
   
@@ -15,7 +16,7 @@ class Brwnppl.Views.Sharer extends Backbone.View
 
   
   render: ->
-    $(@el).html(@template(user: @model))
+    $(@el).html(@template(user: @model, communities: @communities))
     this
   
   fetch_link_details: ->
@@ -24,6 +25,7 @@ class Brwnppl.Views.Sharer extends Backbone.View
       url.path = url.get('path')
       $('.loader').show()
       $('textarea.linkBar').show()
+      @showCommunitiesDropDown();
       url.fetch
         error: ->
           $('textarea.linkBar').val('Error fetching the URL or Invalid URL')
@@ -38,8 +40,9 @@ class Brwnppl.Views.Sharer extends Backbone.View
     link  = $('input.linkBar').val()
     title = $('textarea.linkBar').val()
     image = $('input#story_image').val()
+    community = $('select.linkBar').val()
     # type  = $('input#story_type').val()
-    @stories.create({ title: title, url: link, image: image },
+    @stories.create({ title: title, url: link, image: image, community_id: community },
       {
         error: (model, response) =>
           notification = {}
@@ -61,7 +64,9 @@ class Brwnppl.Views.Sharer extends Backbone.View
     # alert('story need to be added to the home page or no? if yes, this call back need to tackle that')
 
   renderStoryViewer: ->
-    
+
+  showCommunitiesDropDown: ->
+    $('form > select.linkBar').show()
 
   clearShareForm: ->
     $('form#shareForm').find(':input').val('').removeAttr('checked').removeAttr('selected')

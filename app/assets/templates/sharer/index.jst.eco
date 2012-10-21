@@ -19,6 +19,13 @@
   <div class='clear'></div>
   <form id='shareForm'>
     <textarea class='linkBar hidden'>Give your story a title</textarea>
+    <select name="community" class="linkBar" style="display: none;">
+      <% for community in @communities.models: %>
+          <option value="<%= community.get('id') %>">
+            <%= community.get('name') %>
+          </option>
+      <% end %>
+    </select>
     <input type="text" name="linkBar" class="linkBar" placeholder="Please enter your link here">
     <center><img id='linkBarImage' class='hidden' src=""></center>
     <center><div id='preview'></div></center>

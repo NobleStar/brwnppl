@@ -14,7 +14,7 @@ class Brwnppl.Views.StoryViewer extends Backbone.View
             @model.set({ html: response.html })
             $('#storyViewer').html(@.render().el);
           else
-            window.location = window.location.href + 'v/' + @model.get('slug')
+            window.location = window.location.href.split('#')[0] + 'v/' + @model.get('slug')
 
   render: ->
     $('body').css('overflow', 'hidden')

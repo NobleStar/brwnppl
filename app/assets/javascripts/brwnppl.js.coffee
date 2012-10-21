@@ -7,7 +7,7 @@ window.Brwnppl =
     new Brwnppl.Models.Location(position)
   init: ->
     new Brwnppl.Routers.RootRouter()
-    Backbone.history.start({pushState: true})
+    Backbone.history.start()
 
 $(document).ready ->
   Brwnppl.init()
