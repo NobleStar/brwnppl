@@ -5,6 +5,9 @@
     .background
       .center
         %a.logo{:href => '/'}
+        .communities.hidden
+          = render partial: 'shared/communities_header'
+
 
   .content
     .menu
@@ -14,6 +17,6 @@
         %li
           %a{ href: '#' } Popular
         %li
-          %a{ href: '#' } Communities
+          %a#communities{ href: '#' } Communities
         %li
           %a{ href: '# '} my Brwnppl

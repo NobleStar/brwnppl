@@ -20,6 +20,7 @@
   <form id='shareForm'>
     <textarea class='linkBar hidden'>Give your story a title</textarea>
     <select name="community" class="linkBar" style="display: none;">
+      <option value='0'>-- Please Select--</option>
       <% for community in @communities.models: %>
           <option value="<%= community.get('id') %>">
             <%= community.get('name') %>

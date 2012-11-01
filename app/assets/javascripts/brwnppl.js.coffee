@@ -14,3 +14,17 @@ $(document).ready ->
 
   if navigator.geolocation
     navigator.geolocation.getCurrentPosition( Brwnppl.geoLocationFound, null )
+
+  $('a#communities').toggle(
+    ->
+      $('.background').animate { height: 310}, 500
+      
+      $('.backgroundContainer').animate { height: 310 }, 500, ->
+          $(@).find('.communities').removeClass('hidden')
+
+    ->
+      $('.background').animate { height: 69}, 500
+      
+      $('.backgroundContainer').animate { height: 71 }, 500, ->
+          $(@).find('.communities').addClass('hidden')
+  )

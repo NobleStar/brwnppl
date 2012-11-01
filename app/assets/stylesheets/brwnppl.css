@@ -164,12 +164,25 @@ textarea#newComment {
 #header .content{
     width:960px;
     margin:0 auto;
+    position: relative;
+    z-index: 100000;
 }
+
+#header .communities {
+    color: white;
+}
+
+#header .left {
+    float:left; width:33%; 
+}
+
 #header .backgroundContainer{
     height:71px;
     width:100%;
     background:#8f5c46;
     box-shadow:0px 2px 0px rgba(0,0,0,0.9);
+    position: relative;
+    z-index: 100000;
 }
 #header .background{
     height:69px;
@@ -576,7 +589,8 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 }
 #content #container {
     width:960px;
-    margin:0 auto;
+    margin:20px auto;
+    position: relative;
 }
 
 /* Footer
