@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021180756) do
+ActiveRecord::Schema.define(:version => 20121108012052) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20121021180756) do
     t.string   "avatar"
     t.string   "name"
     t.string   "oauth_token"
+    t.string   "state"
   end
 
 end

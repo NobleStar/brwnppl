@@ -6,6 +6,7 @@ class Story < ActiveRecord::Base
   scope :latest, :order => 'created_at DESC'
 
   belongs_to :user
+  belongs_to :community
   
   has_many :likes
   has_many :likers, through: :likes, source: :user
@@ -47,6 +48,21 @@ class Story < ActiveRecord::Base
 
   def owner_is_from_facebook?
     self.user.authentications.map(&:provider).include?('facebook')
+  end
+
+  def self.recents
+    # TODO - Add Logic for Recent Stories
+    Story.latest
+  end
+
+  def self.populars
+    # TODO - Add Logic for Popular Stories
+    Story.first(15)
+  end
+
+  def self.by_community(slug)
+    community = Community.find_by_slug(slug)
+    Story
   end
 
 end

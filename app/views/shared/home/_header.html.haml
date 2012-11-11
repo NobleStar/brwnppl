@@ -13,10 +13,23 @@
     .menu
       %ul
         %li
-          %a{ href: '#' } Recent
+          %a{ href: recent_path } Recent
         %li
-          %a{ href: '#' } Popular
+          %a{ href: popular_path } Popular
         %li
           %a#communities{ href: '#' } Communities
         %li
           %a{ href: '# '} my Brwnppl
+
+    .userOptions
+      - if logged_in?
+        %a
+          = link_to current_user.name, current_user.username
+        %a 
+          = link_to 'Logout', logout_path
+        %a.icon.plus.floatRight
+        %a.icon.user.floatRight
+        .clear
+      - else 
+        = link_to 'Login with FB', auth_at_provider_path(:provider => :facebook)
+        = link_to 'Login with TW', auth_at_provider_path(:provider => :twitter)

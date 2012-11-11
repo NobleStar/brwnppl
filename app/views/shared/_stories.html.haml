@@ -1,0 +1,35 @@
+.ribbon
+  .posts
+    - stories.each do |story|
+      .post
+        
+        .postUser
+          %img{ :src => story.user.avatar }
+
+        .postContent
+          %a.postUsername{ :href => story.user.username }
+            = story.user.name
+          %br
+          %h2
+            %a{ :href => story.title }
+              = story.title
+
+          .clear
+
+          .postDetails
+            %a{ :href => '#' }
+              %span.icon.details.thumb
+              = story.likes_count
+            %a{ :href => '#' }
+              %span.icon.details.comments
+              = story.comments_count
+            %a{ :href => '#' }
+              %span.icon.details.repost
+              = "255"
+
+        .postThumbnail
+          %a{ :href => '#' }
+            %img{ :src => story.image }
+
+        .clear
+

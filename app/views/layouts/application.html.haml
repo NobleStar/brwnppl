@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Brwnppl
+    %title= yield(:title) || Brwnppl
     <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
@@ -9,6 +9,7 @@
     = csrf_meta_tags
   %body
     #storyViewer
+    
     #wrapper
       = render partial: 'shared/home/header'
       = yield

@@ -10,7 +10,7 @@ window.Brwnppl =
     Backbone.history.start()
 
 $(document).ready ->
-  Brwnppl.init()
+  #Brwnppl.init()
 
   if navigator.geolocation
     navigator.geolocation.getCurrentPosition( Brwnppl.geoLocationFound, null )

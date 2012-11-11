@@ -1,0 +1,22 @@
+#content
+  #container
+    
+    %center
+      %h2 Welcome to Brwnppl - Let's setup yo account!
+
+    = form_for @user do |f|
+      %p Please choose a username for yourself!
+
+      = f.label :username
+      = f.text_field :username, :value => nil
+
+      %br
+
+      = f.label :email
+      = f.email_field :email
+
+      %br
+
+      = f.hidden_field :id
+
+      = f.submit "Update"

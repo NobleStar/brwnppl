@@ -14,13 +14,24 @@ Brwnppl::Application.routes.draw do
 
   end
   
-  match '/_=_' => redirect('/')
+  resources :users, :only => [:update]
+
+  match '/setup_account'    => 'oauth#setup_account', :as => :setup_account
+  match '/_=_'              => redirect('/')
   match 'story/:slug'       => 'stories#index'
   match 'oauth/callback'    => 'oauth#callback'
   match 'logout'            => 'sessions#destroy',    :as => :logout
   match 'oauth/:provider'   => 'oauth#start',         :as => :auth_at_provider
   match 'v/:slug'           => 'story_viewer#index',  :as => :external_viewer
-  match ':username'         => 'home#index'
+  
+  # Communities Route
+  match '/b/:slug'          => 'home#community',      :as => :community
+
+  # Popular and Recent Routes
+  match '/popular'          => 'home#popular',        :as => :popular
+  match '/recent'           => 'home#recent',         :as => :recent
+
+  match ':username'         => 'users#show'
 
   root :to => 'home#index'
 

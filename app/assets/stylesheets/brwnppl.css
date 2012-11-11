@@ -585,8 +585,11 @@ a.checked .icon.details.comments, a:hover .icon.details.comments{background-posi
 a.checked .icon.details.repost, a:hover .icon.details.repost{background-position:-184px -15px;}
 /* Middle
 -----------------------------------------------------------------------------*/
-#content {
+#content .content {
+    width: 960px;
+    margin: 0 auto;
 }
+
 #content #container {
     width:960px;
     margin:20px auto;
@@ -625,4 +628,71 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
     position: fixed;
     text-align: center;
     z-index: 1200;
+}
+
+/* NEW SECTION
+-----------------------------------------------------------------------------*/
+/* User Profile Section
+-----------------------------------------------------------------------------*/
+.profile{
+    background:rgba(255,255,255,0.8);
+    margin-top:-10px;
+    padding-bottom:50px;
+    border-bottom:1px solid #e0e0e0;
+}
+.profile .content{
+    width:960px;
+    margin:0 auto;
+}
+.profileBox{
+    width:690px;
+    padding:7px;
+    float:left;
+    margin-top:70px;
+    border-right:1px solid rgba(0,0,0,0.3);
+}
+.profilePhoto{
+    width:125px;
+    height:150px;
+    float:left;
+    display:block;
+    margin:-7px 20px -7px -7px;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+    border-top-right-radius:10px;
+    border-bottom-right-radius:10px;
+}
+.profileActions{
+    float:left;
+    width:100px;
+    margin:70px 0px 0px 20px;
+}
+/* END NEW SECTION
+-----------------------------------------------------------------------------*/
+
+/* Text Styling
+-----------------------------------------------------------------------------*/
+h1{
+    font-size:24px;
+    color:#9a3d15;
+    font-weight:normal;
+    display:inline-block;
+    margin-bottom:15px;
+}
+h2{
+    font-size:20px;
+    color:#491702;
+    font-weight:normal;
+    display:inline-block;
+}
+h2 a{
+    color:#491702;
+    text-decoration:none;
+}h2 a:hover{
+    color:#9f5130;
+}
+h3{
+    font-size:16px;
+    color:#491702;
+    margin-top:5px;
 }

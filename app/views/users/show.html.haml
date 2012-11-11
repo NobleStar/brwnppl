@@ -1,0 +1,24 @@
+= content_for(:title) do
+  = "#{@user.name} on Brwnppl"
+
+#content
+  .profile
+    
+    .content
+
+      .profileBox
+        - present @user do |user_presenter|
+          = user_presenter.avatar(:large)
+        %h3= @user.name
+        
+        = "jasdeep singh"
+
+      .profileActions
+        %a= "Follow"
+        %a= "Subscribe"
+        %a= "Ignore"
+
+      .clear
+
+  .content
+    = render partial: 'shared/stories', :locals => { :stories => @user.stories}
