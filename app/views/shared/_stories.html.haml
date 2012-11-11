@@ -11,7 +11,7 @@
             = story.user.name
           %br
           %h2
-            %a{ :href => story.title }
+            %a{ :href => "story/" + story.slug }
               = story.title
 
           .clear

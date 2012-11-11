@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       @user.setup_account
       redirect_to :root, :notice => 'Successfully updated user account!'
     else
-      render :previous
+      render 'oauth/setup_account'
     end
   end
 
