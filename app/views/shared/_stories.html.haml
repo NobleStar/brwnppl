@@ -1,35 +1,39 @@
 .ribbon
   .posts
-    - stories.each do |story|
+    - unless stories.present?
       .post
-        
-        .postUser
-          %img{ :src => story.user.avatar }
+        %h2 No Stories Posted on Brwnppl Yet!
+    - else
+      - stories.each do |story|
+        .post
+          
+          .postUser
+            %img{ :src => story.user.avatar }
 
-        .postContent
-          %a.postUsername{ :href => story.user.username }
-            = story.user.name
-          %br
-          %h2
-            %a{ :href => "story/" + story.slug }
-              = story.title
+          .postContent
+            %a.postUsername{ :href => story.user.username }
+              = story.user.name
+            %br
+            %h2
+              %a{ :href => "story/" + story.slug }
+                = story.title
+
+            .clear
+
+            .postDetails
+              %a{ :href => '#' }
+                %span.icon.details.thumb
+                = story.likes_count
+              %a{ :href => '#' }
+                %span.icon.details.comments
+                = story.comments_count
+              %a{ :href => '#' }
+                %span.icon.details.repost
+                = "255"
+
+          .postThumbnail
+            %a{ :href => '#' }
+              %img{ :src => story.image }
 
           .clear
-
-          .postDetails
-            %a{ :href => '#' }
-              %span.icon.details.thumb
-              = story.likes_count
-            %a{ :href => '#' }
-              %span.icon.details.comments
-              = story.comments_count
-            %a{ :href => '#' }
-              %span.icon.details.repost
-              = "255"
-
-        .postThumbnail
-          %a{ :href => '#' }
-            %img{ :src => story.image }
-
-        .clear
 
