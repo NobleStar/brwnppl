@@ -1,19 +1,15 @@
-window.Brwnppl =
-  Models: {}
-  Collections: {}
-  Views: {}
-  Routers: {}
-  geoLocationFound: (position)->
-    new Brwnppl.Models.Location(position)
-  init: ->
-    new Brwnppl.Routers.RootRouter()
-    Backbone.history.start()
-
 $(document).ready ->
-  #Brwnppl.init()
 
-  if navigator.geolocation
-    navigator.geolocation.getCurrentPosition( Brwnppl.geoLocationFound, null )
+  $('body').ajaxError (event, request, settings) ->
+    console.warn 'Ajax Error: (Event): '
+    console.dir event
+    console.warn 'Ajax Error: (Request): '
+    console.dir request
+
+    notification = new Brwnppl.Notification('Something went wrong!', ['Our servers are not in the best state of their health and we experienced some unexpected problem.'])
+    notification.display()
+  # if navigator.geolocation
+  #   navigator.geolocation.getCurrentPosition( myFunc(), null )
 
   $('a#communities').toggle(
     ->
@@ -27,4 +23,4 @@ $(document).ready ->
       
       $('.backgroundContainer').animate { height: 71 }, 500, ->
           $(@).find('.communities').addClass('hidden')
-  )
+    )

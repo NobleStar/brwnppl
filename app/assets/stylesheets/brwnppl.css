@@ -291,6 +291,8 @@ textarea#newComment {
     padding:7px;
     border:2px solid #491702;
     background:#fff;
+    height: auto;
+    min-height: 75px;
 }
 .linkBar{
     width:510px;
@@ -299,7 +301,7 @@ textarea#newComment {
     padding:7px 10px;
     color:#707070;
     margin-left:8px;
-    margin-top: 15px;
+    margin-top: 23px;
 }
 .uploadLink{
     margin-left:10px;
@@ -319,7 +321,7 @@ textarea#newComment {
     padding:15px 30px 0px 30px;
     height:35px;
     border-radius:30px;
-    margin:40px 50px;
+    margin:15px 50px;
     box-shadow:inset 1px 2px 0px rgba(255,255,255,0.7), 0px 0px 1px #000;
     border:6px solid #dbdbdb;
 }
@@ -588,6 +590,9 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 #content .content {
     width: 960px;
     margin: 0 auto;
+    min-height: 130px;
+    height: auto;
+    overflow: auto;
 }
 
 #content #container {

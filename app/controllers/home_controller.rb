@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_filter :account_setup_needed?
 
   def index
-    @stories = Story.last(15)
+    @stories = Story.last(15).reverse
   end
 
   def recent
@@ -17,6 +17,7 @@ class HomeController < ApplicationController
 
   def community
     @stories = Story.by_community(params[:slug])
+    render :recent
   end
 
   protected

@@ -1,0 +1,34 @@
+%script#sharer_template{type: "text/x-handlebars-template"}
+  .userPhoto
+    %img#photo{ :src => current_user.avatar }
+
+  .shareBox
+    .sayBulb
+
+    .clear
+
+    %form#shareForm
+      %textarea.linkBar.hidden
+        = "Give your story a title. ;)"
+
+      = select_tag "community", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- Please Select --', :class => 'hidden linkBar'
+
+      %input.linkBar{:type => 'text', :placeholder => 'Please enter your link here'}
+
+      %center
+        %img#linkBarImage.hidden{ :src => '' }
+
+      %center
+        #preview
+
+      %input#story_type{ type: :hidden, name: :story_type}
+      %input#story_image{ type: :hidden, name: :story_image_display}
+
+      %img.loader.hidden{ :src => 'assets/loader.gif' }
+
+  .shareButton
+    %a#shareThis{ :href => '' }
+      Share
+    %input.hidden{ :type => 'hidden', name: :story_image }
+
+    .clear

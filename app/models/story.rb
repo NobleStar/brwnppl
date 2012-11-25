@@ -16,6 +16,7 @@ class Story < ActiveRecord::Base
   
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_presence_of :url, :title
+  validates_presence_of :community
 
   include FriendlyId
   friendly_id :title, :use => [:slugged, :history]
@@ -62,7 +63,7 @@ class Story < ActiveRecord::Base
 
   def self.by_community(slug)
     community = Community.find_by_slug(slug)
-    Story
+    
   end
 
 end

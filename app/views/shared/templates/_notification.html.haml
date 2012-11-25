@@ -1,0 +1,14 @@
+%script#notification_template{type: "text/x-handlebars-template"}
+  .fader.hidden
+
+  .notificationBox.hidden
+    %h1 {{header}}
+
+    %br
+    %br
+
+    {{#each messages}}
+    %p {{this}}
+    {{/each}}
+
+    %a.notificationClose{ :href => '#'}

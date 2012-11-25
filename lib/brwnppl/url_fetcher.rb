@@ -5,7 +5,7 @@ class Brwnppl::UrlFetcher
     @story_type = story_type
 
     if invalid_url?
-      @story_data = { title: 'Sample' }
+      @story_data = { title: 'Invalid URL' }
     elsif open_graph_url?
       @story_data.decorate_preview
     elsif image_file_link?

@@ -7,6 +7,7 @@
     = javascript_include_tag 'application'
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js'
     = csrf_meta_tags
+
   %body
     #storyViewer
     
@@ -14,13 +15,16 @@
       = render partial: 'shared/home/header'
       = yield
 
-      %script#comment_template{type: "text/x-handlebars-template"}
-        .clear
-        #comment
-          #commenterAvatar
-            %img{:src => "{{story.user.avatar}}", :width => '32px', :height => '32px'}
-          #commentText
-            {{comment.text}}
-        .clear
+      / %script#comment_template{type: "text/x-handlebars-template"}
+      /   .clear
+      /   #comment
+      /     #commenterAvatar
+      /       %img{:src => "{{story.user.avatar}}", :width => '32px', :height => '32px'}
+      /     #commentText
+      /       {{comment.text}}
+      /   .clear
 
       %footer#footer
+        = render :partial => 'shared/templates/notification'
+        = javascript_include_tag "Notification/NotificationController"
+        = content_for :footer_scripts

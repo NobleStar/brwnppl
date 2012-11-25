@@ -16,12 +16,15 @@ Brwnppl::Application.routes.draw do
   
   resources :users, :only => [:update]
 
-  match '/setup_account'    => 'oauth#setup_account', :as => :setup_account
-  match '/_=_'              => redirect('/')
-  match 'story/:slug'       => 'stories#index'
+  # Authentication Actions:
   match 'oauth/callback'    => 'oauth#callback'
-  match 'logout'            => 'sessions#destroy',    :as => :logout
   match 'oauth/:provider'   => 'oauth#start',         :as => :auth_at_provider
+  match 'logout'            => 'sessions#destroy',    :as => :logout
+  match '/setup_account'    => 'oauth#setup_account', :as => :setup_account  
+  match '/_=_'              => redirect('/')
+
+  # Story Viewers
+  match 'story/:slug'       => 'stories#index'
   match 'v/:slug'           => 'story_viewer#index',  :as => :external_viewer
   
   # Communities Route

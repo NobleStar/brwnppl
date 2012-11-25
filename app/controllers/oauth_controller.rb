@@ -7,7 +7,7 @@ class OauthController < ApplicationController
   def callback
     provider = params[:provider]
     if @user = login_from(provider)
-      @user.delay.update_avatar(provider, Config.send(provider.to_sym).get_user_hash)
+      #@user.delay.update_avatar(provider, Config.send(provider.to_sym).get_user_hash)
       if provider == "facebook"
         @user.oauth_token = Config.facebook.access_token.token
         @user.save
