@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   def update_avatar(provider, user_hash)
     user_hash = user_hash.with_indifferent_access
     self.avatar = 'https://graph.facebook.com/' + user_hash[:user_info][:id] + '/picture' if provider == 'facebook'
-    binding.pry
     self.avatar = Twitter.user(user_hash[:user_info][:screen_name]).profile_image_url if provider == 'twitter'
     self.save
     return self
