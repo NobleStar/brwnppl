@@ -10,7 +10,7 @@
           .postUser
             %img{ :src => story.user.avatar }
 
-          .postContent
+          .postContent{ 'data-story-id' => story.id }
             %a.postUsername{ :href => story.user.username }
               = story.user.name
             %br
@@ -36,3 +36,11 @@
               %img{ :src => story.image }
 
           .clear
+
+:javascript
+  $('.postContent h2').click(function(event) {
+    event.preventDefault()
+    story_id = $(event.target).closest('.postContent').data('story-id')
+    story_viewer = new Brwnppl.StoryViewer(story_id)
+    story_viewer.init()
+  });

@@ -19,16 +19,16 @@ class SharerController
     community = c.communities_menu().val()
 
     $.ajax
-        url      :  '/api/stories'
-        type     :  'POST'
-        dataType :  'json'
-        data     :  { story: { title: title, url: link, image: image, community_id: community } }
-        complete :  (data, status) =>
-          response = JSON.parse(data.responseText)
-          notification = new Brwnppl.Notification(response.header, response.messages)
-          notification.display()
-          if response.saved
-            c.resetSharer()
+      url      :  '/api/stories'
+      type     :  'POST'
+      dataType :  'json'
+      data     :  { story: { title: title, url: link, image: image, community_id: community } }
+      complete :  (data, status) =>
+        response = JSON.parse(data.responseText)
+        notification = new Brwnppl.Notification(response.header, response.messages)
+        notification.display()
+        if response.saved
+          c.resetSharer()
 
   fetch_link_details: (e) ->
     c = e.data.controller
@@ -101,7 +101,6 @@ class SharerController
 
   share_button: ->
     @dom.find('#shareThis')
-
 
 
 sharer = new SharerController()

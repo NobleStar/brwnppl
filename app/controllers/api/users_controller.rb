@@ -1,5 +1,7 @@
 class Api::UsersController < Api::BaseController
 
+  skip_before_filter :require_login, :only => [:me]
+
   def index
     render json: [current_user]
   end
@@ -9,7 +11,11 @@ class Api::UsersController < Api::BaseController
   end
 
   def me
-  	render json: current_user
+    if current_user
+  	  render json: current_user, :except => :oauth_token
+    else
+      render json: false
+    end
   end
 
 end

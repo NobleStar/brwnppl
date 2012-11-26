@@ -24,7 +24,7 @@
     .userOptions
       - if logged_in?
         %a
-          = link_to current_user.name, current_user.username
+          = link_to current_user.name, '/' + current_user.username
         %a 
           = link_to 'Logout', logout_path
         %a.icon.plus.floatRight

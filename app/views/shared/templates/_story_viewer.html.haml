@@ -1,0 +1,50 @@
+%script#story_viewer_template{type: "text/x-handlebars-template"}
+  .storyViewer
+    .fader
+
+    .storyWindow
+      %a.storyClose{ :href => '#'}
+
+      .storyContent
+        :plain
+          {{#if story.html}}
+            {{{story.html}}}
+          {{else}}
+            <img src="{{story.image}}">
+          {{/if}}
+            <div class='clear'></div>
+
+        .storyName {{story.title}}
+
+      .storyComments{ :style => 'width: 820px; display: block;' }
+        .content
+          .comments
+            
+            :plain
+              {{#each comments}}
+                <div class='comment'>
+                  <img class = 'photo' src="{{this.avatar}}" height = '32' weight = '32' >
+                  <a class='author' href='#'> {{this.name}} </a>
+                  <span class='text' >
+                    {{this.content}}
+                  </span>
+                </div>
+              {{/each}}
+
+          .leaveComment
+
+            :plain
+              {{#if user.current_user}}
+                <textarea rows=5 cols=5 placeholder = 'Leave a comment'></textarea>
+                <br/>
+                <a href='#' class='roundedButton'> Post Comment </a>
+                <img class="loader" src="assets/loader.gif" style='display: none;'>
+              {{else}}
+                <p>You need to login to be able to comment</p>
+              {{/if}}
+
+
+          .clear
+
+  :javascript
+    $('.comments').jScrollPane()

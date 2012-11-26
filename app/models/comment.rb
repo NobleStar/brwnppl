@@ -6,5 +6,9 @@ class Comment < ActiveRecord::Base
   def avatar
     user.avatar
   end
+
+  def name
+    user.name
+  end
   
 end

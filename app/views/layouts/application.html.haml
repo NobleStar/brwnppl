@@ -6,25 +6,21 @@
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js'
+    = javascript_include_tag 'http://js.pusher.com/1.12/pusher.min.js'
     = csrf_meta_tags
 
   %body
-    #storyViewer
     
     #wrapper
       = render partial: 'shared/home/header'
       = yield
 
-      / %script#comment_template{type: "text/x-handlebars-template"}
-      /   .clear
-      /   #comment
-      /     #commenterAvatar
-      /       %img{:src => "{{story.user.avatar}}", :width => '32px', :height => '32px'}
-      /     #commentText
-      /       {{comment.text}}
-      /   .clear
-
       %footer#footer
-        = render :partial => 'shared/templates/notification'
+        = render partial: 'shared/templates/notification'
+        = render partial: 'shared/templates/story_viewer'
+        = render partial: 'shared/templates/single_comment'
+        = render partial: 'shared/uservoice'
+        = javascript_include_tag "User/User"
         = javascript_include_tag "Notification/NotificationController"
+        = javascript_include_tag "StoryViewer/StoryViewer"
         = content_for :footer_scripts

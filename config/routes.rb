@@ -25,7 +25,7 @@ Brwnppl::Application.routes.draw do
 
   # Story Viewers
   match 'story/:slug'       => 'stories#index'
-  match 'v/:slug'           => 'story_viewer#index',  :as => :external_viewer
+  match '/v/:slug'           => 'story_viewer#index',  :as => :external_viewer
   
   # Communities Route
   match '/b/:slug'          => 'home#community',      :as => :community

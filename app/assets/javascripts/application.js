@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require brwnppl
+//= require jquery.jscrollpane.min
+//= require jquery.mousewheel
 
 window.Brwnppl = {}

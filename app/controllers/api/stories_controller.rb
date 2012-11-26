@@ -1,6 +1,6 @@
 class Api::StoriesController < Api::BaseController
 
-  skip_before_filter :require_login, only: [:index, :create]
+  skip_before_filter :require_login, only: [:index, :show]
 
   def index
     @stories = Story.latest.includes(:user).limit(10)
@@ -9,7 +9,7 @@ class Api::StoriesController < Api::BaseController
   def show
     @story = Story.find(params[:id])
     if @story
-      render json: @story.to_json
+      render 'show.json'
     else
       render json: { message: :not_found }, status: :unprocessable_entity
     end

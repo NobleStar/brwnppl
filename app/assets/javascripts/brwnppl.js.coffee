@@ -8,6 +8,7 @@ $(document).ready ->
 
     notification = new Brwnppl.Notification('Something went wrong!', ['Our servers are not in the best state of their health and we experienced some unexpected problem.'])
     notification.display()
+
   # if navigator.geolocation
   #   navigator.geolocation.getCurrentPosition( myFunc(), null )
 
