@@ -734,6 +734,7 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
     max-height:200px;
     width:280px;
     padding-right:15px;
+    min-height: 200px;
 }
 .storyClose{
     background:url("sprites.png") no-repeat;

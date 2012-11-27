@@ -4,12 +4,7 @@
 #content
   .content
     = render partial: 'shared/flash_messages'
-    
-    - if logged_in?
-      .shareSection
-        = content_for(:footer_scripts) do
-          = render partial: 'shared/templates/sharer'
-          = javascript_include_tag "Sharer/SharerController"
+    = render partial: 'shared/sharer'
 
   #container
     = render partial: 'shared/stories', :locals => { :stories => @stories }

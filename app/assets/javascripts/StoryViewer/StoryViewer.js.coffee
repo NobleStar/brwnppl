@@ -40,7 +40,7 @@ class Brwnppl.StoryViewer
       url       :   @comments_url(@story_id)
       type      :   'POST'
       dataType  :   'json'
-      data      :   { content: comment_text }
+      data      :   { content: comment_text, socket_id: @pusher.connection.socket_id }
       complete  :   (data, status) =>
         @loader().hide()
         @textarea().val('')
@@ -53,11 +53,12 @@ class Brwnppl.StoryViewer
     $('#wrapper').prepend(template(data))
 
   bind_pusher: ->
-    pusher = new Pusher('485e4d3a43a88d8be69c')
-    channel = pusher.subscribe(@story_id.toString())
+    @pusher = new Brwnppl.PushService().pusher
+    channel = @pusher.subscribe(@story_id.toString())
     channel.bind 'new-comment', (data) =>
-      res = JSON.parse(data.comment)
-      comment = res[0]
+      console.dir data
+      res = JSON.stringify(data)
+      comment = JSON.parse(res)
       @append_new_comment(comment)
 
   append_new_comment: (comment) ->
@@ -81,7 +82,7 @@ class Brwnppl.StoryViewer
   loader: ->
     @storyViewer().find('.loader')
 
-  comments: ->
+  comments_dom: ->
     @storyViewer().find('.comments')
 
   last_comment: ->

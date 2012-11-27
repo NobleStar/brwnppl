@@ -48,7 +48,6 @@ class SharerController
     console.dir data
     if status is "success"
       c.populate_sharer(data)
-
       c.story_title().show()
       c.communities_menu().show()
       c.loader().hide()
@@ -56,7 +55,11 @@ class SharerController
   populate_sharer: (data) ->
     json = $.parseJSON(data.responseText)
     @populate_story_title(json.title)
-    if json.html
+    debugger
+    if json.html and json.image
+      @populate_html(json.html)
+      @story_image_input().val(json.image)
+    else if json.html
       @populate_html(json.html)
     else if json.image
       @populate_image(json.image)
