@@ -749,8 +749,10 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 .storyContent img{vertical-align:middle; max-width:800px; max-height:600px;}
 .storyName{
   font-size: 20px;
-  margin-top:25px; 
-  color:#fff;
+  margin-top: 25px;
+  color: white;
+  width: 600px;
+  margin: auto;
 }
 .storyComments{
     background:url("mainBackground.jpg") repeat;
