@@ -5,12 +5,16 @@
         %h2 No Stories Posted on Brwnppl Yet!
     - else
       - stories.each do |story|
-        .post
-          
+
+        .post{ 'data-story-id' => story.id }
+          .ribbon-front
+            %span
+              = story.user.brownie_points
+
           .postUser
             %img{ :src => story.user.avatar }
 
-          .postContent{ 'data-story-id' => story.id }
+          .postContent
             %a.postUsername{ :href => story.user.username }
               = story.user.name
             %br
@@ -21,15 +25,17 @@
             .clear
 
             .postDetails
-              %a{ :href => '#' }
+              %a.thumb_{ :href => '#' }
                 %span.icon.details.thumb
                 = story.likes_count
-              %a{ :href => '#' }
+              %a.comments_{ :href => '#' }
                 %span.icon.details.comments
                 = story.comments_count
-              %a{ :href => '#' }
+              %a.repost_{ :href => '#' }
                 %span.icon.details.repost
                 = "255"
+              - if current_user && story.user == current_user
+                = link_to 'X (Delete)', api_story_path(story), :confirm => 'Are you sure?', :method => :delete
 
           .postThumbnail
             %a{ :href => '#' }
@@ -38,9 +44,16 @@
           .clear
 
 :javascript
-  $('.postContent h2').click(function(event) {
+  $('.postContent h2, .postContent .postDetails a.comments_, .postThumbnail').click(function(event) {
     event.preventDefault()
-    story_id = $(event.target).closest('.postContent').data('story-id')
+    story_id = $(event.target).closest('.post').data('story-id')
     story_viewer = new Brwnppl.StoryViewer(story_id)
     story_viewer.init()
+  });
+
+  $('.postContent .postDetails a.thumb_').click(function(event) {
+    event.preventDefault()
+    story_id = $(event.target).closest('.post').data('story-id')
+    story = new Brwnppl.StoryController(story_id)
+    story.like($(this))
   });

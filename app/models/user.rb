@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
+  attr_accessor :cloudinary_avatar
+
   has_many :stories, :dependent => :delete_all
   has_many :authentications, :dependent => :delete_all
   accepts_nested_attributes_for :authentications

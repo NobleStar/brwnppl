@@ -16,7 +16,8 @@ class Api::StoriesController < Api::BaseController
   end
 
   def create
-    @story = Story.new(params[:story])
+    class_type = params[:story][:type] || "Story"
+    @story = class_type.constantize.new(params[:story])
     @story.user = current_user
     @story.oauth_token = session[:oauth_token]
     if @story.save
@@ -28,6 +29,15 @@ class Api::StoriesController < Api::BaseController
 
   def update
     @story = Story.find(params[:id])
+  end
+
+  def destroy
+    @story = Story.find(params[:id])
+    if @story.user == current_user && @story.destroy
+      redirect_to :root, :notice => "Your post was deleted successfully."
+    else
+      redirect_to :root, :alert => "There was some problem, we were unable to delete your post"
+    end
   end
 
 end

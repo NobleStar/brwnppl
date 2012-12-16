@@ -12,6 +12,10 @@ Brwnppl::Application.routes.draw do
     	get :me, :on => :collection
     end
 
+    resources :images do
+      post :upload, :on => :collection
+    end
+
   end
   
   resources :users, :only => [:update]

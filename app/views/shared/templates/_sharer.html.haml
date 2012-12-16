@@ -1,6 +1,6 @@
 %script#sharer_template{type: "text/x-handlebars-template"}
   .userPhoto
-    %img#photo{ :src => current_user.avatar }
+    %img#photo{ :src => user_avatar(current_user) }
 
   .shareBox
     .sayBulb
@@ -13,7 +13,7 @@
 
       = select_tag "community", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- Please Select --', :class => 'hidden linkBar'
 
-      %input.linkBar{:type => 'text', :placeholder => 'Please enter your link here'}
+      %input.linkBar{:type => 'text', :placeholder => 'Please enter your link here or type a topic for discussion..'}
 
       %center
         %img#linkBarImage.hidden{ :src => '' }
@@ -23,6 +23,9 @@
 
       %input#story_type{ type: :hidden, name: :story_type}
       %input#story_image{ type: :hidden, name: :story_image_display}
+
+      %a{ :href => '#', :id => 'image_upload' } Attach Image
+      %input#fileupload.hidden{ :type => 'file', :name => 'image', 'data-url' => "/api/images/upload" }
 
       %img.loader.hidden{ :src => 'assets/loader.gif' }
 

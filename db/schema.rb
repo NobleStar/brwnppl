@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111231409) do
+ActiveRecord::Schema.define(:version => 20121216030319) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -86,14 +86,15 @@ ActiveRecord::Schema.define(:version => 20121111231409) do
   add_index "stories", ["slug"], :name => "index_stories_on_slug"
 
   create_table "users", :force => true do |t|
-    t.string   "username",    :null => false
+    t.string   "username",                      :null => false
     t.string   "email"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "avatar"
     t.string   "name"
     t.string   "oauth_token"
     t.string   "state"
+    t.integer  "brownie_points", :default => 0
   end
 
 end

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: brwnppl
+  api_key: '868994469374896'
+  api_secret: CWQODhFShu1Bj4rRDqk9N2J0rcU
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: brwnppl
+  api_key: '868994469374896'
+  api_secret: CWQODhFShu1Bj4rRDqk9N2J0rcU
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: brwnppl
+  api_key: '868994469374896'
+  api_secret: CWQODhFShu1Bj4rRDqk9N2J0rcU
+  enhance_image_tag: true
+  static_image_support: false

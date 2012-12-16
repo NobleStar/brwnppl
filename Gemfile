@@ -18,6 +18,7 @@ gem 'friendly_id', '~> 4.0.1'
 gem 'koala'
 gem 'state_machine'
 gem 'pusher'
+gem 'cloudinary'
 
 # Gems used only for assets and not required
 # in production environments by default.
