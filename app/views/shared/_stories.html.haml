@@ -41,7 +41,8 @@
 
           .postThumbnail
             %a{ :href => '#' }
-              %img{ :src => story.image }
+              - if story.image
+                %img{ :src => story.image }
 
           .clear
 

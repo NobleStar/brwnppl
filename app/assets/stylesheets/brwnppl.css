@@ -632,6 +632,7 @@ h2{
 h2 a{
     color:#491702;
     text-decoration:none;
+    word-wrap: break-word;
 }h2 a:hover{
     color:#9f5130;
 }
