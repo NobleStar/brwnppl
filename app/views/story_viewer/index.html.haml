@@ -8,3 +8,34 @@
   });
 
 %iframe{:src => @story.url}
+
+
+= content_for(:story_controls) do
+  - if params[:controller] == 'story_viewer'
+    .storyControls{ :style => 'float: left'}
+      %ul#storyControls{ :'data-story-id' => @story.id }
+        %li.thumb_
+          %img{:src => '/assets/like-x.png', :width => '40px', :height => '40px'}
+        %li
+          %img{:src => '/assets/down-vote-x.png', :width => '40px', :height => '40px'}
+        %li.comments
+          %img{:src => '/assets/comment-x.png', :width => '40px', :height => '40px'}
+
+
+= content_for(:comments_dropdown) do
+  :javascript
+    $('.commentsDropdown').jScrollPane()
+
+  - if params[:controller] == 'story_viewer'
+    .commentsDropdown.hidden
+      .comments
+        - @story.comments.each do |comment|
+          .comment
+            %img.photo{ :src => user_avatar(comment.user), :height => '32px', :weight => '32px'}
+            %a.author{ :href => "/#{comment.user.username}" }= comment.user.name
+            %span.text= comment.content
+
+      .leaveComment
+        %textarea{ :rows => 5, :cols => 47}
+        %br
+        %a.roundedButton{ :href => '#' } Post Comment

@@ -253,6 +253,65 @@ textarea#newComment {
     margin:0 auto;
     background:url("logo.png") no-repeat center top;
 }
+
+.storyControls {
+  padding: 20px;
+  padding-right: 0px;
+}
+
+#storyControls li {
+  list-style-type: none;
+  display: inline;
+  padding: 8px;
+}
+
+.commentsDropdown {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  top: 72px;
+  background-image: url('mainBackground.jpg');
+  border-bottom-right-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 20px black;
+}
+
+.commentsDropdown .comment {
+  padding: 12px 0px 12px 0px;
+  border-bottom: 1px solid #D2D2D2;
+}
+
+.commentsDropdown .comment .photo {
+  vertical-align: top;
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px 5px 0px;
+}
+
+.commentsDropdown .comment .author {
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.commentsDropdown .comment .text {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.commentsDropdown .leaveComment {
+  position: absolute;
+  bottom: 0px;
+  padding: 23px;
+}
+
+
+.commentsDropdown .comments {
+  width: 350px;
+  margin: 0px auto;
+}
+
 /* User Section
 -----------------------------------------------------------------------------*/
 .userOptions{
@@ -796,6 +855,7 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 .storyWindow .comment .text{font-size: 14px; margin-bottom:20px;}
 .storyWindow .comment .author{text-decoration:none; font-weight:bold; margin-right:10px;}
 .storyWindow .comment .author:hover{color:#CB5B2B;}
+.storyWindow .comment p.timestamp { margin: 0px;}
 .storyWindow .leaveComment{
     display:inline-block;
     width:250px;

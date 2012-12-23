@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :delete_all
   accepts_nested_attributes_for :authentications
 
+  validates_uniqueness_of :username
+  validates_uniqueness_of :email
+
   state_machine :state, :initial => :new_user do
     
     event :setup_account do
