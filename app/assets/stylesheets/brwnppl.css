@@ -906,3 +906,14 @@ h3{
     color:#491702;
     margin-top:5px;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 980px) {
+  #content #container {
+    width: 860px;
+  }
+
+  .postContent {
+    width: 72%;
+  }
+}
