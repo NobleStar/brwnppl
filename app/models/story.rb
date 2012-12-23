@@ -1,7 +1,7 @@
 class Story < ActiveRecord::Base
 
   attr_accessor :oauth_token
-  attr_accessible :type, :url, :image, :title, :community_id, :description
+  attr_accessible :type, :url, :image, :title, :community_id, :description, :content_type
   after_save :post_to_facebook, :if => :owner_is_from_facebook?
 
   scope :latest, :order => 'created_at DESC'
@@ -16,6 +16,7 @@ class Story < ActiveRecord::Base
   has_many :commenters, through: :comments, source: :user
 
   validates_presence_of :title, :community
+  validates_presence_of :content_type
 
   include FriendlyId
   friendly_id :title, :use => [:slugged, :history]

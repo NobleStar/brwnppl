@@ -160,7 +160,18 @@ textarea#newComment {
     rgba(0,0,0,0.5);
     z-index: 100;
 }
-#header{height:100px;}
+#header{
+  height:100px;
+  position:fixed;
+  width:100%;
+  z-index:5000;
+}
+
+#content .content{
+  padding-top: 100px;
+}
+
+
 #header .content{
     width:960px;
     margin:0 auto;
@@ -407,7 +418,7 @@ textarea#newComment {
 }
 .categories{
     margin:15px 0px 0px 10px;
-    height:80px;
+    height:40px;
 }
 .category{
     text-decoration:none;

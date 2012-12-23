@@ -1,4 +1,6 @@
 .ribbon
+  = render :partial => 'shared/story_sorter'
+
   .posts
     - unless stories.present?
       .post
@@ -6,7 +8,7 @@
     - else
       - stories.each do |story|
 
-        .post{ 'data-story-id' => story.id }
+        .post{ 'data-story-id' => story.id, 'data-content-type' => story.content_type }
           .ribbon-front
             %span
               = story.user.brownie_points
