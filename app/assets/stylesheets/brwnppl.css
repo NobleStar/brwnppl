@@ -331,6 +331,8 @@ textarea#newComment {
   color:#9a3d15;
   margin-top:-16px;
   width:200px;
+  float: right;
+  text-align: right;
 }
 .userOptions a{
     text-decoration:none;
@@ -479,7 +481,7 @@ img#linkBarImage {
   font-family: 'Paytone One';
   font-size: 30px;
   background-color: #9A3D15;
-  height: 36px;
+  height: 68px;
   width: 38px;
   position: absolute;
   left: -43px;
@@ -492,6 +494,28 @@ img#linkBarImage {
   -moz-border-radius-topleft: 6px;
   -moz-border-radius-bottomleft: 6px;
   box-shadow: -1px 3px 5px black;
+}
+
+.ribbon-front .thumb_down .thumb {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.ribbon-front .thumb_up .thumb {
+  background-position: -156px 0px;
+  width: 14px;
+  height: 15px;
+  margin-top: -30px;
+}
+
+.ribbon-front .thumb_down .thumb {
+  background-position: -156px 0px;
+  width: 14px;
+  height: 15px;
+  margin-top: 16px;
 }
 
 .postShadow {
@@ -682,8 +706,8 @@ h2 a{
 .icon.posted.text{background-position:-136px 0px; width:19px; height:13px; margin-bottom:8px;}
 
 .icon.details{display:inline-block; margin-right:5px;}
-.icon.details.thumb{background-position:-156px 0px; width:14px; height:15px; margin-top:-5px;}
-a.checked .icon.details.thumb, a:hover .icon.details.thumb{background-position:-156px -15px;}
+/*.icon.details.thumb{background-position:-156px 0px; width:14px; height:15px; margin-top:-5px;}
+a.checked .icon.details.thumb, a:hover .icon.details.thumb{background-position:-156px -15px;}*/
 .icon.details.comments{background-position:-170px 0px; width:13px; height:13px;}
 a.checked .icon.details.comments, a:hover .icon.details.comments{background-position:-170px -15px;}
 .icon.details.repost{background-position:-184px 0px; width:12px; height:13px;}
@@ -881,6 +905,11 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
   font-family:sans-serif;
   padding:10px;
 }
+
+.flash_messages p {
+    top: 80px;
+}
+
 /* END OF NEW SECTION
 -----------------------------------------------------------------------------*/
 
@@ -905,6 +934,19 @@ h3{
     font-size:16px;
     color:#491702;
     margin-top:5px;
+}
+
+.search input {
+  width: 80%;
+  height: 45px;
+  margin: 20px;
+  font-size: 25px;
+}
+
+.search button {
+  height: 38px;
+  width: 10%;
+  font-size: 18px;
 }
 
 /* Media Queries */

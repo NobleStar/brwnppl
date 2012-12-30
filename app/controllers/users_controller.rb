@@ -17,6 +17,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+    @user = User.find_by_username(params[:id])
+    if current_user.follow!(@user)
+      redirect_to user_profile_url(@user.username), :notice => "You are now following #{@user.name}"
+    end
+  end
+
+  def unfollow
+    @user = User.find_by_username(params[:id])
+    if current_user.unfollow!(@user)
+      redirect_to user_profile_url(@user.username), :notice => "You've stopped following #{@user.name}"
+    end
+  end
+
   protected
   def account_should_be_new
     @user = User.find(params[:user][:id])

@@ -8,6 +8,9 @@
         %a.logo{:href => '/'}
         .communities.hidden
           = render partial: 'shared/communities_header'
+        .search.hidden
+          %input{ :type => 'text', :placeholder => 'enter some keywords here to search..'}
+          %button{ :value => 'Search'} Search
 
 
   .content
@@ -19,6 +22,8 @@
           %a{ href: popular_path } Popular
         %li
           %a#communities{ href: '#' } Communities
+        %li
+          %a#search{ href: '# '} Search
         %li
           %a{ href: '# '} my Brwnppl
 
@@ -34,7 +39,7 @@
           .clear
         - else 
           = link_to 'Login with FB', auth_at_provider_path(:provider => :facebook)
-          = link_to 'Login with TW', auth_at_provider_path(:provider => :twitter)
+          /= link_to 'Login with TW', auth_at_provider_path(:provider => :twitter)
 
 
 = yield(:comments_dropdown)

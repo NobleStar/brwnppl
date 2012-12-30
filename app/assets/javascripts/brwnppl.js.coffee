@@ -27,6 +27,20 @@ $(document).ready ->
           $(@).find('.communities').addClass('hidden')
     )
 
+  $('a#search').toggle(
+    ->
+      $('.background').animate { height: 160}, 250
+      
+      $('.backgroundContainer').animate { height: 160 }, 500, ->
+          $(@).find('.search').removeClass('hidden')
+
+    ->
+      $('.background').animate { height: 69}, 500
+      
+      $('.backgroundContainer').animate { height: 71 }, 500, ->
+          $(@).find('.search').addClass('hidden')
+    )
+
   $('.post').mouseenter (event) -> 
     $(this).addClass('postShadow')
   

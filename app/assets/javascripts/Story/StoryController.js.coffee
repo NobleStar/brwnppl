@@ -10,7 +10,7 @@ class Brwnppl.StoryController
       data:   { story_id: story_id }
       type:   "POST"
       success: (data) =>
-        likeCount = element.contents().last()[0]
+        likeCount = element.next()[0]
         oldCount = parseInt likeCount.textContent
         likeCount.textContent = oldCount + 1
       statusCode: 

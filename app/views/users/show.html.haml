@@ -5,22 +5,21 @@
   .profile
     
     .content
+      %p= render partial: 'shared/flash_messages'
 
       .profileBox
         = image_tag user_avatar(@user, :height => 150, :width => 125, :crop => :thumb), :class => 'profilePhoto'
-        / - present @user do |user_presenter|
-        /   = user_presenter.avatar(:large)
         %h2= @user.name
-        
+        %br
         = "short user bio here"
 
       .profileActions
-        %a{:href => '#'}= "Follow"
-        %br
-        %a{:href => '#'}= "Subscribe"
-        %br
-        %a{:href => '#'}= "Ignore"
-        %br
+        - if current_user == @user
+          %p
+        - elsif current_user.following?(@user)
+          %a{:href => "/users/#{@user.username}/unfollow"}= "Unfollow"
+        - else
+          %a{:href => "/users/#{@user.username}/follow"}= "Follow"
 
       .clear
 

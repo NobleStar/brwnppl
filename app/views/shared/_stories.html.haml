@@ -10,8 +10,12 @@
 
         .post{ 'data-story-id' => story.id, 'data-content-type' => story.content_type }
           .ribbon-front
+            %a.thumb_up{ :href => '#' }
+              %span.icon.details.thumb
             %span
-              = story.user.brownie_points
+              = story.brownie_points
+            %a.thumb_down{ :href => '#' }
+              %span.icon.details.thumb
 
           .postUser
             %img{ :src => story.user.avatar }
@@ -27,9 +31,6 @@
             .clear
 
             .postDetails
-              %a.thumb_{ :href => '#' }
-                %span.icon.details.thumb
-                = story.likes_count
               %a.comments_{ :href => '#' }
                 %span.icon.details.comments
                 = story.comments_count
@@ -54,7 +55,7 @@
     story_viewer.init()
   });
 
-  $('.postContent .postDetails a.thumb_').click(function(event) {
+  $('.post .ribbon-front a.thumb_up').click(function(event) {
     event.preventDefault()
     story_id = $(event.target).closest('.post').data('story-id')
     story = new Brwnppl.StoryController(story_id)

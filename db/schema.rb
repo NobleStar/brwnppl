@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223152517) do
+ActiveRecord::Schema.define(:version => 20121229214259) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(:version => 20121223152517) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "dislikes", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
     t.integer  "sluggable_id",                 :null => false
@@ -77,18 +84,30 @@ ActiveRecord::Schema.define(:version => 20121223152517) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "relationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
+  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "type"
     t.text     "url"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "user_id"
     t.string   "image"
-    t.string   "slug",         :default => "", :null => false
+    t.string   "slug",           :default => "", :null => false
     t.integer  "community_id"
     t.string   "content_type"
+    t.integer  "brownie_points", :default => 0
   end
 
   add_index "stories", ["slug"], :name => "index_stories_on_slug"

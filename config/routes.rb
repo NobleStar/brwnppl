@@ -18,7 +18,15 @@ Brwnppl::Application.routes.draw do
 
   end
   
-  resources :users, :only => [:update]
+  resources :users, :only => [:update] do
+    member do
+      get :following, :followers
+    end
+    member do
+      get :follow
+      get :unfollow
+    end
+  end
 
   # Authentication Actions:
   match 'oauth/callback'    => 'oauth#callback'
@@ -38,7 +46,7 @@ Brwnppl::Application.routes.draw do
   match '/popular'          => 'home#popular',        :as => :popular
   match '/recent'           => 'home#recent',         :as => :recent
 
-  match ':username'         => 'users#show'
+  match ':username'         => 'users#show',          :as => :user_profile
 
   root :to => 'home#index'
 
