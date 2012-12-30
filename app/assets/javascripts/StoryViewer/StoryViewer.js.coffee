@@ -26,7 +26,9 @@ class Brwnppl.StoryViewer
       complete :   (data, status) =>
         response = JSON.parse(data.responseText)
         story.html = response.html
-        if story.image or story.html
+        if story.content_type == 'web_link'
+          window.location.href = '/v/' + @story.slug
+        else if story.image or story.html
           data = { story: story, comments: comments, user: @current_user }
           @render(data)
           @bind_events()
@@ -51,6 +53,7 @@ class Brwnppl.StoryViewer
     source = $('#story_viewer_template').html()
     template = Handlebars.compile(source)
     $('#wrapper').prepend(template(data))
+    $('.storyViewer .column').equalHeights(455)
 
   bind_pusher: ->
     @pusher = new Brwnppl.PushService().pusher

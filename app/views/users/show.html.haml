@@ -9,7 +9,7 @@
 
       .profileBox
         = image_tag user_avatar(@user, :height => 150, :width => 125, :crop => :thumb), :class => 'profilePhoto'
-        %h2= @user.name
+        %h2= "#{@user.name} (#{@user.brownie_points})"
         %br
         = "short user bio here"
 
@@ -24,4 +24,4 @@
       .clear
 
   #container
-    = render partial: 'shared/stories', :locals => { :stories => @user.stories}
+    = render partial: 'shared/stories', :locals => { :stories => @user.stories.latest.first(30)}

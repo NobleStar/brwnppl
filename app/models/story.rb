@@ -11,18 +11,26 @@ class Story < ActiveRecord::Base
   
   has_many :likes
   has_many :likers, through: :likes, source: :user
+
+  has_many :dislikes
+  has_many :dislikers, through: :dislikes, source: :user
   
   has_many :comments
   has_many :commenters, through: :comments, source: :user
 
   validates_presence_of :title, :community
   validates_presence_of :content_type
+  validates :title, :length => { :maximum => 140 }
 
   include FriendlyId
   friendly_id :title, :use => [:slugged, :history]
 
   def likes_count
     likes.count
+  end
+
+  def dislikes_count
+    dislikes.count
   end
 
   def comments_count
@@ -33,11 +41,15 @@ class Story < ActiveRecord::Base
     likes << likes.build(:user => user)
   end
 
+  def disliked_by(user)
+    dislikes << dislikes.build(:user => user)
+  end
+
   def post_to_facebook
     facebook = Koala::Facebook::API.new(user.oauth_token)
     facebook.put_connections("me", "brwnppl:post", story: self.public_url)
   end
-  handle_asynchronously :post_to_facebook, :run_at => Proc.new { 15.seconds.from_now }
+  handle_asynchronously :post_to_facebook, :run_at => Proc.new { 2.seconds.from_now }
 
   def public_url
     ENV['APP_URL'] + '/story/' + self.slug
@@ -53,7 +65,7 @@ class Story < ActiveRecord::Base
 
   def self.recents
     # TODO - Add Logic for Recent Stories
-    Story.latest
+    Story.latest.first(30)
   end
 
   def self.populars
@@ -63,7 +75,7 @@ class Story < ActiveRecord::Base
 
   def self.by_community(slug)
     community = Community.find_by_slug(slug)
-    
+    where(:community_id => community.id).latest.first(30)
   end
 
 end

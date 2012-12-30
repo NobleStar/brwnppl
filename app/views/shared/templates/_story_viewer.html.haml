@@ -5,7 +5,7 @@
     .storyWindow
       %a.storyClose{ :href => '#'}
 
-      .storyContent
+      .storyContent.column
         :plain
           {{#if story.html}}
             {{{story.html}}}
@@ -21,7 +21,7 @@
           </a>
 
 
-      .storyComments{ :style => 'width: 820px; display: block;' }
+      .storyComments.column
         .content
           .comments
             
@@ -42,10 +42,10 @@
 
             :plain
               {{#if user.current_user}}
-                <textarea rows=5 cols=5 placeholder = 'Leave a comment'></textarea>
+                <textarea rows=1 cols=5 placeholder = 'Leave a comment'></textarea>
                 <br/>
-                <a href='#' class='roundedButton'> Post Comment </a>
-                <img class="loader" src="assets/loader.gif" style='display: none;'>
+                <a href='#' class='roundedButton' style='float:right'> Post Comment </a>
+                <img class="loader" src="/assets/loader.gif" style='display: none;'>
               {{else}}
                 <p>You need to login to be able to comment</p>
               {{/if}}

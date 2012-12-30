@@ -1,4 +1,5 @@
 - @communities.in_groups_of(3).each do |communities|
   .left
     - communities.each do |community|
-      %p= community.name
+      %p
+        %a{:href => "/b/#{community.slug}"}= community.name

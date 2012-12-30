@@ -6,6 +6,7 @@ Brwnppl::Application.routes.draw do
     end
     resources :url_fetcher
     resources :likes
+    resources :dislikes
     resources :communities
 
     resources :users, :constraints  => { :id => /[0-z\.]+/ } do

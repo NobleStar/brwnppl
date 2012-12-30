@@ -4,7 +4,7 @@
   .posts
     - unless stories.present?
       .post
-        %h2 No Stories Posted on Brwnppl Yet!
+        %h2 No Stories Posted here yet!
     - else
       - stories.each do |story|
 
@@ -39,6 +39,7 @@
                 = "255"
               - if current_user && story.user == current_user
                 = link_to 'X (Delete)', api_story_path(story), :confirm => 'Are you sure?', :method => :delete
+              %a= localize(story.created_at, :format => :long)
 
           .postThumbnail
             %a{ :href => '#' }
@@ -60,4 +61,11 @@
     story_id = $(event.target).closest('.post').data('story-id')
     story = new Brwnppl.StoryController(story_id)
     story.like($(this))
+  });
+
+  $('.post .ribbon-front a.thumb_down').click(function(event) {
+    event.preventDefault()
+    story_id = $(event.target).closest('.post').data('story-id')
+    story = new Brwnppl.StoryController(story_id)
+    story.dislike($(this))
   });

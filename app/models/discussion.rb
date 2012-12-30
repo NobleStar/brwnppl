@@ -1,4 +1,5 @@
 class Discussion < Story
+  validates :title, :length => { :maximum => 500 } 
   before_save :clean_attributes
 
   def clean_attributes
