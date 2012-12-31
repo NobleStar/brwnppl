@@ -7,7 +7,7 @@
     $('iframe').css('margin-top', '72px');
   });
 
-%iframe{:src => @story.url}
+%iframe{:src => @story.url, 'data-story-id' => @story.id}
 
 
 = content_for(:story_controls) do

@@ -3,11 +3,10 @@ class Brwnppl.StoryController
   constructor: (story_id) ->
     @story_id = story_id
 
-
   like: (element) ->
     $.ajax
       url:    '/api/likes'
-      data:   { story_id: story_id }
+      data:   { story_id: @story_id }
       type:   "POST"
       success: (data) =>
         likeCount = element.next()[0]
@@ -20,7 +19,7 @@ class Brwnppl.StoryController
   dislike: (element) ->
     $.ajax
       url:    '/api/dislikes'
-      data:   { story_id: story_id }
+      data:   { story_id: @story_id }
       type:   "POST"
       success: (data) =>
         likeCount = element.prev()[0]

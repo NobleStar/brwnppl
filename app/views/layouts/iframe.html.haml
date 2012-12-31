@@ -15,15 +15,4 @@
 
       %footer#footer
       = javascript_include_tag "Story/StoryController"
-
-  :javascript
-    $('.thumb_').click(function(event) {
-      event.preventDefault()
-      story_id = $(event.target).closest('#storyControls').data('story-id')
-      story = new Brwnppl.StoryController(story_id)
-      story.like($(this))
-    });
-
-    $('#storyControls .comments').click( function(event) {
-      $('.commentsDropdown').slideToggle(400);
-    });
+      = javascript_include_tag "IframeStory/IframeController"

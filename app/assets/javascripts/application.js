@@ -20,6 +20,7 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require jquery.equalheights.js
+//= require jquery.tooltipster.min.js
 //= require FileUpload/FileUpload
 
 window.Brwnppl = {}

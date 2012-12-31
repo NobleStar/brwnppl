@@ -53,7 +53,15 @@ class Brwnppl.StoryViewer
     source = $('#story_viewer_template').html()
     template = Handlebars.compile(source)
     $('#wrapper').prepend(template(data))
-    $('.storyViewer .column').equalHeights(455)
+    
+    windowHeight = $(window).height()  
+    $('.storyViewer .column').equalHeights(windowHeight * 0.65)
+    
+    content = $('.storyContent').children().first()
+    storyHeight = $('.storyWindow').height()
+    contentHeight = content.height()
+    topPad = (storyHeight - contentHeight)/2 - 30
+    content.css('padding-top', topPad)
 
   bind_pusher: ->
     @pusher = new Brwnppl.PushService().pusher

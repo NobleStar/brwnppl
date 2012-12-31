@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_filter :account_setup_needed?
 
   def index
-    @stories = Story.last(15).reverse
+    @stories = Story.last(25).reverse
   end
 
   def recent

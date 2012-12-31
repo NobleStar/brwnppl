@@ -19,11 +19,10 @@
 
           .postUser
             %img{ :src => story.user.avatar }
+            %a.postUsername{ :href => story.user.username }
+              = story.user.username
 
           .postContent
-            %a.postUsername{ :href => story.user.username }
-              = story.user.name
-            %br
             %h2
               %a{ :href => "story/" + story.slug }
                 = story.title
@@ -39,7 +38,7 @@
                 = "255"
               - if current_user && story.user == current_user
                 = link_to 'X (Delete)', api_story_path(story), :confirm => 'Are you sure?', :method => :delete
-              %a= localize(story.created_at, :format => :long)
+              %a= "posted #{time_ago_in_words(story.created_at)} ago"
 
           .postThumbnail
             %a{ :href => '#' }

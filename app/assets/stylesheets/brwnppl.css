@@ -832,7 +832,7 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 .storyWindow{
   font-family: 'Fenix';
   left:50%;
-  top:25%;
+  top:20%;
   position:fixed;
   z-index:1000000;
   margin-left: -470px;
@@ -842,7 +842,6 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
   padding:30px;
   text-align:center;
   vertical-align:middle;
-  overflow:hidden;
   min-width:540px;
   max-width:560px;
   float: left;
@@ -870,6 +869,7 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
   display:none;
   width: 278px;
   display: block;
+  float: left;
 }
 .storyComments .content{width:300px; margin:0 auto;}
 .storyComments .content .comments{
@@ -959,6 +959,19 @@ h3{
   width: 10%;
   font-size: 18px;
 }
+
+.storyName a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Community Header Title 
+width of background container: 110px;
+
+font-size: 20px;
+color: white;
+margin-top: 10px;
+*/
 
 /* Media Queries */
 @media only screen and (max-width: 980px) {
