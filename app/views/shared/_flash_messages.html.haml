@@ -1,2 +1,12 @@
-= flash[:notice] if flash[:notice]
-= flash[:alert] if flash[:alert]
+
+- if flash[:notice]
+  %br
+  %br
+  .alert.alert-success
+    = flash[:notice]
+
+- if flash[:alert]
+  %br
+  %br
+  .alert.alert-error
+    = flash[:alert]

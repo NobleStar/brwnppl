@@ -16,5 +16,35 @@ module ApplicationHelper
       user.avatar
     end
   end
+
+  def large_facebook_avatar(user)
+    'https://graph.facebook.com/' + user.facebook.uid + '/picture?type=large'
+  end
+
+  def already_liked(user, story)
+    if user.nil?
+      "You need to login to be able to up-vote this story!"
+    elsif story.likers.include?(user)
+      "You already like this story!"
+    else
+      "Up-vote this story!"
+    end
+  end
+
+  def already_downvoted(user, story)
+    if user.nil?
+      "You need to login to be able to down-vote this story!"
+    elsif story.dislikers.include?(user)
+      "You already downvoted this story!"
+    else
+      "Down vote this story"
+    end
+  end
+
+  def reshare_allowed?(user)
+    if user.nil?
+      "You need to login to be able to re-share this story!"
+    end
+  end
   
 end

@@ -1,22 +1,76 @@
+= content_for(:title) do
+  = "Brwnppl | Account Setup"
+= javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+
+:javascript
+  FB.init({
+    appId: #{ENV['FACEBOOK_APP_KEY']}, 
+    cookie: true,
+    status: true, 
+    xfbml: true
+  });
+
+  function shareWithFacebook() {
+    FB.ui({ 
+      method: 'apprequests',
+      message: 'Invite your friends to Brwnppl and earn some brownie points!',
+      title: 'Invite your friends over to Brwnppl!',
+      max_recipients: 5
+    }, requestCallback);
+  }
+
+  function requestCallback(response) {
+    notification = new Brwnppl.Notification('Success! Way to go!', ['Successfully Sent Invitations to your friends!']);
+    notification.display();
+  }
+
 #content
-  #container
-    
-    %center
-      %h2 Welcome to Brwnppl - Let's setup yo account!
+  .content
 
-    = form_for @user do |f|
-      %p Please choose a username for yourself!
+    .setupAccount
+      .header
+        %h1 Welcome to Brwnppl - Setup Account
 
-      = f.label :username
-      = f.text_field :username, :value => nil
+      .social_banner.facebook
+        %h2 Connected as #{current_user.name}
 
-      %br
+      - if @user.errors.present?
+        .alert.alert-error
+          %h4 Uh-oh! You mind fixing a few details?
+          %ul
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
 
-      = f.label :email
-      = f.email_field :email
+      #CompletePhoto
+        .frame
+          %img{ :src => large_facebook_avatar(current_user), :width => "100%", :height => "223px" }
 
-      %br
+      = form_for @user, :html => { :class => 'RegisterForm', :id => "CompleteAccount" } do |f|
+        %ul.fields
+          %li.field
+            = f.text_field :username, :placeholder => "username", :value => nil
 
-      = f.hidden_field :id
+          %li.field
+            = f.email_field :email, :disabled => true
 
-      = f.submit "Update"
+          %li.field
+            = f.text_area :bio, :placeholder => "short bio", :rows => 4
+
+          %li
+            .follow_friends.facebook
+              = f.check_box :share_activity_on_facebook, :checked => true
+              = f.label :share_activity_on_facebook, "Share my activity on Brwnppl on my timeline"
+
+              %a{:href => '#', :onclick => 'shareWithFacebook()'} Invite Friends
+
+              = f.hidden_field :id
+              = f.hidden_field :avatar, :value => large_facebook_avatar(current_user)
+
+        .terms
+          By creating an account, I accept Brwnppl's 
+          = link_to "User Agreement", user_agreement_path
+          = " and "
+          = link_to "Privacy Policy", privacy_policy_path
+
+        .buttons
+          %button.Button.RedButton.Button24 Create Account

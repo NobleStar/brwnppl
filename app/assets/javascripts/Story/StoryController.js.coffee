@@ -9,12 +9,28 @@ class Brwnppl.StoryController
       data:   { story_id: @story_id }
       type:   "POST"
       success: (data) =>
-        likeCount = element.next()[0]
-        oldCount = parseInt likeCount.textContent
-        likeCount.textContent = oldCount + 1
+        if _.isFunction(element)
+          element()
+        else
+          likeCount = element.next()[0]
+          oldCount = parseInt likeCount.textContent
+          likeCount.textContent = oldCount + 1 if oldCount >= 0
+          $(element).attr('title', 'Thanks for upvoting this story!')
       statusCode: 
         422: (data) ->
-          alert 'You already like this story.'
+          console.warn 'Cannot like: Already Liked.'
+
+  reshare: (element) ->
+    $.ajax
+      url:    '/api/reshare'
+      data:   { story_id: @story_id }
+      type:   "POST"
+      success: (data) =>
+        if _.isFunction(element)
+          element()
+      statusCode:
+        422: (data) ->
+          console.warn 'Cannot reshare.'
 
   dislike: (element) ->
     $.ajax
@@ -22,9 +38,12 @@ class Brwnppl.StoryController
       data:   { story_id: @story_id }
       type:   "POST"
       success: (data) =>
-        likeCount = element.prev()[0]
-        oldCount = parseInt likeCount.textContent
-        likeCount.textContent = oldCount - 1
+        if _.isFunction(element)
+          element()
+        else
+          likeCount = element.prev()[0]
+          oldCount = parseInt likeCount.textContent
+          likeCount.textContent = oldCount - 1 if oldCount > 0
       statusCode: 
         422: (data) ->
-          alert 'You already down-voted this story.'
+          console.warn 'Cannot Down-vote: Already down voted.'

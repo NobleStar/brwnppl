@@ -7,13 +7,8 @@ class Dislike < ActiveRecord::Base
   after_save :decrement_brownie_points
 
   def decrement_brownie_points
-    # user brownie points
-    user = self.story.user
-    user.brownie_points -= 1
-    user.save
-
     # story brownie points
-    self.story.brownie_points -= 1
+    self.story.brownie_points -= 1 if self.story.brownie_points >= 1
     story.save
   end
 

@@ -1,3 +1,6 @@
+= content_for(:title) do
+  = "Brwnppl | #{@community.try(:name) || params[:action].capitalize}"
+
 #content
   .content
     = render partial: 'shared/flash_messages'

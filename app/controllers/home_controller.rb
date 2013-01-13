@@ -1,29 +1,51 @@
 class HomeController < ApplicationController
 
   before_filter :account_setup_needed?
+  skip_before_filter :account_setup_needed?, :only => [:privacy_policy, :user_agreement]
+  skip_before_filter :require_login, :except => :my_brwnppl
 
   def index
-    @stories = Story.last(25).reverse
+    @stories = Story.latest.page(params[:page])
   end
 
   def recent
-    @stories = Story.recents
+    @stories = Story.latest.page(params[:page])
   end
 
   def popular
-    @stories = Story.populars
+    @stories = Kaminari.paginate_array( Story.populars ).page(params[:page])
     render :recent
+  end
+
+  def my_brwnppl
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def privacy_policy
+    render 'static_pages/privacy_policy'
+  end
+
+  def user_agreement
+    render 'static_pages/user_agreement'
+  end
+
+  def recent_community
+    @community = Community.find_by_slug(params[:slug])
+    if @community
+      @stories = Kaminari.paginate_array( Story.recent_by_community(@community) ).page(params[:page])
+      render :recent
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   def community
-    @stories = Story.by_community(params[:slug])
-    render :recent
-  end
-
-  protected
-  def account_setup_needed?
-    if current_user && current_user.new_user?
-      redirect_to :setup_account, :notice => 'You need to choose a username before you can start using Brwnppl'
+    @community = Community.find_by_slug(params[:slug])
+    if @community
+      @stories = Kaminari.paginate_array( Story.by_community(@community) ).page(params[:page])
+      render :recent
+    else
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229214259) do
+ActiveRecord::Schema.define(:version => 20130113001709) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -100,28 +100,33 @@ ActiveRecord::Schema.define(:version => 20121229214259) do
     t.text     "description"
     t.string   "type"
     t.text     "url"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "user_id"
     t.string   "image"
-    t.string   "slug",           :default => "", :null => false
+    t.string   "slug",              :default => "",    :null => false
     t.integer  "community_id"
     t.string   "content_type"
-    t.integer  "brownie_points", :default => 0
+    t.integer  "brownie_points",    :default => 0
+    t.boolean  "reshared",          :default => false
+    t.integer  "original_story_id"
+    t.integer  "reshare_count"
   end
 
   add_index "stories", ["slug"], :name => "index_stories_on_slug"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                      :null => false
+    t.string   "username",                                  :null => false
     t.string   "email"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "avatar"
     t.string   "name"
     t.string   "oauth_token"
     t.string   "state"
-    t.integer  "brownie_points", :default => 0
+    t.integer  "brownie_points",             :default => 0
+    t.text     "bio"
+    t.boolean  "share_activity_on_facebook"
   end
 
 end

@@ -6,6 +6,8 @@
       %a.storyClose{ :href => '#'}
 
       .storyContent.column
+        #leftArrow
+
         :plain
           {{#if story.html}}
             {{{story.html}}}
@@ -20,9 +22,36 @@
               {{story.title}}
             </a>
 
+        #rightArrow
+
 
       .storyComments.column
+        :plain
+          {{#if story.discussion}}
+            <span>
+              <img src='/assets/{{story.content_type}}.png' height='18px'>
+            </span>
+            <h1>{{story.title}}</h1>
+          {{/if}}
+
         .content
+          #userInfo
+            :plain
+              <div class='image'>
+                <a href='/{{story.user.username}}'><img src='{{story.user.avatar}}' height='48px' width='48px'></a>
+              </div>
+              <div>
+                <h2><a href='/{{story.user.username}}'>{{story.user.username}}</a></h2>
+              </div>
+              <div class='smallActions'>
+                <span>posted {{story.posted_ago}} ago</span>
+              </div>
+
+          .clear 
+          #storyControls
+            :plain
+              <a href='#' id='like'>{{story.liked}}</a>
+
           .comments
             
             :plain

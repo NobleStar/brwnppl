@@ -22,5 +22,6 @@
 //= require jquery.equalheights.js
 //= require jquery.tooltipster.min.js
 //= require FileUpload/FileUpload
+//= require keypress.js
 
 window.Brwnppl = {}

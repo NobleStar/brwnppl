@@ -10,9 +10,6 @@ $(document).ready ->
       notification = new Brwnppl.Notification('Something went wrong!', ['Our servers are not in the best state of their health and we experienced some unexpected problem.'])
       notification.display()
 
-  # if navigator.geolocation
-  #   navigator.geolocation.getCurrentPosition( myFunc(), null )
-
   $('a#communities').toggle(
     ->
       $('.background').animate { height: 310}, 500
@@ -27,19 +24,23 @@ $(document).ready ->
           $(@).find('.communities').addClass('hidden')
     )
 
-  $('a#search').toggle(
-    ->
-      $('.background').animate { height: 160}, 250
-      
-      $('.backgroundContainer').animate { height: 160 }, 500, ->
-          $(@).find('.search').removeClass('hidden')
+  $('.thumb_up').tooltipster()
+  $('.thumb_down').tooltipster()
+  $('.repost_').tooltipster()
 
-    ->
-      $('.background').animate { height: 69}, 500
+  # $('a#search').toggle(
+  #   ->
+  #     $('.background').animate { height: 160}, 250
       
-      $('.backgroundContainer').animate { height: 71 }, 500, ->
-          $(@).find('.search').addClass('hidden')
-    )
+  #     $('.backgroundContainer').animate { height: 160 }, 500, ->
+  #         $(@).find('.search').removeClass('hidden')
+
+  #   ->
+  #     $('.background').animate { height: 69}, 500
+      
+  #     $('.backgroundContainer').animate { height: 71 }, 500, ->
+  #         $(@).find('.search').addClass('hidden')
+  #   )
 
   $('.post').mouseenter (event) -> 
     $(this).addClass('postShadow')

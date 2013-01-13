@@ -6,5 +6,5 @@ class Brwnppl.User
       dataType  :  'json'
       complete  :  (data, status) =>
         @current_user = JSON.parse(data.responseText)
-
+        
     @current_user

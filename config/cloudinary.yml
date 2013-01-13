@@ -7,8 +7,8 @@ development:
   static_image_support: false
 production:
   cloud_name: brwnppl
-  api_key: '868994469374896'
-  api_secret: CWQODhFShu1Bj4rRDqk9N2J0rcU
+  api_key: '758483744588151'
+  api_secret: 0fZLF07asEoHCLwWDLFtVLwDuIs
   enhance_image_tag: true
   static_image_support: true
 test:

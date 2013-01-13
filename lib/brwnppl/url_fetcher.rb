@@ -9,7 +9,7 @@ class Brwnppl::UrlFetcher
     elsif open_graph_url?
       @story_data.decorate_preview
     elsif image_file_link?
-      @story_data = { title: 'Give your image a custom title!', image: @url}
+      @story_data = { title: '', image: @url}
     else
       page = Nokogiri::HTML( HTTParty.get(url, :headers => {"User-Agent" => 'Mozilla/5.0'}) )
       @story_data = { title: page.title }

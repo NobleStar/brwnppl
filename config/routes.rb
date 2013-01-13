@@ -8,6 +8,7 @@ Brwnppl::Application.routes.draw do
     resources :likes
     resources :dislikes
     resources :communities
+    resources :reshare
 
     resources :users, :constraints  => { :id => /[0-z\.]+/ } do
     	get :me, :on => :collection
@@ -41,14 +42,19 @@ Brwnppl::Application.routes.draw do
   match '/v/:slug'           => 'story_viewer#index',  :as => :external_viewer
   
   # Communities Route
-  match '/b/:slug'          => 'home#community',      :as => :community
+  match '/b/:slug'          => 'home#community',        :as => :community
+  match '/b/:slug/recent'   => 'home#recent_community', :as => :recent_community
 
   # Popular and Recent Routes
   match '/popular'          => 'home#popular',        :as => :popular
   match '/recent'           => 'home#recent',         :as => :recent
 
+  # Static and Legal Pages:
+  match '/help/privacy_policy'   => 'home#privacy_policy', :as => :privacy_policy
+  match '/help/user_agreement'   => 'home#user_agreement', :as => :user_agreement
+
   match ':username'         => 'users#show',          :as => :user_profile
 
-  root :to => 'home#index'
+  root :to => 'home#popular'
 
 end

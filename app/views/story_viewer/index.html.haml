@@ -5,26 +5,26 @@
     $('iframe').height(height);
     $('iframe').width(width);
     $('iframe').css('margin-top', '72px');
+
   });
 
 %iframe{:src => @story.url, 'data-story-id' => @story.id}
 
+= render partial: 'shared/templates/single_comment'
 
 = content_for(:story_controls) do
   - if params[:controller] == 'story_viewer'
     .storyControls{ :style => 'float: left'}
       %ul#storyControls{ :'data-story-id' => @story.id }
-        %li.thumb_
-          %img{:src => '/assets/like-x.png', :width => '40px', :height => '40px'}
-        %li
-          %img{:src => '/assets/down-vote-x.png', :width => '40px', :height => '40px'}
+        %li.thumb_up{ :title => "#{already_liked(current_user, @story)}"}
+          %img{:src => '/assets/like-x-g.png', :width => '40px', :height => '40px'}
+        %li.thumb_down{ :title => "#{already_downvoted(current_user, @story)}"}
+          %img{:src => '/assets/downvote-x-g.png', :width => '40px', :height => '40px'}
         %li.comments
-          %img{:src => '/assets/comment-x.png', :width => '40px', :height => '40px'}
+          %img{:src => '/assets/comment-x-g.png', :width => '40px', :height => '40px'}
 
 
 = content_for(:comments_dropdown) do
-  :javascript
-    $('.commentsDropdown').jScrollPane()
 
   - if params[:controller] == 'story_viewer'
     .commentsDropdown.hidden
@@ -34,8 +34,14 @@
             %img.photo{ :src => user_avatar(comment.user), :height => '32px', :weight => '32px'}
             %a.author{ :href => "/#{comment.user.username}" }= comment.user.name
             %span.text= comment.content
+            %p.timestamp= "posted " + time_ago_in_words(comment.created_at) + " ago"
 
       .leaveComment
         %textarea{ :rows => 5, :cols => 47}
         %br
         %a.roundedButton{ :href => '#' } Post Comment
+
+  :javascript
+    $(document).ready(function() {
+      $('.commentsDropdown .comments').jScrollPane()
+    });

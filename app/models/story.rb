@@ -1,18 +1,20 @@
 class Story < ActiveRecord::Base
 
+  paginates_per 15
+
   attr_accessor :oauth_token
   attr_accessible :type, :url, :image, :title, :community_id, :description, :content_type
-  after_save :post_to_facebook, :if => :owner_is_from_facebook?
+  after_create :post_to_facebook, :if => :owner_is_from_facebook_and_sharing_enabled?
 
   scope :latest, :order => 'created_at DESC'
 
   belongs_to :user
   belongs_to :community
   
-  has_many :likes
+  has_many :likes, :dependent => :destroy
   has_many :likers, through: :likes, source: :user
 
-  has_many :dislikes
+  has_many :dislikes, :dependent => :destroy
   has_many :dislikers, through: :dislikes, source: :user
   
   has_many :comments
@@ -24,6 +26,20 @@ class Story < ActiveRecord::Base
 
   include FriendlyId
   friendly_id :title, :use => [:slugged, :history]
+
+  def reshare(user)
+    # questions for Humble: What about comments/brownie points etc?
+    duplicate_story = self.dup
+    duplicate_story.brownie_points = 0
+    duplicate_story.user_id = user.id
+    duplicate_story.reshared = true
+    duplicate_story.original_story_id = self.id
+    self.reshare_count += 1
+    ActiveRecord::Base.transaction do
+      self.save
+      duplicate_story.save
+    end
+  end
 
   def likes_count
     likes.count
@@ -59,23 +75,20 @@ class Story < ActiveRecord::Base
     self.image.blank? ? ENV['APP_URL'] + '/assets/brwnppl-default.png' : self.image
   end
 
-  def owner_is_from_facebook?
-    self.user.authentications.map(&:provider).include?('facebook')
-  end
-
-  def self.recents
-    # TODO - Add Logic for Recent Stories
-    Story.latest.first(30)
+  def owner_is_from_facebook_and_sharing_enabled?
+    self.user.facebook? and self.user.share_activity_on_facebook
   end
 
   def self.populars
-    # TODO - Add Logic for Popular Stories
-    Story.first(15)
+    Story.all( :order => 'updated_at DESC', :limit => 1000 ).sort_by(&:comments_count)
   end
 
-  def self.by_community(slug)
-    community = Community.find_by_slug(slug)
-    where(:community_id => community.id).latest.first(30)
+  def self.by_community(community)
+    where(:community_id => community.id).order('updated_at DESC').limit(1000).sort_by(&:comments_count)
+  end
+
+  def self.recent_by_community(community)
+    where(:community_id => community.id).order('created_at DESC')
   end
 
 end

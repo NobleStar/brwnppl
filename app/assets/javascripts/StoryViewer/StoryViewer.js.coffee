@@ -22,21 +22,24 @@ class Brwnppl.StoryViewer
       url      :   '/api/url_fetcher'
       type     :   'GET'
       dataType :   'json'
-      data     :   { url : story.url }
+      data     :   { url : story.url, type: story.content_type, slug: story.slug }
       complete :   (data, status) =>
         response = JSON.parse(data.responseText)
         story.html = response.html
         if story.content_type == 'web_link'
           window.location.href = '/v/' + @story.slug
-        else if story.image or story.html
+        else if story.content_type == "image" or story.content_type == "video" or story.content_type == "audio" or story.content_type == "discussion"
           data = { story: story, comments: comments, user: @current_user }
+          story.discussion = true if story.content_type == "discussion"
           @render(data)
+          @setStoryViewer() if story.content_type == "discussion"
           @bind_events()
           @bind_pusher()
         else
           window.location.href = '/v/' + @story.slug
 
   postComment: (comment_text) ->
+    return false if !comment_text?
     @loader().show()
     $.ajax
       url       :   @comments_url(@story_id)
@@ -49,25 +52,54 @@ class Brwnppl.StoryViewer
         comment = JSON.parse(data.responseText)
         @append_new_comment(comment)
 
+  setStoryViewer: ->
+    prevWidth = @storyWindow().width()
+    @storyContent().addClass('hidden')
+    @storyComments().width(prevWidth - 40)
+    @comments_dom().width(prevWidth - 100)
+    @comments_dom().jScrollPane()
+
   render: (data)->
     source = $('#story_viewer_template').html()
     template = Handlebars.compile(source)
     $('#wrapper').prepend(template(data))
+
+    @bindKeypressEvents()
     
-    windowHeight = $(window).height()  
-    $('.storyViewer .column').equalHeights(windowHeight * 0.65)
-    
-    content = $('.storyContent').children().first()
+    $('.storyViewer .column').equalHeights( $(window).height() * 0.70, $(window).height() * 0.75)
+
+    content = $('.storyContent').children().eq(1)
+    content.attr('height', '70%') if content.prop('tagName') != 'IFRAME'
+
     storyHeight = $('.storyWindow').height()
     contentHeight = content.height()
     topPad = (storyHeight - contentHeight)/2 - 30
     content.css('padding-top', topPad)
+    @comments_dom().css('height', storyHeight * 0.75)
+    @comments_dom().jScrollPane()
+
+  bindKeypressEvents: ->
+    keypress.reset()
+    keypress.combo "left", =>
+      keypress.reset()
+      prevStory = $('.post[data-story-id=' + @story_id + ']').prevUntil('.post:first', ':not(.post[data-content-type=web_link])').first()
+      if prevStory.size() > 0
+        story = new Brwnppl.StoryViewer(prevStory.data('story-id'))
+        @storyViewer().remove()
+        story.init()
+
+    keypress.combo "right", =>
+      keypress.reset()
+      nextStory = $('.post[data-story-id=' + @story_id + ']').nextUntil('.post:last', ':not(.post[data-content-type=web_link])').first()
+      if nextStory.size() > 0
+        story = new Brwnppl.StoryViewer(nextStory.data('story-id'))
+        @storyViewer().remove()
+        story.init()
 
   bind_pusher: ->
     @pusher = new Brwnppl.PushService().pusher
     channel = @pusher.subscribe(@story_id.toString())
     channel.bind 'new-comment', (data) =>
-      console.dir data
       res = JSON.stringify(data)
       comment = JSON.parse(res)
       @append_new_comment(comment)
@@ -87,6 +119,15 @@ class Brwnppl.StoryViewer
   storyViewer: ->
     $('.storyViewer')
 
+  storyContent: ->
+    @storyViewer().find('.storyContent')
+
+  storyComments: ->
+    @storyViewer().find('.storyComments')
+
+  storyWindow: ->
+    @storyViewer().find('.storyWindow')
+
   textarea: ->
     @storyViewer().find('.leaveComment textarea')
 
@@ -105,6 +146,16 @@ class Brwnppl.StoryViewer
   bind_events: ->
     @bind_close_click()
     @bind_comment_post()
+    @bindLikeClick()
+
+  bindLikeClick: ->
+    @storyViewer().find('#storyControls #like').bind 'click', {controller: this}, (event) ->
+      controller = event.data.controller
+      event.preventDefault
+      story = new Brwnppl.StoryController(controller.story.id)
+      story.like( =>
+        $(@).text('You Like this')
+        )
 
   bind_close_click: ->
     @storyViewer().find('.storyClose').bind 'click', {controller: this}, (event) ->
@@ -118,4 +169,4 @@ class Brwnppl.StoryViewer
       event.preventDefault()
       comment_text = controller.textarea().val()
       story_id = @story_id
-      controller.postComment(comment_text, story_id)
+      controller.postComment(comment_text, story_id) if comment_text != ""

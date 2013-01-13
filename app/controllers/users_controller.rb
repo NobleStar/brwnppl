@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :require_login
+  before_filter :account_setup_needed?, :except => :update
   before_filter :account_should_be_new, only: :update
 
   def show
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:user][:id])
+    @user = current_user
     if @user.update_attributes(params[:user])
       @user.setup_account
       redirect_to :root, :notice => 'Successfully updated user account!'

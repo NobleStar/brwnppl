@@ -10,15 +10,17 @@
 
         .post{ 'data-story-id' => story.id, 'data-content-type' => story.content_type }
           .ribbon-front
-            %a.thumb_up{ :href => '#' }
+            %a.thumb_up{ :href => '#', :title => "#{already_liked(current_user, story)}" }
               %span.icon.details.thumb
             %span
               = story.brownie_points
-            %a.thumb_down{ :href => '#' }
+            / .brownie_points
+            /   = story.brownie_points
+            %a.thumb_down{ :href => '#', :title => "#{already_downvoted(current_user, story)}" }
               %span.icon.details.thumb
 
           .postUser
-            %img{ :src => story.user.avatar }
+            %img{ :src => user_avatar(story.user) }
             %a.postUsername{ :href => story.user.username }
               = story.user.username
 
@@ -30,22 +32,34 @@
             .clear
 
             .postDetails
+              %a{ :href => '#'}
+                = image_tag story.content_type + '.png', :height => '16px'
               %a.comments_{ :href => '#' }
                 %span.icon.details.comments
                 = story.comments_count
-              %a.repost_{ :href => '#' }
-                %span.icon.details.repost
-                = "255"
+              / TODO - REShare 
+              / %a.repost_{ :href => '#', :title => "#{reshare_allowed?(current_user)}" }
+              /   %span.icon.details.repost
+              /   = story.reshare_count
               - if current_user && story.user == current_user
                 = link_to 'X (Delete)', api_story_path(story), :confirm => 'Are you sure?', :method => :delete
               %a= "posted #{time_ago_in_words(story.created_at)} ago"
 
           .postThumbnail
             %a{ :href => '#' }
-              - if story.image
+              - if story.image.present?
                 %img{ :src => story.image }
+              - else
+                %img{ :src => '/assets/default-story-image.png'}
 
           .clear
+  %br
+
+  %p 
+    = link_to_previous_page stories, 'Previous Page'
+    = " "
+    = link_to_next_page stories, 'Next Page'
+
 
 :javascript
   $('.postContent h2, .postContent .postDetails a.comments_, .postThumbnail').click(function(event) {
@@ -55,16 +69,28 @@
     story_viewer.init()
   });
 
-  $('.post .ribbon-front a.thumb_up').click(function(event) {
-    event.preventDefault()
-    story_id = $(event.target).closest('.post').data('story-id')
-    story = new Brwnppl.StoryController(story_id)
-    story.like($(this))
-  });
+- if current_user
+  :javascript
+    $('.post .ribbon-front a.thumb_up').click(function(event) {
+      event.preventDefault()
+      story_id = $(event.target).closest('.post').data('story-id')
+      story = new Brwnppl.StoryController(story_id)
+      story.like($(this))
+    });
 
-  $('.post .ribbon-front a.thumb_down').click(function(event) {
-    event.preventDefault()
-    story_id = $(event.target).closest('.post').data('story-id')
-    story = new Brwnppl.StoryController(story_id)
-    story.dislike($(this))
-  });
+    $('.post a.repost_').click(function(event) {
+      event.preventDefault()
+      story_id = $(event.target).closest('.post').data('story-id')
+      story = new Brwnppl.StoryController(story_id)
+      story.reshare(function() {
+        notification = new Brwnppl.Notification('Shared Successfully!', ['Re-shared this story with the world :) '])
+        notification.display()
+      })
+    });
+
+    $('.post .ribbon-front a.thumb_down').click(function(event) {
+      event.preventDefault()
+      story_id = $(event.target).closest('.post').data('story-id')
+      story = new Brwnppl.StoryController(story_id)
+      story.dislike($(this))
+    });

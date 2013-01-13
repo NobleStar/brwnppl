@@ -22,8 +22,8 @@
           %a{ href: popular_path } Popular
         %li
           %a#communities{ href: '#' } Communities
-        %li
-          %a#search{ href: '# '} Search
+        / %li
+        /   %a#search{ href: '# '} Search
         %li
           %a{ href: '# '} my Brwnppl
 
@@ -34,12 +34,13 @@
             = link_to current_user.name, '/' + current_user.username
           %a 
             = link_to 'Logout', logout_path
-          %a.icon.plus.floatRight
-          %a.icon.user.floatRight
+          / %a.icon.plus.floatRight
+          / %a.icon.user.floatRight
           .clear
-        - else 
-          = link_to 'Login with FB', auth_at_provider_path(:provider => :facebook)
-          /= link_to 'Login with TW', auth_at_provider_path(:provider => :twitter)
+        - else
+          %a.loginButton{ :href => '/oauth/facebook' }
+            %img{ :src => '/assets/facebookIcon.png', :width => '8', :height => '17', :alt => 'Login with Facebook'}
+            Login With Facebook
 
 
 = yield(:comments_dropdown)

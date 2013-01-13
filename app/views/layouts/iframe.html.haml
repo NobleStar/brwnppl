@@ -14,5 +14,8 @@
       = yield
 
       %footer#footer
+      = render partial: 'shared/google_analytics'
+      = render partial: 'shared/templates/notification'
       = javascript_include_tag "Story/StoryController"
+      = javascript_include_tag "Notification/NotificationController"
       = javascript_include_tag "IframeStory/IframeController"
