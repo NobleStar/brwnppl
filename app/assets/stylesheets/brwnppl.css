@@ -1095,6 +1095,7 @@ margin-bottom: 10px;
   width:100%;
   font-family:sans-serif;
   padding:10px;
+  resize: none;
 }
 
 .alert {
