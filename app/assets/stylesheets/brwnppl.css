@@ -563,7 +563,7 @@ img#linkBarImage {
 }
 
 .postShadow {
-  box-shadow: -1px 0px 15px grey;
+  /*box-shadow: -1px 0px 15px black;*/
   background-color: #FEF3A7;
   
   /* original background-color: #FEEC70;*/
