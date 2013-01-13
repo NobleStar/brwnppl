@@ -18,7 +18,9 @@ class HomeController < ApplicationController
   end
 
   def my_brwnppl
-    raise ActionController::RoutingError.new('Not Found')
+    @stories = Story.recent_for( current_user.followed_users.map(&:id) )
+    @stories = Kaminari.paginate_array( @stories ).page(params[:page])
+    render 'recent'
   end
 
   def privacy_policy

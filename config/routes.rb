@@ -53,6 +53,7 @@ Brwnppl::Application.routes.draw do
   match '/help/privacy_policy'   => 'home#privacy_policy', :as => :privacy_policy
   match '/help/user_agreement'   => 'home#user_agreement', :as => :user_agreement
   match '/help/guidelines'       => 'home#guidelines',     :as => :guidelines
+  match '/my_brwnppl'            => 'home#my_brwnppl',     :as => :my_brwnppl
 
 
   match ':username'         => 'users#show',          :as => :user_profile

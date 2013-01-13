@@ -41,6 +41,10 @@ class Story < ActiveRecord::Base
     end
   end
 
+  def self.recent_for(user_ids)
+    where( :user_id => user_ids ).order('created_at DESC').limit(1000)
+  end
+
   def likes_count
     likes.count
   end
