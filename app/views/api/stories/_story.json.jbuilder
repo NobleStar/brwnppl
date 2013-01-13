@@ -9,5 +9,5 @@ json.comments_count story.comments_count
 json.posted_ago     time_ago_in_words(story.created_at)
 json.user           story.user, :id, :name, :avatar, :username
 json.content_type   story.content_type
-json.liked          story.likers.include?(current_user) ? "You Like this." : "Like"
+json.brownie_points story.brownie_points
 json.reshare_count  story.reshare_count

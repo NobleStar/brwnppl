@@ -147,6 +147,7 @@ class Brwnppl.StoryViewer
     @bind_close_click()
     @bind_comment_post()
     @bindLikeClick()
+    @bindDownvoteClick()
 
   bindLikeClick: ->
     @storyViewer().find('#storyControls #like').bind 'click', {controller: this}, (event) ->
@@ -154,7 +155,22 @@ class Brwnppl.StoryViewer
       event.preventDefault
       story = new Brwnppl.StoryController(controller.story.id)
       story.like( =>
-        $(@).text('You Like this')
+        textNode = $(@).next()
+        oldCount = parseInt( textNode.text() )
+        oldCount += 1
+        textNode.text(oldCount)
+        )
+
+  bindDownvoteClick: ->
+    @storyViewer().find('#storyControls #downvote').bind 'click', {controller: this}, (event) ->
+      controller = event.data.controller
+      event.preventDefault
+      story = new Brwnppl.StoryController(controller.story.id)
+      story.dislike( =>
+        textNode = $(@).prev()
+        oldCount = parseInt( textNode.text() )
+        oldCount -= 1 if oldCount > 0
+        textNode.text(oldCount)
         )
 
   bind_close_click: ->
