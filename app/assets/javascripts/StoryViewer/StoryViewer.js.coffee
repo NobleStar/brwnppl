@@ -81,17 +81,17 @@ class Brwnppl.StoryViewer
   bindKeypressEvents: ->
     keypress.reset()
     keypress.combo "left", =>
-      keypress.reset()
       prevStory = $('.post[data-story-id=' + @story_id + ']').prevUntil('.post:first', ':not(.post[data-content-type=web_link])').first()
       if prevStory.size() > 0
+        keypress.reset()
         story = new Brwnppl.StoryViewer(prevStory.data('story-id'))
         @storyViewer().remove()
         story.init()
 
     keypress.combo "right", =>
-      keypress.reset()
       nextStory = $('.post[data-story-id=' + @story_id + ']').nextUntil('.post:last', ':not(.post[data-content-type=web_link])').first()
       if nextStory.size() > 0
+        keypress.reset()
         story = new Brwnppl.StoryViewer(nextStory.data('story-id'))
         @storyViewer().remove()
         story.init()
