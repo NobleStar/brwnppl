@@ -35,6 +35,7 @@ class SharerController
   fetch_link_details: (e) ->
     c = e.data.controller
     if @value.length >= 1 and c.isUrl( @value )
+      c.content_type().children('option[value=discussion]').remove()
       c.loader().show()
       c.story_type().val('WebLink')
       $.ajax 
@@ -48,7 +49,7 @@ class SharerController
     else if !c.isUrl( @value )
       c.story_type().val('Discussion')
       c.communities_menu().show()
-      c.content_type().show()
+      c.content_type().val('discussion')
 
   urlStory: (data, status, c) ->
     console.dir data

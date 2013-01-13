@@ -29,6 +29,10 @@ class HomeController < ApplicationController
     render 'static_pages/user_agreement'
   end
 
+  def guidelines
+    render 'static_pages/community_guidelines'
+  end
+
   def recent_community
     @community = Community.find_by_slug(params[:slug])
     if @community
