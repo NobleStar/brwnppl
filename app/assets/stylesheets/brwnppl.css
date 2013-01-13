@@ -563,8 +563,10 @@ img#linkBarImage {
 }
 
 .postShadow {
-  box-shadow: -1px 0px 10px black;
-  background-color: #FEEC70;
+  box-shadow: -1px 0px 15px grey;
+  background-color: #FEF3A7;
+  
+  /* original background-color: #FEEC70;*/
 }
 
 .storyViewerBox {
