@@ -19,10 +19,11 @@ gem 'koala'
 gem 'state_machine'
 gem 'pusher'
 gem 'cloudinary'
-gem 'therubyracer-heroku', '0.8.1.pre3'
 gem 'kaminari'
 gem 'redis'
 gem "airbrake"
+gem 'therubyracer'
+gem 'execjs'
 
 # Gems used only for assets and not required
 # in production environments by default.
