@@ -17,9 +17,11 @@
         - if current_user == @user
           %p
         - elsif current_user.following?(@user)
-          %a{:href => "/users/#{@user.username}/unfollow"}= "Unfollow"
+          %a{:href => "/users/#{@user.username}/unfollow"}
+            %img{ :src => "/assets/remove-from-brwnppl.png", :height => 40}
         - else
-          %a{:href => "/users/#{@user.username}/follow"}= "Follow"
+          %a{:href => "/users/#{@user.username}/follow"}
+            %img{ :src => "/assets/add-to-brwnppl.png", :height => 40}
 
       .clear
 
