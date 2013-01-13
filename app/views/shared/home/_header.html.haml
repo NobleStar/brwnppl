@@ -25,7 +25,9 @@
         / %li
         /   %a#search{ href: '# '} Search
         %li
-          %a{ href: '# '} my Brwnppl
+          %a{ href: '/my_brwnppl'} my Brwnppl
+        %li
+          %a{ href: "/#{current_user.username}"} Me
 
     - if params[:controller] != 'story_viewer'
       .userOptions

@@ -12,11 +12,7 @@
           {{#if story.html}}
             {{{story.html}}}
           {{else}}
-            {{if story.image}}
-              <img src="{{story.image}}">
-            {{else}}
-              <img src='/assets/default-story-image.png'>
-            {{/if}}
+            <img src="{{{story.image}}}">
           {{/if}}
             <div class='clear'></div>
 
