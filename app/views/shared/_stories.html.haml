@@ -14,15 +14,14 @@
               %span.icon.details.thumb
             %span
               = story.brownie_points
-            / .brownie_points
-            /   = story.brownie_points
             %a.thumb_down{ :href => '#', :title => "#{already_downvoted(current_user, story)}" }
               %span.icon.details.thumb
-
-          .postUser
-            %img{ :src => user_avatar(story.user) }
-            %a.postUsername{ :href => story.user.username }
-              = story.user.username
+          .postThumbnail
+            %a{ :href => '#' }
+              - if story.image.present?
+                %img{ :src => story.image }
+              - else
+                %img{ :src => '/assets/default-story-image.png'}
 
           .postContent
             %h2
@@ -44,14 +43,9 @@
               - if current_user && story.user == current_user
                 = link_to 'X (Delete)', api_story_path(story), :confirm => 'Are you sure?', :method => :delete
               %a= "posted #{time_ago_in_words(story.created_at)} ago in"
-              %a{ :href => "/b/#{story.community.slug}" }= "#{story.community.name}"
-
-          .postThumbnail
-            %a{ :href => '#' }
-              - if story.image.present?
-                %img{ :src => story.image }
-              - else
-                %img{ :src => '/assets/default-story-image.png'}
+              %a{ :href => "/b/#{story.community.slug}", :style => 'font-weight: bold;' }= "#{story.community.name}"
+              %a= "by"
+              %a{ :href => "/#{story.user.username}", :style => 'font-weight: bold;' }= "#{story.user.username}"
 
           .clear
   %br

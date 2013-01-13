@@ -69,7 +69,7 @@ class Brwnppl.StoryViewer
     $('.storyViewer .column').equalHeights( $(window).height() * 0.70, $(window).height() * 0.75)
 
     content = $('.storyContent').children().eq(1)
-    content.attr('height', '70%') if content.prop('tagName') != 'IFRAME'
+    #content.attr('height', '70%') if content.prop('tagName') != 'IFRAME'
 
     storyHeight = $('.storyWindow').height()
     contentHeight = content.height()

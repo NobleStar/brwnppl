@@ -513,8 +513,14 @@ textarea#newComment {
 }
 
 .postThumbnail img {
-    max-width: 125px;
-    max-height: 85px;
+  position: absolute;  
+  top: 0;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  margin: auto;
+  max-width: 125px;
+  max-height: 85px;
 }
 
 img#linkBarImage {
@@ -636,8 +642,9 @@ img#linkBarImage {
 }
 
 .postContent{
-    float:left;
-    width:75%;
+  float:left;
+  width:80%;
+  margin-left: 10px;
 }
 .postUsername{
   font-family: 'Fenix';
@@ -646,18 +653,19 @@ img#linkBarImage {
   margin-bottom:10px; 
   display:inline-block;}
 .postUsername:hover{color:#cb5b2b;}
-.postThumbnail{
-    float:left;
-    width:130px;
-    text-align:center;
+.postThumbnail {
+  float: left;
+  width: 130px;
+  text-align: center;
+  min-height: 90px;
+  position: relative;
 }
 .postDetails{
     margin-top:10px;
 }
 .postDetails a{
-    color:#c0c0c0;
-    text-decoration:none;
-    margin-right:10px;
+  text-decoration:none;
+  margin-right:5px;
 }
 .postDetails a:hover, .postDetails a.checked{
     color:#9a3d15;

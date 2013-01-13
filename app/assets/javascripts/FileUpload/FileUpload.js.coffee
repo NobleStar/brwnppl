@@ -20,6 +20,9 @@ $ ->
       $('span#filename').remove()
       $('span#uploading').remove()
 
+      $('#shareForm input.linkBar').hide()
+      $('#shareForm input.linkBar').val(data.result.url).trigger('propertyChange')
+
       imageContainer = $('.shareSection').find('#linkBarImage')
       storyImageInput = $('#story_image')
       

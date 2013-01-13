@@ -35,6 +35,7 @@ class SharerController
   fetch_link_details: (e) ->
     c = e.data.controller
     if @value.length >= 1 and c.isUrl( @value )
+      c.attach_image_link().hide()
       c.content_type().children('option[value=discussion]').remove()
       c.loader().show()
       c.story_type().val('WebLink')
@@ -47,9 +48,16 @@ class SharerController
           c.urlStory(data, status, c)
         error    :  c.postDiscussionStory
     else if !c.isUrl( @value )
-      c.story_type().val('Discussion')
-      c.communities_menu().show()
-      c.content_type().val('discussion')
+      if _.isEmpty( c.story_image_input().val() )
+        c.attach_image_link().hide()
+        c.story_type().val('Discussion')
+        c.content_type().val('discussion')
+        c.communities_menu().show()
+      else
+        c.url_field().hide()
+        c.url_field().val( c.story_image_input().val() )
+        c.content_type().val('image')
+
 
   urlStory: (data, status, c) ->
     console.dir data
@@ -93,6 +101,9 @@ class SharerController
       return false
 
   # HTML Elements
+  attach_image_link: ->
+    @dom.find('#image_upload')
+
   url_field: ->
     @dom.find('input.linkBar')
 

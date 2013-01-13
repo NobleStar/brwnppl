@@ -8,7 +8,10 @@
     .clear
 
     %form#shareForm
-      %a{:href=> '/help/guidelines', :style => 'float: right;', :target => '_blank'}= "Please be mindful of our Community Guidelines"
+      %span{ :style => 'float: right'}
+        Know our 
+        %a{:href=> '/help/guidelines', :target => '_blank'}= "Community Guidelines" 
+        so things don't get awkward
       %textarea.linkBar.hidden
         = "Give your story a title. ;)"
 
