@@ -50,12 +50,13 @@
           .clear 
           #storyControls
             :plain
-              <a href='#' id='like'><img src="/assets/thumbs_up.png"></a>
-              <a href="#" style='font-size: 32px'>{{story.brownie_points}}</a>
-              <a href='#' id='downvote'><img src="/assets/thumbs_down.png"></a>
-
-          .comments
+              {{#unless story.discussion}}
+                <a href='#' id='like'><img src="/assets/thumbs_up.png"></a>
+                <a href="#" style='font-size: 32px'>{{story.brownie_points}}</a>
+                <a href='#' id='downvote'><img src="/assets/thumbs_down.png"></a>
+              {{/unless}}
             
+          .comments
             :plain
               <div class='comment'></div>
               {{#each comments}}
@@ -84,5 +85,5 @@
 
           .clear
 
-  :javascript
-    $('.comments').jScrollPane()
+  / :javascript
+  /   $('.comments').jScrollPane()

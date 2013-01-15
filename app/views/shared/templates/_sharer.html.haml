@@ -19,7 +19,7 @@
 
       = select_tag "content_type_dropdown", options_from_collection_for_select(ContentType.all, :internal_name, :public_name), :prompt => '-- Please Select Content Type --', :class => 'hidden linkBar'
 
-      %input.linkBar{:type => 'text', :placeholder => 'Please enter your link here or type a topic for discussion..'}
+      %input.linkBar{:type => 'text', :placeholder => 'Paste your link here or type a topic for discussion..'}
 
       %center
         %img#linkBarImage.hidden{ :src => '' }

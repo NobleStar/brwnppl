@@ -32,7 +32,7 @@ class Brwnppl.StoryViewer
           data = { story: story, comments: comments, user: @current_user }
           story.discussion = true if story.content_type == "discussion"
           @render(data)
-          @setStoryViewer() if story.content_type == "discussion"
+          @storyViewer().find('.comments').jScrollPane({ animateScroll: true})
           @bind_events()
           @bind_pusher()
         else
@@ -52,31 +52,23 @@ class Brwnppl.StoryViewer
         comment = JSON.parse(data.responseText)
         @append_new_comment(comment)
 
-  setStoryViewer: ->
-    prevWidth = @storyWindow().width()
-    @storyContent().addClass('hidden')
-    @storyComments().width(prevWidth - 40)
-    @comments_dom().width(prevWidth - 100)
-    @comments_dom().jScrollPane()
-
   render: (data)->
-    source = $('#story_viewer_template').html()
+    if @story.discussion
+      source = $('#discussion_viewer_template').html()
+    else
+      source = $('#story_viewer_template').html()
     template = Handlebars.compile(source)
     $('#wrapper').prepend(template(data))
 
     @bindKeypressEvents()
     
     $('.storyViewer .column').equalHeights( $(window).height() * 0.70, $(window).height() * 0.75)
-
     content = $('.storyContent').children().eq(1)
-    #content.attr('height', '70%') if content.prop('tagName') != 'IFRAME'
-
     storyHeight = $('.storyWindow').height()
     contentHeight = content.height()
     topPad = (storyHeight - contentHeight)/2 - 30
     content.css('padding-top', topPad)
     @comments_dom().css('height', storyHeight * 0.75)
-    @comments_dom().jScrollPane()
 
   bindKeypressEvents: ->
     keypress.reset()
@@ -107,8 +99,10 @@ class Brwnppl.StoryViewer
   append_new_comment: (comment) ->
     template = Handlebars.compile( @single_comment_template() )
     @last_comment().after(template(comment))
-    pane = @storyViewer().find('.comments').jScrollPane({ animateScroll: true })
-    pane.data('jsp').scrollTo(0, 6000)
+    pane = @storyViewer().find('.comments')
+    scroll = pane.data('jsp')
+    scroll.reinitialise()
+    scroll.scrollToBottom()
 
   story_url: ->
     "/api/stories/#{@story_id}"
@@ -124,6 +118,9 @@ class Brwnppl.StoryViewer
 
   storyComments: ->
     @storyViewer().find('.storyComments')
+
+  storyCommentsContent: ->
+    @storyComments().find('.content')
 
   storyWindow: ->
     @storyViewer().find('.storyWindow')

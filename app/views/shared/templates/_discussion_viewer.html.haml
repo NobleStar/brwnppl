@@ -1,0 +1,69 @@
+%script#discussion_viewer_template{type: "text/x-handlebars-template"}
+  :plain
+    <div class="storyViewer">
+      <div class="fader"></div>
+
+      <div class="storyWindow">
+        <a href="#" class="storyClose"></a>
+
+        <div class='discussionComments column'>
+          
+          <span>
+            <img src='/assets/{{story.content_type}}.png' height='18px'>
+          </span>
+          <h1>{{story.title}}</h1>
+
+          <div class='discussion'>
+            
+            <div id="userInfo">
+              <div class='image'>
+                <a href='/{{story.user.username}}'><img src='{{story.user.avatar}}' height='48px' width='48px'></a>
+              </div>
+              <div>
+                <h2><a href='/{{story.user.username}}'>{{story.user.username}}</a></h2>
+              </div>
+              <div class='smallActions'>
+                <span>posted {{story.posted_ago}} ago</span>
+              </div>
+            </div>
+
+            <div class='clear'></div>
+
+            <div id='storyControls'>
+              <a href='#' id='like'><img src="/assets/thumbs_up.png"></a>
+              <a href="#" style='font-size: 32px'>{{story.brownie_points}}</a>
+              <a href='#' id='downvote'><img src="/assets/thumbs_down.png"></a>
+            </div>
+
+            <div class='comments'>
+              <div class='comment'></div>
+              {{#each comments}}
+                <div class='comment'>
+                  <img class = 'photo' src="{{this.avatar}}" height = '32' weight = '32' >
+                  <a class='author' href='{{this.username}}'> {{this.username}} </a>
+                  <span class='text' >
+                    {{this.content}}
+                  </span>
+                  <p class='timestamp'>{{this.timestamp}}</p>
+                </div>
+              {{/each}}
+            </div>
+
+            <div class='leaveComment'>
+              {{#if user.current_user}}
+                <textarea rows=1 cols=5 placeholder = 'Leave a comment'></textarea>
+                <br/>
+                <a href='#' class='roundedButton' style='float:right'> Post Comment </a>
+                <img class="loader" src="/assets/loader.gif" style='display: none;'>
+              {{else}}
+                <p>You need to login to be able to comment</p>
+              {{/if}}
+            </div>
+
+            <div class='clear'></div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
