@@ -14,12 +14,12 @@
         = @user.bio
 
       .profileActions
-        - if current_user == @user
+        - if current_user && current_user == @user
           %p
-        - elsif current_user.following?(@user)
+        - elsif current_user && current_user.following?(@user)
           %a{:href => "/users/#{@user.username}/unfollow"}
             %img{ :src => "/assets/remove-from-brwnppl.png", :height => 40}
-        - else
+        - elsif current_user.present?
           %a{:href => "/users/#{@user.username}/follow"}
             %img{ :src => "/assets/add-to-brwnppl.png", :height => 40}
 

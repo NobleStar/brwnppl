@@ -24,8 +24,9 @@
           %a#communities{ href: '#' } Communities
         / %li
         /   %a#search{ href: '# '} Search
-        %li
-          %a{ href: '/my_brwnppl'} My brwnppl
+        - if current_user
+          %li
+            %a{ href: '/my_brwnppl'} My brwnppl
         - if current_user
           %li
             %a{ href: "/#{current_user.username}"} Me
