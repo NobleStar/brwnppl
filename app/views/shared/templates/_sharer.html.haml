@@ -15,9 +15,9 @@
       %textarea.linkBar.hidden
         = "Give your story a title. ;)"
 
-      = select_tag "community", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- Please Select Category --', :class => 'hidden linkBar'
+      = select_tag "community", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- What community does this best fit into? --', :class => 'hidden linkBar'
 
-      = select_tag "content_type_dropdown", options_from_collection_for_select(ContentType.all, :internal_name, :public_name), :prompt => '-- Please Select Content Type --', :class => 'hidden linkBar'
+      = select_tag "content_type_dropdown", options_from_collection_for_select(ContentType.all, :internal_name, :public_name), :prompt => '-- What is it? --', :class => 'hidden linkBar'
 
       %input.linkBar{:type => 'text', :placeholder => 'Paste your link here or type a topic for discussion..'}
 

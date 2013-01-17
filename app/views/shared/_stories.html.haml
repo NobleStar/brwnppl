@@ -20,6 +20,8 @@
             %a{ :href => '#' }
               - if story.image.present?
                 %img{ :src => story.image }
+              - elsif story.content_type == 'discussion'
+                %img{ :src => '/assets/discussions-default.png'}
               - else
                 %img{ :src => '/assets/default-story-image.png'}
 

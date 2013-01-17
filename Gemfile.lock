@@ -102,6 +102,7 @@ GEM
       railties (~> 3.0)
     hashie (1.2.0)
     hike (1.2.1)
+    hirefireapp (0.0.8)
     htmlentities (4.3.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   guard-rspec
   haml
   haml-rails
+  hirefireapp
   htmlentities
   httparty
   jasminerice

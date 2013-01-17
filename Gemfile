@@ -22,6 +22,7 @@ gem 'cloudinary'
 gem 'kaminari'
 gem 'redis'
 gem "airbrake"
+gem 'hirefireapp'
 
 # Gems used only for assets and not required
 # in production environments by default.

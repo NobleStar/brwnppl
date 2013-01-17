@@ -84,11 +84,11 @@ class Story < ActiveRecord::Base
   end
 
   def self.populars
-    Story.all( :joins => :community, :order => 'brownie_points DESC, updated_at DESC', :limit => 300 )
+    Story.all( :joins => :community, :order => 'brownie_points DESC, updated_at DESC', :limit => 20 )
   end
 
   def self.by_community(community)
-    where(:community_id => community.id).order('updated_at DESC').limit(1000).sort_by(&:comments_count)
+    where(:community_id => community.id).order('updated_at DESC, brownie_points DESC').limit(20)
   end
 
   def self.recent_by_community(community)
