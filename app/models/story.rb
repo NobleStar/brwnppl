@@ -84,7 +84,7 @@ class Story < ActiveRecord::Base
   end
 
   def self.populars
-    Story.all( :order => 'brownie_points DESC, updated_at DESC', :limit => 300 )
+    Story.all( :joins => :community, :order => 'brownie_points DESC, updated_at DESC', :limit => 300 )
   end
 
   def self.by_community(community)

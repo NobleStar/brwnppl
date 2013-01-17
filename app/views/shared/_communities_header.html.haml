@@ -1,5 +1,6 @@
 - @communities.in_groups_of(3).each do |communities|
   .left
     - communities.each do |community|
-      %p
-        %a{:href => "/b/#{community.slug}"}= community.name
+      - if community.present?
+        %p
+          %a{:href => "/b/#{community.slug}"}= community.name
