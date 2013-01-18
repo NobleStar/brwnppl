@@ -84,7 +84,9 @@ class Story < ActiveRecord::Base
   end
 
   def self.populars
-    Story.all( :joins => :community, :order => 'brownie_points DESC, updated_at DESC', :limit => 20 )
+    on_top = Story.find_by_id(134)
+    populars = Story.all( :joins => :community, :order => 'updated_at DESC, brownie_points DESC', :limit => 20 )
+    on_top.present? ? on_top + populars : populars
   end
 
   def self.by_community(community)
