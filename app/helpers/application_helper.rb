@@ -8,12 +8,12 @@ module ApplicationHelper
   end
 
   def user_avatar(user, options = {})
-    if user.facebook?
+    if user.avatar.present?
+      user.avatar
+    elsif user.facebook?
       cloudinary_url(user.authentications.first.uid + '.jpg', {:type => :facebook}.merge(options) )
     elsif user.twitter?
       cloudinary_url(user.authentications.first.uid + '.jpg', {:type => :twitter}.merge(options) )
-    else
-      user.avatar
     end
   end
 

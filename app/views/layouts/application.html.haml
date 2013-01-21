@@ -13,6 +13,9 @@
     = csrf_meta_tags
 
   %body
+    %style{ :type => 'text/css' }
+      :plain
+        #header { width: 100%; z-index: 5000; height: 100px; position: static;}
     %img#help{:src => '/assets/help-brwnppl.png', :style => "margin-bottom: 20px; margin-top: -208px; right: -27px; z-index: -100; top: 50%; position: fixed; width: 222px;"}
     
     #wrapper
@@ -26,6 +29,7 @@
         = render partial: 'shared/templates/discussion_viewer'
         = render partial: 'shared/templates/single_comment'
         = render partial: 'shared/uservoice'
+        = render partial: 'shared/stories_javascript'
         = javascript_include_tag 'User/User'
         = javascript_include_tag 'Story/StoryController'
         = javascript_include_tag 'Notification/NotificationController'

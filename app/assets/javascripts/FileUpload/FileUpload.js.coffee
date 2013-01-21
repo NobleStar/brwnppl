@@ -1,5 +1,6 @@
 $ ->
 
+# Story Image Uploads
   $('#image_upload').live 'click', (event) ->
     event.preventDefault()
     $('#fileupload').click()
@@ -35,3 +36,23 @@ $ ->
       $('span#uploading').remove()
       $('<span class=fileType>  We are sorry, but that file type is not supported. Want to try again?</span>').insertAfter $('#image_upload')
       $('#image_upload').show()
+
+# Profile Image Uploads
+  $('#profile_upload').click (event) ->
+    event.preventDefault()
+    $('#profile_image_fileupload').click()
+
+  $("#profile_image_fileupload").fileupload
+    dataType: "json"
+    type:     "POST"
+    add: (e, data) ->
+      $('span.hidden').show()
+      data.submit()
+
+    done: (e, data) ->
+      $('span.hidden').hide()
+      $('#CompletePhoto .frame img').attr('src', data.result.user_thumbnail)
+      $('form#CompleteAccount #user_avatar').val(data.result.user_thumbnail)
+
+    fail: (e, data) ->
+      alert('Failed to upload your image, Please try using a different image, or make sure you are using a valid image format (png or jpgs only).')

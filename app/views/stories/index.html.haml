@@ -10,40 +10,4 @@
   #container
     .ribbon
       .posts
-        .post
-          .postUser
-            = image_tag @story.user.avatar
-
-          .postContent
-            %a.postUsername{:href => "/#/#{@story.user.username}"}
-              = @story.user.username
-
-            .clear
-
-            %h2= link_to @story.title, @story.url
-
-            .clear
-
-            .postDetails
-              %a.like-button
-                %span.icon.detail.thumbs
-                = @story.likes_count
-
-              %a
-                %span.icon.details.comments
-                = @story.comments_count
-
-              %a
-                %span.icon.details.repost
-                10
-
-              %a
-                %span.icon.details.posted_ago
-                = time_ago_in_words(@story.created_at)
-
-          - if @story.image.present?
-            .postThumbnail
-              = image_tag @story.image, :max_width => 125, :max_height => 85
-
-
-          .clear
+        = render partial: 'shared/single_story', :locals => { story: @story}

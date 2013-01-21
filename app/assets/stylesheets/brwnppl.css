@@ -199,11 +199,6 @@ textarea#newComment {
   z-index:5000;
 }
 
-#content .content{
-  padding-top: 100px;
-}
-
-
 #header .content{
     width:960px;
     margin:0 auto;
@@ -784,9 +779,7 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
 #content .content {
     width: 960px;
     margin: 0 auto;
-    min-height: 130px;
     height: auto;
-    overflow: auto;
 }
 
 #content #container {
@@ -844,7 +837,7 @@ a.checked .icon.details.repost, a:hover .icon.details.repost{background-position
   padding: 0 14px 20px;
 }
 
-#CompleteAccount input, #CompleteAccount textarea {
+#CompleteAccount input, #CompleteAccount textarea, #CompleteAccount select {
   background: white;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -955,6 +948,61 @@ margin-bottom: 10px;
   overflow: hidden;
 }
 
+#CompletePhoto .buttons {
+  bottom: 15px;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.Button.WhiteButton.ContrastButton {
+  border: 0;
+  -moz-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5);
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.35), 0 0 0 1px rgba(140, 126, 126, 0.5);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.35), 0 0 0 1px rgba(140, 126, 126, 0.5);
+}
+
+.Button.WhiteButton {
+  background-color: #F0EDED;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFAFB), to(#F0EDED), color-stop(.5,#F9F7F7),color-stop(.5,#F6F3F4));
+  background-image: -moz-linear-gradient(top, #FDFAFB, #F9F7F7 50%, #F6F3F4 50%, #F0EDED);
+  background-image: -o-linear-gradient(top, #FDFAFB, #F9F7F7 50%, #F6F3F4 50%, #F0EDED);
+  background-image: -webkit-linear-gradient(top, #FDFAFB, #F9F7F7 50%, #F6F3F4 50%, #F0EDED);
+  border-color: #BBB;
+  color: #524D4D;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfafb', endColorstr='#f0eded');
+  text-shadow: 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.Button.Button13 {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.Button {
+  border: 1px solid transparent;
+  -moz-border-radius: .3em;
+  -webkit-border-radius: .3em;
+  border-radius: .3em;
+  -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35);
+  -webkit-box-shadow: 0 1px rgba(255, 255, 255, 0.8), inset 0 1px rgba(255, 255, 255, 0.35);
+  box-shadow: 0 1px rgba(255, 255, 255, 0.8), inset 0 1px rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  display: inline-block;
+  font-family: "helvetica neue",arial,sans-serif;
+  font-weight: bold;
+  line-height: 1em;
+  margin: 0;
+  padding: .45em .825em .45em;
+  text-align: center;
+  -moz-transition: all .05s ease-in-out;
+  -o-transition: all .05s ease-in-out;
+  -webkit-transition: all .05s ease-in-out;
+}
+
 /* NEW SECTION
 -----------------------------------------------------------------------------*/
 /* User Profile Section
@@ -992,6 +1040,23 @@ margin-bottom: 10px;
     width:100px;
     margin:70px 0px 0px 20px;
 }
+
+.profileActions p {
+  background-color: #5F2713;
+  height: 40px;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  line-height: 40px;
+  width: 180px;
+}
+
+.discussionComments h1 {
+  line-height: 34px;
+  word-wrap: break-word;
+  display: block;
+}
+
 /* END NEW SECTION
 -----------------------------------------------------------------------------*/
 
@@ -1128,6 +1193,7 @@ margin-bottom: 10px;
     vertical-align:top;
     padding:12px 0px 0px 0px;
     position: absolute;
+    bottom: 0px;
 }
 .storyWindow .leaveComment textarea{
   font-size: 16px;

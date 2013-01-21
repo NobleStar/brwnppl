@@ -9,13 +9,14 @@ Brwnppl::Application.routes.draw do
     resources :dislikes
     resources :communities
     resources :reshare
+    resources :abuse
 
     resources :users, :constraints  => { :id => /[0-z\.]+/ } do
     	get :me, :on => :collection
     end
 
     resources :images do
-      post :upload, :on => :collection
+      post  :upload, :on => :collection
     end
 
   end
@@ -57,6 +58,7 @@ Brwnppl::Application.routes.draw do
 
 
   match ':username'         => 'users#show',          :as => :user_profile
+  match ':username/edit'    => 'users#edit',          :as => :user_edit
 
   root :to => 'home#popular'
 

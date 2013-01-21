@@ -45,6 +45,11 @@ class Story < ActiveRecord::Base
     where( :user_id => user_ids ).order('created_at DESC').limit(1000)
   end
 
+  def report_abuse
+    self.abuse_count += 1
+    self.save
+  end
+
   def likes_count
     likes.count
   end

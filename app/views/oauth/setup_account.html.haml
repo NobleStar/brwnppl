@@ -29,7 +29,7 @@
 
     .setupAccount
       .header
-        %h1 Welcome to Brwnppl - Setup Account
+        %h1 Welcome to Brwnppl
 
       .social_banner.facebook
         %h2 Connected as #{current_user.name}
@@ -43,18 +43,27 @@
 
       #CompletePhoto
         .frame
-          %img{ :src => large_facebook_avatar(current_user), :width => "100%", :height => "223px" }
+          %img{ :src => user_avatar(current_user), :width => "100%", :height => "223px" }
+        .buttons
+
+          = label_tag "Upload Image", nil, :id => 'profile_upload', :class => 'Button WhiteButton Button13 ContrastButton upload'
 
       = form_for @user, :html => { :class => 'RegisterForm', :id => "CompleteAccount" } do |f|
         %ul.fields
           %li.field
-            = f.text_field :username, :placeholder => "username", :value => nil
+            = f.text_field :username, :placeholder => "username", :value => @user.username.present? ? @user.username : nil
 
           %li.field
             = f.email_field :email, :disabled => true
 
           %li.field
             = f.text_area :bio, :placeholder => "short bio", :rows => 4
+
+          %li.field
+            = f.select :account_type, [['- Select Account Type -', ''], ['Personal', 'personal'], ['Business', 'business']]
+
+            .hidden
+              %input#profile_image_fileupload{ :type => 'file', :name => 'image', 'data-url' => "/api/images/upload", 'data-type' => 'POST' }
 
           %li
             .follow_friends.facebook
@@ -73,4 +82,6 @@
           = link_to "Privacy Policy", privacy_policy_path
 
         .buttons
-          %button.Button.RedButton.Button24 Create Account
+          %button.Button.WhiteButton.Button13.ContrastButton Update Account
+          %span.hidden
+            %img.loader{ :src => "/assets/loader.gif", :style => 'float: left' }

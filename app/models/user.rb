@@ -17,14 +17,14 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :authentications
 
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :case_sensitive => false
   validates_uniqueness_of :email
   validates_presence_of :username
   validates_length_of :username, :minimum => 4, :maximum => 18
   validates_format_of :username, :with => /^[a-zA-Z.\d]*$/, :message => 'format is invalid, only alphabets and digits are allowed'
   validates_presence_of :email
   validates :bio, :presence => true, :length => { :maximum => 300 }
-
+  validates :account_type, :inclusion => { :in => %w(personal business), :message => 'can either be personal or business'}
 
   state_machine :state, :initial => :new_user do
     

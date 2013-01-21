@@ -34,10 +34,9 @@
     - if params[:controller] != 'story_viewer'
       .userOptions
         - if logged_in?
-          %a
-            = link_to current_user.username, '/' + current_user.username
-          %a 
-            = link_to 'Logout', logout_path
+          = link_to current_user.username, '/' + current_user.username
+          = link_to 'Logout', logout_path
+          = link_to image_tag('/assets/edit-profile.png', :height => '14px'), user_edit_url(current_user.username)
           / %a.icon.plus.floatRight
           / %a.icon.user.floatRight
           .clear

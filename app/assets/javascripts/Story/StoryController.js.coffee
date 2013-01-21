@@ -47,3 +47,15 @@ class Brwnppl.StoryController
       statusCode: 
         422: (data) ->
           console.warn 'Cannot Down-vote: Already down voted.'
+
+  reportAbuse: ->
+    $.ajax
+      url:      '/api/abuse'
+      data:     { story_id: @story_id }
+      type:     'POST'
+      success:  (data) =>
+        notification = new Brwnppl.Notification('Thanks for reporting!', ['Thanks for flagging this story we\'ll get it checked :)'])
+        notification.display()
+      statusCode: 
+        422: (data) =>
+          console.warn 'Cannot Report Abuse'
