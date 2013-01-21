@@ -9,7 +9,7 @@
   $('.postContent .postDetails a.report_abuse').click(function(event) {
     event.preventDefault()
     abuse = confirm('Are you sure you want to report abuse this story?');
-    if (abuse) {
+    if (abuse == true) {
       story_id = $(event.target).closest('.post').data('story-id');
       story = new Brwnppl.StoryController(story_id);
       story.reportAbuse();
