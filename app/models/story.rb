@@ -5,6 +5,7 @@ class Story < ActiveRecord::Base
   attr_accessor :oauth_token
   attr_accessible :type, :url, :image, :title, :community_id, :description, :content_type
   after_create :post_to_facebook, :if => :owner_is_from_facebook_and_sharing_enabled?
+  after_save   :expire_cache
 
   scope :latest, :order => 'created_at DESC'
 
@@ -100,6 +101,14 @@ class Story < ActiveRecord::Base
 
   def self.recent_by_community(community)
     where(:community_id => community.id).order('created_at DESC')
+  end
+
+  def expire_cache
+    a = ActionController::Base.new
+    a.expire_fragment 'logged_in/popular/*'
+    a.expire_fragment 'logged_in/recent/*'
+    a.expire_fragment 'logged_out/recent'
+    a.expire_fragment 'logged_out/popular'
   end
 
 end

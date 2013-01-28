@@ -21,8 +21,9 @@ gem 'pusher'
 gem 'cloudinary'
 gem 'kaminari'
 gem 'redis'
-gem "airbrake"
+gem 'airbrake'
 gem 'hirefireapp'
+gem 'redis-store', git: 'git@github.com:jasdeepsingh/redis-store.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

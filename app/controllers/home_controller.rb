@@ -4,6 +4,9 @@ class HomeController < ApplicationController
   skip_before_filter :account_setup_needed?, :only => [:privacy_policy, :user_agreement]
   skip_before_filter :require_login, :except => :my_brwnppl
 
+  caches_action :popular, :cache_path => :popular_cache.to_proc
+  caches_action :index, :recent, :cache_path => :recent_cache.to_proc
+
   def index
     @stories = Story.latest.page(params[:page])
   end
@@ -52,6 +55,24 @@ class HomeController < ApplicationController
       render :recent
     else
       raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
+  def popular_cache
+    return if flash.keys.present?
+    if current_user
+      "logged_in/popular/#{current_user.id}"
+    else
+      "logged_out/popular"
+    end
+  end
+
+  def recent_cache
+    return if flash.keys.present?
+    if current_user
+      "logged_in/recent/#{current_user.id}"      
+    else
+      "logged_out/recent"
     end
   end
 

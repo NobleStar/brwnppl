@@ -59,6 +59,9 @@ module Brwnppl
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    
+    # config.action_controller.perform_caching = true
+    # config.cache_store :redis_store, ENV["REDISCLOUD_URL"]
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
