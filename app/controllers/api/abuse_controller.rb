@@ -1,4 +1,6 @@
 class Api::AbuseController < Api::BaseController
+  
+  skip_before_filter :require_login
 
   def create
     @story = Story.find(params[:story_id])
