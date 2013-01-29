@@ -1,10 +1,12 @@
-= content_for(:head) do 
+= content_for(:head) do
   %meta{:property => "fb:app_id", :content => ENV['FACEBOOK_APP_KEY']  }
   %meta{:property => "og:type",   :content => "brwnppl:story"          }
   %meta{:property => "og:url",    :content => @story.public_url        }
   %meta{:property => "og:title",  :content => @story.title             }
   %meta{:property => "og:image",  :content => @story.fb_image          }
 
+= content_for(:title) do
+  = "Brwnppl | #{@story.title}"
 
 #content
   #container

@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
 
   # layout "permalink"
   def index
-    @story = Story.find(params[:slug]) 
+    @story = Story.find_by_slug(params[:slug]) 
   end
 
 end
