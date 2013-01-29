@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jasdeepsingh/redis-store.git
+  remote: git://github.com/jasdeepsingh/redis-store.git
   revision: c6d000eacd1ef4a959dc5dd04faff6e950ebae3d
   specs:
     redis-store (1.1.3)
