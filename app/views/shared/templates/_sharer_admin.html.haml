@@ -1,0 +1,46 @@
+%script#sharer_template{type: "text/x-handlebars-template"}
+  .userPhoto
+    %img#photo{ :src => user_avatar(current_user) }
+
+  .shareBox
+    .sayBulb
+
+    .clear
+
+    %form#shareForm
+      %span{ :style => 'float: right'}
+        Know our 
+        %a{:href=> '/help/guidelines', :target => '_blank'}= "Community Guidelines" 
+        so things don't get awkward
+      %textarea.linkBar.hidden
+        = "Give your story a title. ;)"
+
+      = select_tag "community", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- What community does this best fit into? --', :class => 'hidden linkBar'
+
+      = select_tag "content_type_dropdown", options_from_collection_for_select(ContentType.all, :internal_name, :public_name), :prompt => '-- What is it? --', :class => 'hidden linkBar'
+
+      %input#urlField.linkBar{:type => 'text', :placeholder => 'Paste your link here or type a topic for discussion..'}
+
+      %span
+        %input#username.linkBar{ :type => 'text', :placeholder => 'new username to use or already existing username' }
+
+      %center
+        %img#linkBarImage.hidden{ :src => '' }
+
+      %center
+        #preview
+
+      %input#story_type{ type: :hidden, name: :story_type, value: 'WebLink'}
+      %input#story_image{ type: :hidden, name: :story_image_display}
+
+      %a{ :href => '#', :id => 'image_upload' } Attach Image
+      %input#fileupload.hidden{ :type => 'file', :name => 'image', 'data-url' => "/api/images/upload" }
+
+      %img.loader.hidden{ :src => '/assets/loader.gif' }
+
+  .shareButton
+    %a#shareThis{ :href => '' }
+      Share
+    %input.hidden{ :type => 'hidden', name: :story_image }
+
+    .clear

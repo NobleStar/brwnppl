@@ -1,0 +1,5 @@
+- if logged_in?
+  .shareSection
+    = content_for(:footer_scripts) do
+      = render partial: 'shared/templates/sharer_admin'
+      = javascript_include_tag "Sharer/SharerController"
