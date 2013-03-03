@@ -19,12 +19,13 @@ class SharerController
     community = c.communities_menu().val()
     story_type = c.story_type().val()
     content_type = c.content_type().val()
+    username = c.username().val()
 
     $.ajax
       url      :  '/api/stories'
       type     :  'POST'
       dataType :  'json'
-      data     :  { story: { title: title, url: link, image: image, community_id: community, type: story_type, content_type: content_type } }
+      data     :  { story: { title: title, url: link, image: image, community_id: community, type: story_type, content_type: content_type }, username: username }
       complete :  (data, status) =>
         response = JSON.parse(data.responseText)
         notification = new Brwnppl.Notification(response.header, response.messages)
@@ -105,7 +106,7 @@ class SharerController
     @dom.find('#image_upload')
 
   url_field: ->
-    @dom.find('input.linkBar')
+    @dom.find('input#urlField')
 
   loader: ->
     @dom.find('.loader')
@@ -133,6 +134,9 @@ class SharerController
 
   content_type: ->
     @dom.find('select#content_type_dropdown')
+
+  username: ->
+    @dom.find('input#username')
 
 
 sharer = new SharerController()

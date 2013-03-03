@@ -1,11 +1,12 @@
 - if params[:action] == 'community'
   %h2= @community.name
-.categories
-  %a.category.filter{:href => '#', 'data-content-type' => 'all' } All
-  %a.category.filter{:href => '#', 'data-content-type' => 'image'} Images
-  %a.category.filter{:href => '#', 'data-content-type' => 'audio'} Audio
-  %a.category.filter{:href => '#', 'data-content-type' => 'video'} Video
-  %a.category.filter{:href => '#', 'data-content-type' => 'web_link'} Links
-  %a.category.filter{:href => '#', 'data-content-type' => 'discussion'} Discussions
+
+/ .categories
+/   %a.category.filter{:href => '#', 'data-content-type' => 'all' } All
+/   %a.category.filter{:href => '#', 'data-content-type' => 'image'} Images
+/   %a.category.filter{:href => '#', 'data-content-type' => 'audio'} Audio
+/   %a.category.filter{:href => '#', 'data-content-type' => 'video'} Video
+/   %a.category.filter{:href => '#', 'data-content-type' => 'web_link'} Links
+/   %a.category.filter{:href => '#', 'data-content-type' => 'discussion'} Discussions
 
 = javascript_include_tag 'StorySorter/Sorter'

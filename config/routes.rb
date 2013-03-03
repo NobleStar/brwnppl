@@ -31,6 +31,10 @@ Brwnppl::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :stories
+  end
+
   # Authentication Actions:
   match 'oauth/callback'    => 'oauth#callback'
   match 'oauth/:provider'   => 'oauth#start',         :as => :auth_at_provider
@@ -45,10 +49,12 @@ Brwnppl::Application.routes.draw do
   # Communities Route
   match '/b/:slug'          => 'home#community',        :as => :community
   match '/b/:slug/recent'   => 'home#recent_community', :as => :recent_community
+  match '/b/:slug/top'      => 'home#top_community',    :as => :top_community
 
   # Popular and Recent Routes
   match '/popular'          => 'home#popular',        :as => :popular
   match '/recent'           => 'home#recent',         :as => :recent
+  match '/top'              => 'home#top',            :as => :top
 
   # Static and Legal Pages:
   match '/help/privacy_policy'   => 'home#privacy_policy', :as => :privacy_policy
@@ -57,8 +63,8 @@ Brwnppl::Application.routes.draw do
   match '/my_brwnppl'            => 'home#my_brwnppl',     :as => :my_brwnppl
 
 
-  match ':username'         => 'users#show',          :as => :user_profile
-  match ':username/edit'    => 'users#edit',          :as => :user_edit
+  match ':username'         => 'users#show',          :as => :user_profile, :constraints => { :username => /[^\/]+/ }
+  match ':username/edit'    => 'users#edit',          :as => :user_edit,  :constraints => { :username => /[^\/]+/ }
 
   root :to => 'home#popular'
 

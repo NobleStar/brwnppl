@@ -1,4 +1,4 @@
-%script#story_viewer_template{type: "text/x-handlebars-template"}
+%script#story_viewer_template{type: "text/x-handlebars-template"}  
   .storyViewer
     .fader
 
@@ -55,6 +55,11 @@
                 <a href="#" style='font-size: 32px'>{{story.brownie_points}}</a>
                 <a href='#' id='downvote'><img src="/assets/thumbs_down.png"></a>
               {{/unless}}
+
+          .clear
+          #shareButtons
+            %span.st_facebook{ :displayText => 'Facebook', :st_url => ''}
+            %span.st_twitter{ :displayText => 'Tweet', :st_url => '' }
             
           .comments
             :plain

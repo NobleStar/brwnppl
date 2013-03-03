@@ -59,7 +59,7 @@ class Brwnppl.StoryViewer
       source = $('#story_viewer_template').html()
     template = Handlebars.compile(source)
     $('#wrapper').prepend(template(data))
-
+    stButtons.locateElements()
     @bindKeypressEvents()
     
     $('.storyViewer .column').equalHeights( $(window).height() * 0.70, $(window).height() * 0.75)
@@ -143,6 +143,7 @@ class Brwnppl.StoryViewer
   bind_events: ->
     @bind_close_click()
     @bind_comment_post()
+    @bindFaderClick()
     @bindLikeClick()
     @bindDownvoteClick()
 
@@ -157,6 +158,12 @@ class Brwnppl.StoryViewer
         oldCount += 1
         textNode.text(oldCount)
         )
+
+  bindFaderClick: ->
+    @storyViewer().find('.fader').bind 'click', { controller: this}, (event) ->
+      controller = event.data.controller
+      event.preventDefault()
+      controller.storyViewer().remove()
 
   bindDownvoteClick: ->
     @storyViewer().find('#storyControls #downvote').bind 'click', {controller: this}, (event) ->

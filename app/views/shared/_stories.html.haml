@@ -1,5 +1,6 @@
 .ribbon
   = render :partial => 'shared/story_sorter'
+  = render :partial => 'shared/top_sorter' if params[:action] == 'top'
 
   .posts
     - unless stories.present?

@@ -2,7 +2,7 @@ class StoryViewerController < ApplicationController
 
   layout "iframe"
   def index
-    @story = Story.find(params[:slug])
+    @story = Story.where(slug: params[:slug]).first
   end
 
 end

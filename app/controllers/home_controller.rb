@@ -20,6 +20,11 @@ class HomeController < ApplicationController
     render :recent
   end
 
+  def top
+    @stories = Kaminari.paginate_array( Story.top(params[:time]) ).page(params[:page])
+    render :recent
+  end
+
   def my_brwnppl
     @stories = Story.recent_for( current_user.followed_users.map(&:id) )
     @stories = Kaminari.paginate_array( @stories ).page(params[:page])
@@ -42,6 +47,16 @@ class HomeController < ApplicationController
     @community = Community.find_by_slug(params[:slug])
     if @community
       @stories = Kaminari.paginate_array( Story.recent_by_community(@community) ).page(params[:page])
+      render :recent
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
+  def top_community
+    @community = Community.find_by_slug(params[:slug])
+    if @community
+      @stories = Kaminari.paginate_array( Story.top_by_community(@community) ).page(params[:page])
       render :recent
     else
       raise ActionController::RoutingError.new('Not Found')

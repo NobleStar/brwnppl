@@ -1,5 +1,7 @@
 class Api::LikesController < Api::BaseController
 
+  protect_from_forgery :except => :create
+  
   def create
     @story = Story.find(params[:story_id])
     if @story.liked_by(current_user)

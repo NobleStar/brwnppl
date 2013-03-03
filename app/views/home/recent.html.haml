@@ -5,6 +5,14 @@
   .content
     = render partial: 'shared/flash_messages'
     = render partial: 'shared/sharer'
+    
+    - if !logged_in?
+      .setupAccount
+        .header
+          %h1 Login to Share, Vote and Comment
+      %a.loginButton{ :href => '/oauth/facebook' }
+        %img{ :src => '/assets/facebookIcon.png', :width => '8', :height => '17', :alt => 'Login with Facebook'}
+        Login With Facebook
 
   .clear
   #container

@@ -52,8 +52,8 @@ class IframeController
 
   postCommentClick: ->
     @postCommentButton().click (event) =>
-      console.log @commentTextbox().val()
-      @postComment @commentTextbox().val()
+      commentText = @commentTextbox().val()
+      @postComment( commentText ) if commentText != ""
 
   postCommentButton: ->
     $('.leaveComment .roundedButton')

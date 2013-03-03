@@ -10,6 +10,10 @@
     = javascript_include_tag 'application'
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js'
     = javascript_include_tag 'http://js.pusher.com/1.12/pusher.min.js'
+    = javascript_include_tag 'http://w.sharethis.com/button/buttons.js'
+    %script{ :type => 'text/javascript' }
+      :plain
+        stLight.options({publisher: "0ff47a2d-b713-4f0e-a07c-0eb2c6002265", doNotHash: false, doNotCopy: false, hashAddressBar: false});
     = csrf_meta_tags
 
   %body

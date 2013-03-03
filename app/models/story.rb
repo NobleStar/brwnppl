@@ -22,7 +22,7 @@ class Story < ActiveRecord::Base
   has_many :commenters, through: :comments, source: :user
 
   validates_presence_of :title, :community
-  validates_presence_of :content_type
+  #validates_presence_of :content_type
   validates :title, :length => { :maximum => 140 }
 
   include FriendlyId
@@ -64,7 +64,9 @@ class Story < ActiveRecord::Base
   end
 
   def liked_by(user)
-    likes << likes.build(:user => user)
+    if user.can_like_more?(self)
+      likes << likes.build(:user => user)
+    end
   end
 
   def disliked_by(user)
@@ -95,12 +97,21 @@ class Story < ActiveRecord::Base
     on_top.present? ? [on_top] + populars : populars
   end
 
+  def self.top(time)
+    return Story.all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'all'
+    return Story.where( :created_at => Date.today).all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'today'
+  end
+
   def self.by_community(community)
     where(:community_id => community.id).order('updated_at DESC, brownie_points DESC').limit(20)
   end
 
   def self.recent_by_community(community)
     where(:community_id => community.id).order('created_at DESC')
+  end
+
+  def self.top_by_community(community)
+    where(:community_id => community.id).order('brownie_points DESC').limit(1000)
   end
 
   def expire_cache

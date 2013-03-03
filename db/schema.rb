@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121014944) do
+ActiveRecord::Schema.define(:version => 20130303165647) do
 
   create_table "authentications", :force => true do |t|
     t.integer   "user_id",    :null => false
@@ -96,22 +96,23 @@ ActiveRecord::Schema.define(:version => 20130121014944) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "stories", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.string    "type"
-    t.text      "url"
-    t.timestamp "created_at",                           :null => false
-    t.timestamp "updated_at",                           :null => false
-    t.integer   "user_id"
-    t.string    "image"
-    t.string    "slug",              :default => "",    :null => false
-    t.integer   "community_id"
-    t.string    "content_type"
-    t.integer   "brownie_points",    :default => 0
-    t.boolean   "reshared",          :default => false
-    t.integer   "original_story_id"
-    t.integer   "reshare_count",     :default => 0
-    t.integer   "abuse_count",       :default => 0
+    t.string   "title"
+    t.text     "description"
+    t.string   "type"
+    t.text     "url"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "user_id"
+    t.string   "image"
+    t.string   "slug",              :default => "",    :null => false
+    t.integer  "community_id"
+    t.string   "content_type"
+    t.integer  "brownie_points",    :default => 0
+    t.boolean  "reshared",          :default => false
+    t.integer  "original_story_id"
+    t.integer  "reshare_count",     :default => 0
+    t.integer  "abuse_count",       :default => 0
+    t.boolean  "is_staff_post",     :default => false
   end
 
   add_index "stories", ["slug"], :name => "index_stories_on_slug"
@@ -129,6 +130,8 @@ ActiveRecord::Schema.define(:version => 20130121014944) do
     t.text      "bio"
     t.boolean   "share_activity_on_facebook", :default => true
     t.string    "account_type",               :default => "personal"
+    t.boolean   "video_shared",               :default => false
+    t.boolean   "is_admin",                   :default => false
   end
 
 end

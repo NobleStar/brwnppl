@@ -32,7 +32,7 @@
         - @story.comments.each do |comment|
           .comment
             %img.photo{ :src => user_avatar(comment.user), :height => '32px', :weight => '32px'}
-            %a.author{ :href => "/#{comment.user.username}" }= comment.user.name
+            %a.author{ :href => "/#{comment.user.username}" }= comment.user.username
             %span.text= comment.content
             %p.timestamp= "posted " + time_ago_in_words(comment.created_at) + " ago"
 

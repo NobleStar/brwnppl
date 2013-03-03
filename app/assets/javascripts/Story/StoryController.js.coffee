@@ -13,7 +13,7 @@ class Brwnppl.StoryController
           element()
         else
           likeCount = element.next()[0]
-          oldCount = parseInt likeCount.textContent
+          oldCount = parseInt likeCount.textContent, 10
           likeCount.textContent = oldCount + 1 if oldCount >= 0
           $(element).attr('title', 'Thanks for upvoting this story!')
       statusCode: 

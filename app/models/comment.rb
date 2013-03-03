@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
   before_create :trigger_pusher_notification
 
   def avatar
-    user.avatar
+    ApplicationController.helpers.user_avatar(self.user)
   end
 
   def name

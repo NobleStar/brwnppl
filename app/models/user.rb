@@ -28,6 +28,13 @@ class User < ActiveRecord::Base
 
   state_machine :state, :initial => :new_user do
     
+    after_transition :new_user => :setup_completed do |user, transition|
+      if user.video_shared
+        @graph = Koala::Facebook::API.new(user.oauth_token)
+        @graph.put_connections("me", "links", :link => "http://www.youtube.com/watch?v=ce9jbIvDPu4&feature=youtu.be")
+      end
+    end
+
     event :setup_account do
       transition :new_user => :setup_completed
     end
@@ -36,6 +43,14 @@ class User < ActiveRecord::Base
       validates_presence_of :username
     end
 
+  end
+
+  def can_like_more?(story)
+    if self.video_shared 
+      story.likes.where(user_id: self.id).count < 2
+    else
+      story.likes.where(user_id: self.id).count < 1
+    end
   end
 
   def following?(other_user)

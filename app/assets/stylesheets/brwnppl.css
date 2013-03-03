@@ -113,10 +113,13 @@ html{
   padding: 0px 10px 0px 7px;
   vertical-align: middle;
   margin-top: -3px;
-  border-right: 1px solid 
-  #562814;
+  border-right: 1px solid #562814;
   box-shadow: 1px 0px 0px rgba(255,255,255,0.3);
   margin-right: 15px;
+}
+
+#shareButtons {
+  margin-top: 10px;
 }
 
 .mediaGutter {

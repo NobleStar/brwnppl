@@ -18,10 +18,17 @@ class Api::StoriesController < Api::BaseController
   def create
     class_type = params[:story][:type] || "Story"
     @story = class_type.constantize.new(params[:story])
-    @story.user = current_user
+    if current_user.is_admin && params[:username].present?
+      user = User.find_or_create_by_username(params[:username])
+      user.attributes = { :email => "#{params[:username]}", :bio => 'Toronto!', :avatar => 'http://socialmediababe.com/wp-content/uploads/2011/07/FB-profile-avatar.jpg'}
+      user.save
+      @story.user = user
+    else
+      @story.user = current_user
+    end
     @story.oauth_token = session[:oauth_token]
     if @story.save
-      render json: { story: @story.to_json, header: 'Thanks for sharing!', messages: ['Feel free to take a screen shot of this message, print it out, and add it to your scrap book.'], saved: true }
+      render json: { story: @story.to_json, header: 'Thanks for sharing!', messages: ['You can review your post by clicking \'Recent\' or \'Me\'. Remember the more you share, the more brownie points you can earn.'], saved: true }
     else
       render json: { header: 'Slow Down Cowboy!', messages: @story.errors.full_messages, saved: false }
     end
