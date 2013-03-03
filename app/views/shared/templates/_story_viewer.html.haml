@@ -58,8 +58,9 @@
 
           .clear
           #shareButtons
-            %span.st_facebook{ :displayText => 'Facebook', :st_url => ''}
-            %span.st_twitter{ :displayText => 'Tweet', :st_url => '' }
+            :plain
+              <span class="st_facebook" displayText="Facebook" st_url='/story/{{story.slug}}'></span>
+              <span class="st_twitter" displayText="Tweet" st_url='/story/{{story.slug}}'></span>
             
           .comments
             :plain
