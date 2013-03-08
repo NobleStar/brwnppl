@@ -14,63 +14,63 @@
 ActiveRecord::Schema.define(:version => 20130303165647) do
 
   create_table "authentications", :force => true do |t|
-    t.integer   "user_id",    :null => false
-    t.string    "provider",   :null => false
-    t.string    "uid",        :null => false
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "comments", :force => true do |t|
-    t.integer   "story_id"
-    t.integer   "user_id"
-    t.text      "content"
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "communities", :force => true do |t|
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
-    t.string    "name"
-    t.string    "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "slug"
   end
 
   create_table "content_types", :force => true do |t|
-    t.string    "internal_name"
-    t.string    "public_name"
-    t.timestamp "created_at",    :null => false
-    t.timestamp "updated_at",    :null => false
+    t.string   "internal_name"
+    t.string   "public_name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
-    t.integer   "priority",   :default => 0
-    t.integer   "attempts",   :default => 0
-    t.text      "handler"
-    t.text      "last_error"
-    t.timestamp "run_at"
-    t.timestamp "locked_at"
-    t.timestamp "failed_at"
-    t.string    "locked_by"
-    t.string    "queue"
-    t.timestamp "created_at",                :null => false
-    t.timestamp "updated_at",                :null => false
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "dislikes", :force => true do |t|
-    t.integer   "story_id"
-    t.integer   "user_id"
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "friendly_id_slugs", :force => true do |t|
-    t.string    "slug",                         :null => false
-    t.integer   "sluggable_id",                 :null => false
-    t.string    "sluggable_type", :limit => 40
-    t.timestamp "created_at"
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
   end
 
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
@@ -78,17 +78,17 @@ ActiveRecord::Schema.define(:version => 20130303165647) do
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "likes", :force => true do |t|
-    t.integer   "story_id"
-    t.integer   "user_id"
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "relationships", :force => true do |t|
-    t.integer   "follower_id"
-    t.integer   "followed_id"
-    t.timestamp "created_at",  :null => false
-    t.timestamp "updated_at",  :null => false
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
@@ -118,20 +118,20 @@ ActiveRecord::Schema.define(:version => 20130303165647) do
   add_index "stories", ["slug"], :name => "index_stories_on_slug"
 
   create_table "users", :force => true do |t|
-    t.string    "username",                                           :null => false
-    t.string    "email"
-    t.timestamp "created_at",                                         :null => false
-    t.timestamp "updated_at",                                         :null => false
-    t.string    "avatar"
-    t.string    "name"
-    t.string    "oauth_token"
-    t.string    "state"
-    t.integer   "brownie_points",             :default => 0
-    t.text      "bio"
-    t.boolean   "share_activity_on_facebook", :default => true
-    t.string    "account_type",               :default => "personal"
-    t.boolean   "video_shared",               :default => false
-    t.boolean   "is_admin",                   :default => false
+    t.string   "username",                                           :null => false
+    t.string   "email"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+    t.string   "avatar"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.string   "state"
+    t.integer  "brownie_points",             :default => 0
+    t.text     "bio"
+    t.boolean  "share_activity_on_facebook", :default => true
+    t.string   "account_type",               :default => "personal"
+    t.boolean  "video_shared",               :default => false
+    t.boolean  "is_admin",                   :default => false
   end
 
 end

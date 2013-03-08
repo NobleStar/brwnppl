@@ -9,7 +9,7 @@
 
       .profileBox
         = image_tag user_avatar(@user, :height => 150, :width => 125, :crop => :thumb), :class => 'profilePhoto'
-        %h2= "#{@user.username} (#{@user.brownie_points})"
+        %h2= "#{@user.username} (#{@user.brownie_points} brownie points)"
         %br
         = @user.bio
 

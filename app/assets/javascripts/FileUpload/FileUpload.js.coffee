@@ -1,7 +1,7 @@
 $ ->
-
 # Story Image Uploads
-  $('#image_upload').live 'click', (event) ->
+
+  $('#image_upload').on 'click', (event) ->
     event.preventDefault()
     $('#fileupload').click()
 
@@ -37,7 +37,7 @@ $ ->
       $('<span class=fileType>  We are sorry, but that file type is not supported. Want to try again?</span>').insertAfter $('#image_upload')
       $('#image_upload').show()
 
-# Profile Image Uploads
+  # Profile Image Uploads
   $('#profile_upload').click (event) ->
     event.preventDefault()
     $('#profile_image_fileupload').click()

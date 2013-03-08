@@ -50,7 +50,7 @@ group :test, :development do
   #gem 'sexy-logger', :path => '~/personal/sexy-logger'
   gem 'taps'
   gem 'jasminerice'
-  gem 'sqlite3'
+  gem 'pg'
   gem 'turn', '< 0.8.3'
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'

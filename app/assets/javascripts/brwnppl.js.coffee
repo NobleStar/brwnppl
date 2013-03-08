@@ -10,19 +10,17 @@ $(document).ready ->
       notification = new Brwnppl.Notification('Something went wrong!', ['Our servers are not in the best state of their health and we experienced some unexpected problem.'])
       notification.display()
 
-  $('a#communities').toggle(
-    ->
+  $('a#communities').click (event) ->
+    dom = $('.backgroundContainer')
+    communitiesDom = dom.find('.communities')
+    if communitiesDom.is(":hidden")
       $('.background').animate { height: 310}, 500
-      
       $('.backgroundContainer').animate { height: 310 }, 500, ->
-          $(@).find('.communities').removeClass('hidden')
-
-    ->
+        $(@).find('.communities').removeClass('hidden')
+    else
       $('.background').animate { height: 69}, 500
-      
       $('.backgroundContainer').animate { height: 71 }, 500, ->
-          $(@).find('.communities').addClass('hidden')
-    )
+        $(@).find('.communities').addClass('hidden')
 
   $('.thumb_up').tooltipster()
   $('.thumb_down').tooltipster()
