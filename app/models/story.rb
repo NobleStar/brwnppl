@@ -99,7 +99,7 @@ class Story < ActiveRecord::Base
 
   def self.top(time)
     return Story.all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'all'
-    return Story.where( :created_at => Date.today).all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'today'
+    return Story.where("DATE(created_at) = ?", Date.today).all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'today'
   end
 
   def self.by_community(community)
