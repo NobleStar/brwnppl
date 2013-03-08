@@ -20,7 +20,7 @@ class Api::StoriesController < Api::BaseController
     @story = class_type.constantize.new(params[:story])
     if current_user.is_admin && params[:username].present?
       user = User.find_or_create_by_username(params[:username])
-      user.attributes = { :email => "#{params[:username]}", :bio => 'Toronto!', :avatar => 'http://socialmediababe.com/wp-content/uploads/2011/07/FB-profile-avatar.jpg'}
+      user.attributes = { :email => "#{params[:username]}@brwnppl.com", :bio => '.', :avatar => 'http://brwnppl.herokuapp.com/assets/default_user_image.jpg'}
       user.save
       @story.user = user
     else
