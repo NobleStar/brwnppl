@@ -31,7 +31,7 @@
       / %a.repost_{ :href => '#', :title => "#{reshare_allowed?(current_user)}" }
       /   %span.icon.details.repost
       /   = story.reshare_count
-      - if (current_user && story.user == current_user) || current_user.is_admin
+      - if (current_user && story.user == current_user) || (current_user && current_user.is_admin)
         = link_to 'X (Delete)', api_story_path(story), :confirm => 'Are you sure?', :method => :delete
       %a= "posted #{time_ago_in_words(story.created_at)} ago in"
       %a{ :href => "/b/#{story.community.slug}", :style => 'font-weight: bold;' }= "#{story.community.name}"
