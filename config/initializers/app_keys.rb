@@ -1,5 +1,5 @@
 if Rails.env.production?
-  ENV['APP_URL']              = 'http://brwnppl.herokuapp.com'
+  ENV['APP_URL']              = 'http://brwnppl.com'
 
   # Facebook
   ENV['FACEBOOK_APP_KEY']     = '335259899881893'
