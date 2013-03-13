@@ -8,7 +8,7 @@ class Admin::StoriesController < ApplicationController
 
   private
   def admins_only
-    if current_user.is_admin
+    if current_user && current_user.is_admin
       return true
     else
       redirect_to :root, :notice => 'Access Restricted!'

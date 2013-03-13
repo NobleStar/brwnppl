@@ -28,7 +28,7 @@ class Api::StoriesController < Api::BaseController
     end
     @story.oauth_token = session[:oauth_token]
     if @story.save
-      render json: { story: @story.to_json, header: 'Thanks for sharing!', messages: ['You can review your post by clicking \'Recent\' or \'Me\'. Remember the more you share, the more brwni points you can earn.'], saved: true }
+      render json: { story: @story.to_json, header: 'Thanks for sharing!', messages: ['You can review your post by clicking \'Recent\' or \'Me\'.', 'Remember the more you share, the more brwni points you can earn.'], saved: true }
     else
       render json: { header: 'Slow Down Cowboy!', messages: @story.errors.full_messages, saved: false }
     end
