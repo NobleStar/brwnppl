@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   validates_length_of :username, :minimum => 4, :maximum => 18
   validates_format_of :username, :with => /^[a-zA-Z.\d]*$/, :message => 'format is invalid, only alphabets and digits are allowed'
   validates_presence_of :email
-  validates :bio, :presence => true, :length => { :maximum => 300 }
   validates :account_type, :inclusion => { :in => %w(personal business), :message => 'can either be personal or business'}
 
   state_machine :state, :initial => :new_user do
@@ -31,7 +30,7 @@ class User < ActiveRecord::Base
     after_transition :new_user => :setup_completed do |user, transition|
       if user.video_shared
         @graph = Koala::Facebook::API.new(user.oauth_token)
-        @graph.put_connections("me", "links", :link => "http://www.youtube.com/watch?v=ce9jbIvDPu4&feature=youtu.be")
+        @graph.put_connections("me", "links", :link => "http://www.youtube.com/watch?v=8V8b4qgGEY0")
       end
     end
 
@@ -40,6 +39,7 @@ class User < ActiveRecord::Base
     end
 
     state :setup_completed do
+      validates :bio, :presence => true, :length => { :maximum => 300 }
       validates_presence_of :username
     end
 

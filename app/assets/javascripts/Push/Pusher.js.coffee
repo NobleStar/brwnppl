@@ -1,5 +1,5 @@
 class Brwnppl.PushService
 
   constructor: ->
-    @pusher = new Pusher('485e4d3a43a88d8be69c')
+    @pusher = new Pusher('35e384c3909a930e03b7')
     @pusher

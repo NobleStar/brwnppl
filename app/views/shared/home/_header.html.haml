@@ -41,7 +41,7 @@
       .userOptions
         - if logged_in?
           = link_to current_user.username, user_edit_url(current_user.username)
-          = link_to 'Logout', logout_path
+          = link_to 'Logout', logout_path, :class => 'category'
           .clear
 
 

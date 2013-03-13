@@ -25,6 +25,7 @@ $(document).ready ->
   $('.thumb_up').tooltipster()
   $('.thumb_down').tooltipster()
   $('.repost_').tooltipster()
+  $('.tooltip').tooltipster()
 
   # $('a#search').toggle(
   #   ->

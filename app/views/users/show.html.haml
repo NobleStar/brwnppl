@@ -16,17 +16,19 @@
       .profileActions
         - if current_user && current_user == @user
         - elsif current_user && current_user.following?(@user)
-          %a{ :href => "/users/#{@user.username}/unfollow"}
-            %p= "Remove from My brwnppl"
+          %a{ :href => "/users/#{@user.username}/unfollow", :class => 'follow_button'}
+            %span= "Remove from My brwnppl"
           / %a{:href => "/users/#{@user.username}/unfollow"}
           /   %img{ :src => "/assets/remove-from-brwnppl.png", :height => 40}
         - elsif current_user.present?
-          %a{ :href => "/users/#{@user.username}/follow"}
-            %p= "Add to My brwnppl"
+          %a{ :href => "/users/#{@user.username}/follow", :class => 'follow_button'}
+            %span= "Add to My brwnppl"
           / %a{:href => "/users/#{@user.username}/follow"}
           /   %img{ :src => "/assets/add-to-brwnppl.png", :height => 40}
-        %p= "#{@user.followers.count} followers"
-        %p= "#{@user.followed_users.count} following"
+        %a.follow_button
+          %span= "#{@user.followers.count} followers"
+        %a.follow_button          
+          %span= "#{@user.followed_users.count} following"
 
 
       .clear

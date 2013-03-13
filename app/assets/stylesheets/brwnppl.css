@@ -1290,6 +1290,29 @@ h3{
   text-decoration: none;
 }
 
+a.follow_button {
+  display: -moz-inline-stack;
+  display: inline-block;
+  width: 180px;
+  height: 40px;
+  background: url("http://dabuttonfactory.com/b.png?t=Follow&f=sans-serif&ts=20&tc=ffffff00&tshs=1&tshc=986c3300&it=png&c=round&bgt=unicolored&bgc=71290c&be=on&bs=1&bc=986c33&shs=1&shc=222&sho=se&w=180&h=40") no-repeat;
+  line-height: 40px;
+  vertical-align: text-middle;
+  text-align: center;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  text-shadow: #986c33 1px 1px 0;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+a.follow_button > span {
+  display: -moz-inline-block;
+}
+
 /* Community Header Title 
 width of background container: 110px;
 
@@ -1308,3 +1331,4 @@ margin-top: 10px;
     width: 72%;
   }
 }
+

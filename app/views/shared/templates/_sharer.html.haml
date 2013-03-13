@@ -30,7 +30,7 @@
       %input#story_type{ type: :hidden, name: :story_type, value: 'WebLink'}
       %input#story_image{ type: :hidden, name: :story_image_display}
 
-      %a{ :href => '#', :id => 'image_upload' } Attach Image
+      %a{ :href => '#', :id => 'image_upload', :class => 'category' } Attach Image
       %input#fileupload.hidden{ :type => 'file', :name => 'image', 'data-url' => "/api/images/upload" }
 
       %img.loader.hidden{ :src => '/assets/loader.gif' }
