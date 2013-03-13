@@ -68,7 +68,7 @@ class Brwnppl.StoryViewer
     contentHeight = content.height()
     topPad = (storyHeight - contentHeight)/2 - 30
     content.css('padding-top', topPad)
-    @comments_dom().css('height', storyHeight * 0.75)
+    @comments_dom().css('height', storyHeight * 0.60)
 
   bindKeypressEvents: ->
     keypress.reset()
