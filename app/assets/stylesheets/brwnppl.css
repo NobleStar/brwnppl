@@ -1238,7 +1238,7 @@ margin-bottom: 10px;
     width:250px;
     vertical-align:top;
     padding:12px 0px 0px 0px;
-    position: absolute;
+    position: relative;
     bottom: 0px;
 }
 .storyWindow .leaveComment textarea{
