@@ -537,20 +537,34 @@ img#linkBarImage {
 .ribbon-front {
   font-family: 'Paytone One';
   font-size: 30px;
-  background-color: #9A3D15;
-  height: 68px;
-  width: 38px;
+  width: 50px;
   position: absolute;
-  left: -43px;
+  left: -40px;
   z-index: 2;
   color: white;
-  padding-left: 16px;
-  padding-top: 12px;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   -moz-border-radius-topleft: 6px;
   -moz-border-radius-bottomleft: 6px;
-  box-shadow: -1px 3px 5px black;
+  text-align: center;
+}
+
+.ribbon-front span {
+  background-color: #9A3D15;
+  display: inline;
+}
+
+.ribbon-front .browniePoints {
+  background-color: #9A3D15;
+  margin: 0 auto;
+  width: 100%;
+  padding: 12px 0px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .ribbon-front .thumb_down .thumb {
@@ -736,11 +750,31 @@ h2 a{
 }
 /* Icons & Sprites
 -----------------------------------------------------------------------------*/
+.thumb_icon {
+  background:url("24_pixel_thumbs_up.png") no-repeat;
+  display:inline-block;
+  vertical-align:middle;
+}
+.thumb_down {
+  background:url("24_pixel_thumbs_up.png") no-repeat;
+  display:inline-block;
+  vertical-align:middle;
+}
+
 .icon{
     background:url("sprites.png") no-repeat;
     display:inline-block;
     vertical-align:middle;
 }
+
+.thumb_icon.up { background-position: 0px 0px; height: 24px; text-align: center; margin: 0 auto; width: 24px; margin-bottom: 5px; }
+.thumb_icon.up:hover { background-position: 0px -25px; width: 24px; height: 24px; margin-bottom: 5px;}
+.thumb_icon.up:active { background-position: 0px -50px; width: 24px; height: 24px; margin-bottom: 5px;}
+
+.thumb_down.down { background-position: -25px 0px;width: 24px;height: 24px;margin-top: 5px; }
+.thumb_down.down:hover { background-position: -25px -25px; width: 24px; height: 24px; margin-top: 5px;}
+.thumb_down.down:active { background-position: -25px -50px; width: 24px; height: 24px; margin-top: 5px;}
+
 .icon.user{background-position:0px 0px; width:16px; height:16px; margin-right:20px;}
 .icon.user:hover{background-position:0px -16px;}
 .icon.plus{background-position:-16px -1px; width:13px; height:13px; margin-top:1px;}

@@ -75,7 +75,7 @@
           %li
             .follow_friends.facebook
               = f.check_box :video_shared, :checked => true
-              = f.label :video_shared, "Two thumbs are better than one. Share our intro video & we'll double your voting power in the community. <a class=\"tooltip\" href=\"#\" title=\"To thank you for helping us build the Brwnppl community, we're giving you an extra thumb to increase your voting power. Now you have the ability to vote either one or two thumbs up on every post.\">(learn more)</a>".html_safe
+              = f.label :video_shared, "Two thumbs are better than one. Share our intro video & we'll double your voting power in the community. <a class=\"tooltip\" href=\"#\" title=\"To thank you for helping us build the Brwnppl community, we're giving you an extra thumb to increase your voting power. Now you have the ability to vote either one or two thumbs up on every post.\" >(learn more)</a>".html_safe
 
               = f.hidden_field :id
               = f.hidden_field :avatar, :value => large_facebook_avatar(current_user)

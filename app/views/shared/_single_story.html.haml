@@ -1,11 +1,10 @@
 .post{ 'data-story-id' => story.id, 'data-content-type' => story.content_type }
   .ribbon-front
-    %a.thumb_up{ :href => '#', :title => "#{already_liked(current_user, story)}" }
-      %span.icon.details.thumb
-    %span
+    %a.thumb_up.thumb_icon.up{ :href => '#', :title => "#{already_liked(current_user, story)}" }
+    .browniePoints
       = story.brownie_points
-    %a.thumb_down{ :href => '#', :title => "#{already_downvoted(current_user, story)}" }
-      %span.icon.details.thumb
+    %a.thumb_down.down{ :href => '#', :title => "#{already_downvoted(current_user, story)}" }
+      / %span.icon.details.thumb
   .postThumbnail
     %a{ :href => '#' }
       - if story.image.present?
