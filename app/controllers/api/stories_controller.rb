@@ -40,7 +40,7 @@ class Api::StoriesController < Api::BaseController
 
   def destroy
     @story = Story.find(params[:id])
-    if @story.user == current_user && @story.destroy
+    if (@story.user == current_user || current_user.is_admin) && @story.destroy
       redirect_to :root, :notice => "Your post was deleted successfully."
     else
       redirect_to :root, :alert => "There was some problem, we were unable to delete your post"
