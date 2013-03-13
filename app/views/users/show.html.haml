@@ -9,7 +9,7 @@
 
       .profileBox
         = image_tag user_avatar(@user, :height => 150, :width => 125, :crop => :thumb), :class => 'profilePhoto'
-        %h2= "#{@user.username} (#{@user.brownie_points} brownie points)"
+        %h2= "#{@user.username} (#{@user.brownie_points} brwni points)"
         %br
         = @user.bio
 
@@ -17,12 +17,12 @@
         - if current_user && current_user == @user
         - elsif current_user && current_user.following?(@user)
           %a{ :href => "/users/#{@user.username}/unfollow", :class => 'follow_button'}
-            %span= "Remove from My brwnppl"
+            %span= "Unfollow"
           / %a{:href => "/users/#{@user.username}/unfollow"}
           /   %img{ :src => "/assets/remove-from-brwnppl.png", :height => 40}
         - elsif current_user.present?
           %a{ :href => "/users/#{@user.username}/follow", :class => 'follow_button'}
-            %span= "Add to My brwnppl"
+            %span= "Follow"
           / %a{:href => "/users/#{@user.username}/follow"}
           /   %img{ :src => "/assets/add-to-brwnppl.png", :height => 40}
         %a.follow_button
