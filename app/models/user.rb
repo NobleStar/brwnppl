@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   state_machine :state, :initial => :new_user do
     
     after_transition :new_user => :setup_completed do |user, transition|
-      if user.video_shared
+      if user.video_shared and user.oauth_token.present?
         @graph = Koala::Facebook::API.new(user.oauth_token)
         @graph.put_connections("me", "links", :link => "http://www.youtube.com/watch?v=8V8b4qgGEY0")
       end
@@ -38,9 +38,13 @@ class User < ActiveRecord::Base
       transition :new_user => :setup_completed
     end
 
-    state :setup_completed do
+    state :new_user do
       validates :bio, :presence => true, :length => { :maximum => 300 }
       validates_presence_of :username
+    end
+
+    state :setup_completed do
+      
     end
 
   end
