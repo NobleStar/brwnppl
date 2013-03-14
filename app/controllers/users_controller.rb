@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :same_user?, only: :edit
 
   def show
-    @user = User.find_by_username(params[:username].to_s.downcase)
+    @user = User.where("LOWER(username) = ?", params[:username].to_s.downcase).first
   end
 
   def update
