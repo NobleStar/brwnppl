@@ -1,5 +1,5 @@
 = content_for(:title) do
-  = "#{@user.username} on Brwnppl"
+  = "#{@user.try(:username)} on Brwnppl"
 
 #content
   .profile
