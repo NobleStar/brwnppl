@@ -51,6 +51,7 @@ group :test, :development do
   gem 'taps'
   gem 'jasminerice'
   gem 'pg'
+  gem 'sqlite3'
   gem 'turn', '< 0.8.3'
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'
