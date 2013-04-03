@@ -24,6 +24,8 @@ class Story < ActiveRecord::Base
   validates_presence_of :title, :community
   #validates_presence_of :content_type
   validates :title, :length => { :maximum => 140 }
+  validates_uniqueness_of :url, :message => 'has already been posted.'
+  validate :last_post_was_10_minutes_ago
 
   include FriendlyId
   friendly_id :title, :use => [:slugged, :history]
@@ -91,10 +93,25 @@ class Story < ActiveRecord::Base
     self.user.facebook? and self.user.share_activity_on_facebook
   end
 
+  def score
+    self.likes.count - self.dislikes.count
+  end
+
   def self.populars
     on_top = Story.find_by_id(350)
-    populars = Story.all( :joins => :community, :order => 'updated_at DESC, brownie_points DESC', :limit => 100 )
+    # populars = Story.all( :joins => :community, :order => 'updated_at DESC, brownie_points DESC', :limit => 100 )
+    stories = Story.includes(:likes, :dislikes).last(400)
+    populars = stories.sort_by { |s| s.rank }.reverse!
     on_top.present? ? [on_top] + populars : populars
+  end
+
+  def rank
+    score = self.score
+    order = Math.log10([score.abs, 1].max)
+    sign = score > 0 ? 1 : -1
+    sign = 0 if score == 0
+    seconds = self.created_at.to_i - 1134028003
+    (order + sign*seconds/45000).round
   end
 
   def self.top(time)
@@ -120,6 +137,13 @@ class Story < ActiveRecord::Base
     a.expire_fragment 'logged_in/recent/*'
     a.expire_fragment 'logged_out/recent'
     a.expire_fragment 'logged_out/popular'
+  end
+
+  def last_post_was_10_minutes_ago
+    last_story = self.user.stories.last
+    if last_story && (last_story.created_at + 10.minutes) > Time.zone.now
+      errors.add(:base, "You need to wait atleast 10 minutes before making new posts.")
+    end
   end
 
 end
