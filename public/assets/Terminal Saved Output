@@ -1,0 +1,864 @@
+1.9.3p194 :023 > 
+1.9.3p194 :024 >   Role.destroy_all
+  Role Load (0.4ms)  SELECT "public"."roles".* FROM "public"."roles" 
+   (0.1ms)  BEGIN
+  User Load (0.6ms)  SELECT "public"."users".* FROM "public"."users" INNER JOIN "users_roles" ON "public"."users"."id" = "users_roles"."user_id" WHERE "users_roles"."role_id" = 8
+  SQL (0.4ms)  DELETE FROM "public"."roles" WHERE "public"."roles"."id" = $1  [["id", 8]]
+   (0.4ms)  COMMIT
+ => [#<Role id: 8, name: "admin", resource_id: nil, resource_type: "Business", created_at: "2013-01-10 03:53:49", updated_at: "2013-01-10 03:53:49">] 
+1.9.3p194 :025 > Role.all.count
+  Role Load (0.5ms)  SELECT "public"."roles".* FROM "public"."roles" 
+ => 0 
+1.9.3p194 :026 > User.last
+  User Load (0.6ms)  SELECT "public"."users".* FROM "public"."users" ORDER BY "public"."users"."id" DESC LIMIT 1
+ => #<User id: 19, email: "narang.jasdeep@gmail.com", crypted_password: "$2a$10$nku2oeQBBQeslIUuf.O.We5ZHok7ZDdZjN7bG1mqnf3K...", salt: "pZuMwUyFLwKWBJuyKzCz", first_name: "Jasdeep", last_name: "Narang", activation_state: "active", activation_token: nil, activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:04:18", updated_at: "2013-01-10 04:05:48", authentication_token: nil, date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil> 
+1.9.3p194 :027 > User.destroy_all
+  User Load (0.6ms)  SELECT "public"."users".* FROM "public"."users" 
+   (0.1ms)  BEGIN
+  Authentication Load (0.3ms)  SELECT "public"."authentications".* FROM "public"."authentications" WHERE "public"."authentications"."user_id" = 19
+  Role Load (0.3ms)  SELECT "public"."roles".* FROM "public"."roles" INNER JOIN "users_roles" ON "public"."roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 19
+  SQL (0.2ms)  DELETE FROM "public"."users" WHERE "public"."users"."id" = $1  [["id", 19]]
+   (12.2ms)  COMMIT
+ => [#<User id: 19, email: "narang.jasdeep@gmail.com", crypted_password: "$2a$10$nku2oeQBBQeslIUuf.O.We5ZHok7ZDdZjN7bG1mqnf3K...", salt: "pZuMwUyFLwKWBJuyKzCz", first_name: "Jasdeep", last_name: "Narang", activation_state: "active", activation_token: nil, activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:04:18", updated_at: "2013-01-10 04:05:48", authentication_token: nil, date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil>] 
+1.9.3p194 :028 > User.destroy_all
+  User Load (0.8ms)  SELECT "public"."users".* FROM "public"."users" 
+   (0.2ms)  BEGIN
+  Authentication Load (0.4ms)  SELECT "public"."authentications".* FROM "public"."authentications" WHERE "public"."authentications"."user_id" = 20
+  Role Load (0.4ms)  SELECT "public"."roles".* FROM "public"."roles" INNER JOIN "users_roles" ON "public"."roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 20
+  SQL (0.3ms)  DELETE FROM "public"."users" WHERE "public"."users"."id" = $1  [["id", 20]]
+   (0.4ms)  COMMIT
+ => [#<User id: 20, email: "narang.jasdeep@gmail.com", crypted_password: "$2a$10$sHzvb6l9tQBLzFBVD8aTJO0AYIu4putsU1Xa42BMQdEZ...", salt: "fPyB8ity3y7wg61qdJGp", first_name: "Jasdeep", last_name: "Narang", activation_state: "pending", activation_token: "nYasikqxhNkBYZNNfusL", activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:07:00", updated_at: "2013-01-10 04:07:00", authentication_token: nil, date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil>] 
+1.9.3p194 :029 > User.all
+  User Load (0.5ms)  SELECT "public"."users".* FROM "public"."users" 
+ => [] 
+1.9.3p194 :030 > User.destroy_all
+  User Load (0.6ms)  SELECT "public"."users".* FROM "public"."users" 
+ => [] 
+1.9.3p194 :031 > User.all
+  User Load (2.9ms)  SELECT "public"."users".* FROM "public"."users" 
+ => [] 
+1.9.3p194 :032 > Business.destroy_all
+  Business Load (0.6ms)  SELECT "public"."businesses".* FROM "public"."businesses" 
+ => [] 
+1.9.3p194 :033 > Role.all
+  Role Load (0.5ms)  SELECT "public"."roles".* FROM "public"."roles" 
+ => [] 
+1.9.3p194 :034 > User.destroy_all
+  User Load (0.6ms)  SELECT "public"."users".* FROM "public"."users" 
+   (0.3ms)  BEGIN
+  Authentication Load (0.4ms)  SELECT "public"."authentications".* FROM "public"."authentications" WHERE "public"."authentications"."user_id" = 21
+  Role Load (0.4ms)  SELECT "public"."roles".* FROM "public"."roles" INNER JOIN "users_roles" ON "public"."roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 21
+  SQL (0.2ms)  DELETE FROM "public"."users" WHERE "public"."users"."id" = $1  [["id", 21]]
+   (0.4ms)  COMMIT
+ => [#<User id: 21, email: "jasdeepsingh@me.com", crypted_password: "$2a$10$qgFelQCxfTrX7UOsF3ufeurenZHWdhCX5Y.ost3iXKna...", salt: "tNUxBGvW51UkXrm4sqXM", first_name: "Jasdeep", last_name: "Narang", activation_state: "pending", activation_token: "Tp7QVyw1GVxAid3Swze7", activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:19:26", updated_at: "2013-01-10 04:19:26", authentication_token: "dda8803376979cebe8f7363879a43a87ec3550fd763c17fc", date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil>] 
+1.9.3p194 :035 > User.last
+  User Load (0.8ms)  SELECT "public"."users".* FROM "public"."users" ORDER BY "public"."users"."id" DESC LIMIT 1
+ => #<User id: 22, email: "narang.jasdeep@me.com", crypted_password: "$2a$10$wBWUF7G/toZhFkQdg5RGl.5GNuouai7A9N0mJUOzQJIG...", salt: "ND7MCqgp4ga8vKw3CCsZ", first_name: "Jasdeep", last_name: "Narang", activation_state: "pending", activation_token: "YsmNyUbRWf6oHqWB6qqu", activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:20:36", updated_at: "2013-01-10 04:20:36", authentication_token: "915e5e389899d24c7d91913ca7a597aa4a2856d68c00677a", date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil> 
+1.9.3p194 :036 > u = User.last
+  User Load (1.3ms)  SELECT "public"."users".* FROM "public"."users" ORDER BY "public"."users"."id" DESC LIMIT 1
+ => #<User id: 22, email: "narang.jasdeep@me.com", crypted_password: "$2a$10$wBWUF7G/toZhFkQdg5RGl.5GNuouai7A9N0mJUOzQJIG...", salt: "ND7MCqgp4ga8vKw3CCsZ", first_name: "Jasdeep", last_name: "Narang", activation_state: "active", activation_token: nil, activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:20:36", updated_at: "2013-01-10 04:21:32", authentication_token: "915e5e389899d24c7d91913ca7a597aa4a2856d68c00677a", date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil> 
+1.9.3p194 :037 > u.has_role? :admin
+   (0.8ms)  SELECT COUNT(*) FROM "public"."roles" INNER JOIN "users_roles" ON "public"."roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 22 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+ => false 
+1.9.3p194 :038 > u.has_role? :admin, Business.last
+  Business Load (0.8ms)  SELECT "public"."businesses".* FROM "public"."businesses" ORDER BY "public"."businesses"."id" DESC LIMIT 1
+   (0.8ms)  SELECT COUNT(*) FROM "public"."roles" INNER JOIN "users_roles" ON "public"."roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 22 AND ((((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'admin') AND (roles.resource_type = 'Business') AND (roles.resource_id IS NULL)) OR ((roles.name = 'admin') AND (roles.resource_type = 'Business') AND (roles.resource_id = 2))))
+ => true 
+1.9.3p194 :039 > b = Business.last
+  Business Load (0.7ms)  SELECT "public"."businesses".* FROM "public"."businesses" ORDER BY "public"."businesses"."id" DESC LIMIT 1
+ => #<Business id: 2, name: "Starbucks", logo: nil, description: "this is starbucks", country_id: nil, legal_name: "Starbucks Inc.", featured: nil, currency_id: nil, notes: nil, billing_address_id: nil, mailing_address_id: nil, state: "initial_state", created_at: "2013-01-10 04:22:52", updated_at: "2013-01-10 04:22:52", subdomain: "starbucks", master_pin: "9090"> 
+1.9.3p194 :040 > b.roles
+  Role Load (0.9ms)  SELECT "public"."roles".* FROM "public"."roles" WHERE "public"."roles"."resource_id" = 2 AND "public"."roles"."resource_type" = 'Business'
+ => [#<Role id: 9, name: "admin", resource_id: 2, resource_type: "Business", created_at: "2013-01-10 04:22:52", updated_at: "2013-01-10 04:22:52">] 
+1.9.3p194 :041 > b.applied_roles
+  Role Load (0.6ms)  SELECT "public"."roles".* FROM "public"."roles" WHERE "public"."roles"."resource_type" = 'Business' AND "public"."roles"."resource_id" IS NULL
+ => [#<Role id: 9, name: "admin", resource_id: 2, resource_type: "Business", created_at: "2013-01-10 04:22:52", updated_at: "2013-01-10 04:22:52">] 
+1.9.3p194 :042 > b.users
+NoMethodError: undefined method `users' for #<Business:0x007fd38b6eb6b0>
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activemodel-3.2.9/lib/active_model/attribute_methods.rb:407:in `method_missing'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/attribute_methods.rb:149:in `method_missing'
+	from (irb):42
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :043 > Apartment::Database
+ => Apartment::Database 
+1.9.3p194 :044 > Apartment::Database.methods
+ => [:postgresql_adapter, :create, :current_database, :current, :drop, :process, :process_excluded_models, :reset, :seed, :switch, :config=, :init, :adapter, :reload!, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :public_constant, :private_constant, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :psych_yaml_as, :yaml_as, :deprecate, :alias_method_chain, :alias_attribute, :mattr_reader, :mattr_writer, :mattr_accessor, :parent_name, :parent, :parents, :local_constants, :local_constant_names, :delegate, :remove_possible_method, :redefine_method, :instance_method_names, :method_names, :attr_internal_reader, :attr_internal_writer, :attr_internal_accessor, :attr_internal, :anonymous?, :reachable?, :qualified_const_defined?, :qualified_const_get, :qualified_const_set, :duplicable?, :synchronize, :synchronize_with_deprecation, :synchronize_without_deprecation, :pretty_print_cycle, :pretty_print, :stubba_method, :shared_examples, :shared_context, :share_examples_for, :shared_examples_for, :share_as, :describe, :const_missing, :unloadable, :delay, :delay_for, :delay_until, :psych_to_yaml, :to_yaml_properties, :to_yaml, :in?, :blank?, :present?, :presence, :acts_like?, :try, :html_safe?, :to_json, :instance_values, :instance_variable_names, :as_json, :to_param, :with_options, :__is_a__, :to_query, :pry, :__binding__, :`, :__metaclass__, :to_matcher, :mocha_inspect, :mocha, :reset_mocha, :stubba_object, :expects, :stubs, :unstub, :method_exists?, :pretty_print_instance_variables, :pretty_print_inspect, :require_or_load, :require_dependency, :require_association, :load_dependency, :load, :require, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :gem, :silence_warnings, :enable_warnings, :with_warnings, :silence_stderr, :silence_stream, :suppress, :capture, :silence, :quietly, :debugger, :pretty_inspect, :suppress_warnings, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__, :should, :should_not] 
+1.9.3p194 :045 > Apartment::Database.new
+NoMethodError: undefined method `new' for Apartment::Database:Module
+	from (irb):45
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :046 > Apartment::Database.class
+ => Module 
+1.9.3p194 :047 > Apartment::Database.methods
+ => [:postgresql_adapter, :create, :current_database, :current, :drop, :process, :process_excluded_models, :reset, :seed, :switch, :config=, :init, :adapter, :reload!, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :public_constant, :private_constant, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :psych_yaml_as, :yaml_as, :deprecate, :alias_method_chain, :alias_attribute, :mattr_reader, :mattr_writer, :mattr_accessor, :parent_name, :parent, :parents, :local_constants, :local_constant_names, :delegate, :remove_possible_method, :redefine_method, :instance_method_names, :method_names, :attr_internal_reader, :attr_internal_writer, :attr_internal_accessor, :attr_internal, :anonymous?, :reachable?, :qualified_const_defined?, :qualified_const_get, :qualified_const_set, :duplicable?, :synchronize, :synchronize_with_deprecation, :synchronize_without_deprecation, :pretty_print_cycle, :pretty_print, :stubba_method, :shared_examples, :shared_context, :share_examples_for, :shared_examples_for, :share_as, :describe, :const_missing, :unloadable, :delay, :delay_for, :delay_until, :psych_to_yaml, :to_yaml_properties, :to_yaml, :in?, :blank?, :present?, :presence, :acts_like?, :try, :html_safe?, :to_json, :instance_values, :instance_variable_names, :as_json, :to_param, :with_options, :__is_a__, :to_query, :pry, :__binding__, :`, :__metaclass__, :to_matcher, :mocha_inspect, :mocha, :reset_mocha, :stubba_object, :expects, :stubs, :unstub, :method_exists?, :pretty_print_instance_variables, :pretty_print_inspect, :require_or_load, :require_dependency, :require_association, :load_dependency, :load, :require, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :gem, :silence_warnings, :enable_warnings, :with_warnings, :silence_stderr, :silence_stream, :suppress, :capture, :silence, :quietly, :debugger, :pretty_inspect, :suppress_warnings, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__, :should, :should_not] 
+1.9.3p194 :048 > Apartment::Database.current_database
+ => "public" 
+1.9.3p194 :049 > Apartment::Database.create('starbucks')
+   (17.5ms)  CREATE SCHEMA "starbucks"
+NOTICE:  CREATE TABLE will create implicit sequence "authentications_id_seq" for serial column "authentications.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "authentications_pkey" for table "authentications"
+   (9.8ms)  CREATE TABLE "authentications" ("id" serial primary key, "user_id" integer NOT NULL, "provider" character varying(255) NOT NULL, "uid" character varying(255) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+NOTICE:  CREATE TABLE will create implicit sequence "businesses_id_seq" for serial column "businesses.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "businesses_pkey" for table "businesses"
+   (4.5ms)  CREATE TABLE "businesses" ("id" serial primary key, "name" character varying(255), "logo" character varying(255), "description" text, "country_id" integer, "legal_name" character varying(255), "featured" boolean, "currency_id" integer, "notes" text, "billing_address_id" integer, "mailing_address_id" integer, "state" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "subdomain" character varying(255) NOT NULL, "master_pin" character varying(255)) 
+NOTICE:  CREATE TABLE will create implicit sequence "locations_id_seq" for serial column "locations.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "locations_pkey" for table "locations"
+   (18.8ms)  CREATE TABLE "locations" ("id" serial primary key, "business_id" integer, "is_mobile" boolean, "name" character varying(255), "address" character varying(255), "latitude" float, "longitude" float, "phone_number" character varying(255), "description" text, "featured_image" character varying(255)) 
+NOTICE:  CREATE TABLE will create implicit sequence "roles_id_seq" for serial column "roles.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "roles_pkey" for table "roles"
+   (16.8ms)  CREATE TABLE "roles" ("id" serial primary key, "name" character varying(255), "resource_id" integer, "resource_type" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+   (1.6ms)  CREATE INDEX "index_roles_on_name_and_resource_type_and_resource_id" ON "roles" ("name", "resource_type", "resource_id")
+   (1.0ms)  CREATE INDEX "index_roles_on_name" ON "roles" ("name")
+NOTICE:  CREATE TABLE will create implicit sequence "users_id_seq" for serial column "users.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "users_pkey" for table "users"
+   (4.6ms)  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255), "crypted_password" character varying(255), "salt" character varying(255), "first_name" character varying(255), "last_name" character varying(255), "activation_state" character varying(255), "activation_token" character varying(255), "activation_token_expires_at" character varying(255), "reset_password_token" character varying(255), "reset_password_token_expires_at" character varying(255), "reset_password_email_sent_at" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "authentication_token" character varying(255), "date_of_birth" date, "phone_number" character varying(255), "is_male" boolean, "account_status" character varying(255)) 
+   (1.3ms)  CREATE UNIQUE INDEX "index_users_on_authentication_token" ON "users" ("authentication_token")
+   (1.2ms)  CREATE TABLE "users_roles" ("user_id" integer, "role_id" integer) 
+   (1.0ms)  CREATE INDEX "index_users_roles_on_user_id_and_role_id" ON "users_roles" ("user_id", "role_id")
+   (1.5ms)  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+   (3.7ms)  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+   (0.5ms)  SELECT version FROM "schema_migrations"
+   (0.8ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130110042425')
+   (0.8ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227185615')
+   (0.7ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227185830')
+   (0.7ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227202357')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121230194851')
+   (0.5ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130102053831')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130103233654')
+   (0.5ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130104000129')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130109033411')
+ => nil 
+1.9.3p194 :050 > Apartment::Database.database_name
+NoMethodError: undefined method `database_name' for Apartment::Database:Module
+	from (irb):50
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :051 > Apartment::Database.database_names
+NoMethodError: undefined method `database_names' for Apartment::Database:Module
+	from (irb):51
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :052 > Apartment::Database.database_name
+NoMethodError: undefined method `database_name' for Apartment::Database:Module
+	from (irb):52
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :053 > Apartment::Database.methods
+ => [:postgresql_adapter, :create, :current_database, :current, :drop, :process, :process_excluded_models, :reset, :seed, :switch, :config=, :init, :adapter, :reload!, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :public_constant, :private_constant, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :psych_yaml_as, :yaml_as, :deprecate, :alias_method_chain, :alias_attribute, :mattr_reader, :mattr_writer, :mattr_accessor, :parent_name, :parent, :parents, :local_constants, :local_constant_names, :delegate, :remove_possible_method, :redefine_method, :instance_method_names, :method_names, :attr_internal_reader, :attr_internal_writer, :attr_internal_accessor, :attr_internal, :anonymous?, :reachable?, :qualified_const_defined?, :qualified_const_get, :qualified_const_set, :duplicable?, :synchronize, :synchronize_with_deprecation, :synchronize_without_deprecation, :pretty_print_cycle, :pretty_print, :stubba_method, :shared_examples, :shared_context, :share_examples_for, :shared_examples_for, :share_as, :describe, :const_missing, :unloadable, :delay, :delay_for, :delay_until, :psych_to_yaml, :to_yaml_properties, :to_yaml, :in?, :blank?, :present?, :presence, :acts_like?, :try, :html_safe?, :to_json, :instance_values, :instance_variable_names, :as_json, :to_param, :with_options, :__is_a__, :to_query, :pry, :__binding__, :`, :__metaclass__, :to_matcher, :mocha_inspect, :mocha, :reset_mocha, :stubba_object, :expects, :stubs, :unstub, :method_exists?, :pretty_print_instance_variables, :pretty_print_inspect, :require_or_load, :require_dependency, :require_association, :load_dependency, :load, :require, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :gem, :silence_warnings, :enable_warnings, :with_warnings, :silence_stderr, :silence_stream, :suppress, :capture, :silence, :quietly, :debugger, :pretty_inspect, :suppress_warnings, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__, :should, :should_not] 
+1.9.3p194 :054 > User.first
+  User Load (0.9ms)  SELECT "public"."users".* FROM "public"."users" LIMIT 1
+ => #<User id: 22, email: "narang.jasdeep@me.com", crypted_password: "$2a$10$wBWUF7G/toZhFkQdg5RGl.5GNuouai7A9N0mJUOzQJIG...", salt: "ND7MCqgp4ga8vKw3CCsZ", first_name: "Jasdeep", last_name: "Narang", activation_state: "active", activation_token: nil, activation_token_expires_at: nil, reset_password_token: nil, reset_password_token_expires_at: nil, reset_password_email_sent_at: nil, created_at: "2013-01-10 04:20:36", updated_at: "2013-01-10 04:21:32", authentication_token: "915e5e389899d24c7d91913ca7a597aa4a2856d68c00677a", date_of_birth: nil, phone_number: nil, is_male: nil, account_status: nil> 
+1.9.3p194 :055 > Apartment::Database.create_database('jasdeep')
+NoMethodError: undefined method `create_database' for Apartment::Database:Module
+	from (irb):55
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :056 > Apartment::Database.create()
+ArgumentError: wrong number of arguments (0 for 1)
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/apartment-0.19.0/lib/apartment/adapters/abstract_adapter.rb:20:in `create'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/apartment-0.19.0/lib/apartment/database.rb:11:in `create'
+	from (irb):56
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :057 > Apartment::Database.create('jasdeep')
+   (1.9ms)  CREATE SCHEMA "jasdeep"
+NOTICE:  CREATE TABLE will create implicit sequence "authentications_id_seq" for serial column "authentications.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "authentications_pkey" for table "authentications"
+   (21.3ms)  CREATE TABLE "authentications" ("id" serial primary key, "user_id" integer NOT NULL, "provider" character varying(255) NOT NULL, "uid" character varying(255) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+NOTICE:  CREATE TABLE will create implicit sequence "businesses_id_seq" for serial column "businesses.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "businesses_pkey" for table "businesses"
+   (29.6ms)  CREATE TABLE "businesses" ("id" serial primary key, "name" character varying(255), "logo" character varying(255), "description" text, "country_id" integer, "legal_name" character varying(255), "featured" boolean, "currency_id" integer, "notes" text, "billing_address_id" integer, "mailing_address_id" integer, "state" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "subdomain" character varying(255) NOT NULL, "master_pin" character varying(255)) 
+NOTICE:  CREATE TABLE will create implicit sequence "locations_id_seq" for serial column "locations.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "locations_pkey" for table "locations"
+   (41.9ms)  CREATE TABLE "locations" ("id" serial primary key, "business_id" integer, "is_mobile" boolean, "name" character varying(255), "address" character varying(255), "latitude" float, "longitude" float, "phone_number" character varying(255), "description" text, "featured_image" character varying(255)) 
+NOTICE:  CREATE TABLE will create implicit sequence "roles_id_seq" for serial column "roles.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "roles_pkey" for table "roles"
+   (3.9ms)  CREATE TABLE "roles" ("id" serial primary key, "name" character varying(255), "resource_id" integer, "resource_type" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+   (1.3ms)  CREATE INDEX "index_roles_on_name_and_resource_type_and_resource_id" ON "roles" ("name", "resource_type", "resource_id")
+   (1.2ms)  CREATE INDEX "index_roles_on_name" ON "roles" ("name")
+NOTICE:  CREATE TABLE will create implicit sequence "users_id_seq" for serial column "users.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "users_pkey" for table "users"
+   (4.4ms)  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255), "crypted_password" character varying(255), "salt" character varying(255), "first_name" character varying(255), "last_name" character varying(255), "activation_state" character varying(255), "activation_token" character varying(255), "activation_token_expires_at" character varying(255), "reset_password_token" character varying(255), "reset_password_token_expires_at" character varying(255), "reset_password_email_sent_at" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "authentication_token" character varying(255), "date_of_birth" date, "phone_number" character varying(255), "is_male" boolean, "account_status" character varying(255)) 
+   (1.0ms)  CREATE UNIQUE INDEX "index_users_on_authentication_token" ON "users" ("authentication_token")
+   (0.8ms)  CREATE TABLE "users_roles" ("user_id" integer, "role_id" integer) 
+   (20.9ms)  CREATE INDEX "index_users_roles_on_user_id_and_role_id" ON "users_roles" ("user_id", "role_id")
+   (1.0ms)  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+   (1.4ms)  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+   (0.3ms)  SELECT version FROM "schema_migrations"
+   (0.5ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130110042425')
+   (0.5ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227185615')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227185830')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227202357')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121230194851')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130102053831')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130103233654')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130104000129')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130109033411')
+ => nil 
+1.9.3p194 :058 > exit
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 12:39:46]
+└─[$] <git:(development✱✈)> rails c
+WARNING: Nokogiri was built against LibXML version 2.7.3, but has dynamically loaded 2.7.8
+Loading development environment (Rails 3.2.9)
+1.9.3p194 :001 > Apartment::Database.create('jasdeep123')
+   (1.5ms)  CREATE SCHEMA "jasdeep123"
+NOTICE:  CREATE TABLE will create implicit sequence "authentications_id_seq" for serial column "authentications.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "authentications_pkey" for table "authentications"
+   (8.2ms)  CREATE TABLE "authentications" ("id" serial primary key, "user_id" integer NOT NULL, "provider" character varying(255) NOT NULL, "uid" character varying(255) NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+NOTICE:  CREATE TABLE will create implicit sequence "businesses_id_seq" for serial column "businesses.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "businesses_pkey" for table "businesses"
+   (5.1ms)  CREATE TABLE "businesses" ("id" serial primary key, "name" character varying(255), "logo" character varying(255), "description" text, "country_id" integer, "legal_name" character varying(255), "featured" boolean, "currency_id" integer, "notes" text, "billing_address_id" integer, "mailing_address_id" integer, "state" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "subdomain" character varying(255) NOT NULL, "master_pin" character varying(255)) 
+NOTICE:  CREATE TABLE will create implicit sequence "locations_id_seq" for serial column "locations.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "locations_pkey" for table "locations"
+   (3.6ms)  CREATE TABLE "locations" ("id" serial primary key, "business_id" integer, "is_mobile" boolean, "name" character varying(255), "address" character varying(255), "latitude" float, "longitude" float, "phone_number" character varying(255), "description" text, "featured_image" character varying(255)) 
+NOTICE:  CREATE TABLE will create implicit sequence "roles_id_seq" for serial column "roles.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "roles_pkey" for table "roles"
+   (5.6ms)  CREATE TABLE "roles" ("id" serial primary key, "name" character varying(255), "resource_id" integer, "resource_type" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+   (1.8ms)  CREATE INDEX "index_roles_on_name_and_resource_type_and_resource_id" ON "roles" ("name", "resource_type", "resource_id")
+   (2.2ms)  CREATE INDEX "index_roles_on_name" ON "roles" ("name")
+NOTICE:  CREATE TABLE will create implicit sequence "users_id_seq" for serial column "users.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "users_pkey" for table "users"
+   (5.8ms)  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255), "crypted_password" character varying(255), "salt" character varying(255), "first_name" character varying(255), "last_name" character varying(255), "activation_state" character varying(255), "activation_token" character varying(255), "activation_token_expires_at" character varying(255), "reset_password_token" character varying(255), "reset_password_token_expires_at" character varying(255), "reset_password_email_sent_at" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "authentication_token" character varying(255), "date_of_birth" date, "phone_number" character varying(255), "is_male" boolean, "account_status" character varying(255)) 
+   (2.0ms)  CREATE UNIQUE INDEX "index_users_on_authentication_token" ON "users" ("authentication_token")
+   (1.3ms)  CREATE TABLE "users_roles" ("user_id" integer, "role_id" integer) 
+   (1.5ms)  CREATE INDEX "index_users_roles_on_user_id_and_role_id" ON "users_roles" ("user_id", "role_id")
+   (1.6ms)  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+   (13.9ms)  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+   (0.5ms)  SELECT version FROM "schema_migrations"
+   (0.9ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130110042425')
+   (1.0ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227185615')
+   (1.0ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227185830')
+   (0.6ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121227202357')
+   (0.5ms)  INSERT INTO "schema_migrations" (version) VALUES ('20121230194851')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130102053831')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130103233654')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130104000129')
+   (0.4ms)  INSERT INTO "schema_migrations" (version) VALUES ('20130109033411')
+ => nil 
+1.9.3p194 :002 > Apartment::Database.methods
+ => [:postgresql_adapter, :create, :current_database, :current, :drop, :process, :process_excluded_models, :reset, :seed, :switch, :config=, :init, :adapter, :reload!, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :public_constant, :private_constant, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :psych_yaml_as, :yaml_as, :deprecate, :alias_method_chain, :alias_attribute, :mattr_reader, :mattr_writer, :mattr_accessor, :parent_name, :parent, :parents, :local_constants, :local_constant_names, :delegate, :remove_possible_method, :redefine_method, :instance_method_names, :method_names, :attr_internal_reader, :attr_internal_writer, :attr_internal_accessor, :attr_internal, :anonymous?, :reachable?, :qualified_const_defined?, :qualified_const_get, :qualified_const_set, :duplicable?, :synchronize, :synchronize_with_deprecation, :synchronize_without_deprecation, :pretty_print_cycle, :pretty_print, :stubba_method, :shared_examples, :shared_context, :share_examples_for, :shared_examples_for, :share_as, :describe, :const_missing, :unloadable, :delay, :delay_for, :delay_until, :psych_to_yaml, :to_yaml_properties, :to_yaml, :in?, :blank?, :present?, :presence, :acts_like?, :try, :html_safe?, :to_json, :instance_values, :instance_variable_names, :as_json, :to_param, :with_options, :__is_a__, :to_query, :pry, :__binding__, :`, :__metaclass__, :to_matcher, :mocha_inspect, :mocha, :reset_mocha, :stubba_object, :expects, :stubs, :unstub, :method_exists?, :pretty_print_instance_variables, :pretty_print_inspect, :require_or_load, :require_dependency, :require_association, :load_dependency, :load, :require, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :gem, :silence_warnings, :enable_warnings, :with_warnings, :silence_stderr, :silence_stream, :suppress, :capture, :silence, :quietly, :debugger, :pretty_inspect, :suppress_warnings, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__, :should, :should_not] 
+1.9.3p194 :003 > Apartment::Database.config
+NoMethodError: private method `config' called for Apartment::Database:Module
+	from (irb):3
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :004 > Apartment.config
+NoMethodError: undefined method `config' for Apartment:Module
+	from (irb):4
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :005 > Apartment.configure
+ => nil 
+1.9.3p194 :006 > ActiveRecord::Base.connection.execute("DROP SCHEMA subdomain CASCADE")
+   (0.8ms)  DROP SCHEMA subdomain CASCADE
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  schema "subdomain" does not exist
+: DROP SCHEMA subdomain CASCADE
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):6
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :007 > ActiveRecord::Base.connection.execute("SHOW search_path")
+   (0.4ms)  SHOW search_path
+ => #<PG::Result:0x007fed8193b018> 
+1.9.3p194 :008 > r = ActiveRecord::Base.connection.execute("SHOW search_path")
+   (0.5ms)  SHOW search_path
+ => #<PG::Result:0x007fed7e35cfc8> 
+1.9.3p194 :009 > r.methods
+ => [:result_status, :res_status, :error_message, :result_error_message, :error_field, :result_error_field, :clear, :check, :check_result, :ntuples, :num_tuples, :nfields, :num_fields, :fname, :fnumber, :ftable, :ftablecol, :fformat, :ftype, :fmod, :fsize, :getvalue, :getisnull, :getlength, :nparams, :paramtype, :cmd_status, :cmd_tuples, :cmdtuples, :oid_value, :[], :each, :fields, :values, :column_values, :field_values, :to_a, :entries, :sort, :sort_by, :grep, :count, :find, :detect, :find_index, :find_all, :select, :reject, :collect, :map, :flat_map, :collect_concat, :inject, :reduce, :partition, :group_by, :first, :all?, :any?, :one?, :none?, :min, :max, :minmax, :min_by, :max_by, :minmax_by, :member?, :include?, :each_with_index, :reverse_each, :each_entry, :each_slice, :each_cons, :each_with_object, :zip, :take, :take_while, :drop, :drop_while, :cycle, :chunk, :slice_before, :to_set, :sum, :index_by, :many?, :exclude?, :as_json, :psych_to_yaml, :to_yaml_properties, :to_yaml, :in?, :blank?, :present?, :presence, :acts_like?, :try, :html_safe?, :duplicable?, :to_json, :instance_values, :instance_variable_names, :to_param, :with_options, :__is_a__, :to_query, :pry, :__binding__, :`, :__metaclass__, :to_matcher, :mocha_inspect, :mocha, :reset_mocha, :stubba_method, :stubba_object, :expects, :stubs, :unstub, :method_exists?, :pretty_print, :pretty_print_cycle, :pretty_print_instance_variables, :pretty_print_inspect, :require_or_load, :require_dependency, :require_association, :load_dependency, :load, :require, :unloadable, :nil?, :===, :=~, :!~, :eql?, :hash, :<=>, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :freeze, :frozen?, :to_s, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :gem, :silence_warnings, :enable_warnings, :with_warnings, :silence_stderr, :silence_stream, :suppress, :capture, :silence, :quietly, :class_eval, :debugger, :pretty_inspect, :suppress_warnings, :==, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__, :should, :should_not] 
+1.9.3p194 :010 > r.check_result
+ => nil 
+1.9.3p194 :011 > r.result_status
+ => 2 
+1.9.3p194 :012 > r.each {|row| puts row}
+{"search_path"=>"public"}
+ => #<PG::Result:0x007fed7e35cfc8> 
+1.9.3p194 :013 > r.rows
+NoMethodError: undefined method `rows' for #<PG::Result:0x007fed7e35cfc8>
+	from (irb):13
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :014 > res[0]
+NameError: undefined local variable or method `res' for main:Object
+	from (irb):14
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :015 > r
+ => #<PG::Result:0x007fed7e35cfc8> 
+1.9.3p194 :016 > r[0]
+ => {"search_path"=>"public"} 
+1.9.3p194 :017 > r[0].class
+ => Hash 
+1.9.3p194 :018 > r[0].has_value?("public")
+ => true 
+1.9.3p194 :019 > r[0].has_value?("subdomain")
+ => false 
+1.9.3p194 :020 > r = ActiveRecord::Base.connection.execute("LIST search_path")
+   (0.6ms)  LIST search_path
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  syntax error at or near "LIST"
+LINE 1: LIST search_path
+        ^
+: LIST search_path
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):20
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :021 > r = ActiveRecord::Base.connection.execute("\dn")
+   (0.4ms)  dn
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  syntax error at or near "dn"
+LINE 1: dn
+        ^
+: dn
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):21
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :022 > r = ActiveRecord::Base.connection.execute("\dn")
+   (0.6ms)  dn
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  syntax error at or near "dn"
+LINE 1: dn
+        ^
+: dn
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):22
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :023 > r = ActiveRecord::Base.connection.execute("\dn | psql")
+   (0.5ms)  dn | psql
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  syntax error at or near "dn"
+LINE 1: dn | psql
+        ^
+: dn | psql
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):23
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :024 > r = ActiveRecord::Base.connection.execute("dn | psql")
+   (0.6ms)  dn | psql
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  syntax error at or near "dn"
+LINE 1: dn | psql
+        ^
+: dn | psql
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):24
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :025 > r = ActiveRecord::Base.connection.execute("dn")
+   (0.5ms)  dn
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  syntax error at or near "dn"
+LINE 1: dn
+        ^
+: dn
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):25
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :026 > r = ActiveRecord::Base.connection.execute("SELECT * FROM information_schema")
+   (0.7ms)  SELECT * FROM information_schema
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  relation "information_schema" does not exist
+LINE 1: SELECT * FROM information_schema
+                      ^
+: SELECT * FROM information_schema
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):26
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :027 > r = ActiveRecord::Base.connection.execute("SELECT * FROM information_schema.tables")
+   (22.2ms)  SELECT * FROM information_schema.tables
+ => #<PG::Result:0x007fed8185c0e8> 
+1.9.3p194 :028 > r[0]                                                             => {"table_catalog"=>"platform_development", "table_schema"=>"pg_catalog", "table_name"=>"pg_statistic", "table_type"=>"BASE TABLE", "self_referencing_column_name"=>nil, "reference_generation"=>nil, "user_defined_type_catalog"=>nil, "user_defined_type_schema"=>nil, "user_defined_type_name"=>nil, "is_insertable_into"=>"YES", "is_typed"=>"NO", "commit_action"=>nil} 
+1.9.3p194 :029 > r = ActiveRecord::Base.connection.execute("SELECT * FROM information_schema.schema")
+   (0.5ms)  SELECT * FROM information_schema.schema
+ActiveRecord::StatementInvalid: PG::Error: ERROR:  relation "information_schema.schema" does not exist
+LINE 1: SELECT * FROM information_schema.schema
+                      ^
+: SELECT * FROM information_schema.schema
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `async_exec'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:652:in `block in execute'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/activerecord-3.2.9/lib/active_record/connection_adapters/postgresql_adapter.rb:651:in `execute'
+	from (irb):29
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:47:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands/console.rb:8:in `start'
+	from /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194@platform/gems/railties-3.2.9/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p194 :030 > r = ActiveRecord::Base.connection.execute("SELECT * FROM information_schema.schemata")
+   (1.7ms)  SELECT * FROM information_schema.schemata
+ => #<PG::Result:0x007fed7df57f68> 
+1.9.3p194 :031 > r[0]
+ => {"catalog_name"=>"platform_development", "schema_name"=>"pg_toast", "schema_owner"=>"jasdeep", "default_character_set_catalog"=>nil, "default_character_set_schema"=>nil, "default_character_set_name"=>nil, "sql_path"=>nil} 
+1.9.3p194 :032 > exit
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 01:29:20]
+└─[$] <git:(development✱✈)> clear
+
+                                                                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 01:29:22]
+└─[$] <git:(development✱✈)> clear                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 07:49:58]
+└─[$] <git:(development✱✈)> ls
+Gemfile      README.rdoc  config       doc          public       test
+Gemfile.lock Rakefile     config.ru    lib          script       tmp
+Guardfile    app          db           log          spec         vendor
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 07:50:00]
+└─[$] <git:(development✱✈)> clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 07:50:01]
+└─[$] <git:(development✱✈)> rails db    
+WARNING: Nokogiri was built against LibXML version 2.7.3, but has dynamically loaded 2.7.8
+psql (9.1.4)
+Type "help" for help.
+
+platform_development=# \c platform_test
+You are now connected to database "platform_test" as user "jasdeep".
+platform_test=# \dt
+               List of relations
+ Schema  |       Name        | Type  |  Owner  
+---------+-------------------+-------+---------
+ jasdeep | authentications   | table | jasdeep
+ jasdeep | businesses        | table | jasdeep
+ jasdeep | locations         | table | jasdeep
+ jasdeep | roles             | table | jasdeep
+ jasdeep | schema_migrations | table | jasdeep
+ jasdeep | users             | table | jasdeep
+ jasdeep | users_roles       | table | jasdeep
+(7 rows)
+
+platform_test=# \dn
+    List of schemas
+    Name     |  Owner  
+-------------+---------
+ jasdeep     | jasdeep
+ jasdeep123  | jasdeep
+ public      | jasdeep
+ starbucks21 | jasdeep
+(4 rows)
+
+platform_test=# \q
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 08:04:01]
+└─[$] <git:(development✱✈)> exut
+zsh: correct 'exut' to 'exit' [nyae]? e
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 09:09:15]
+└─[$] <git:(development✱✈)> rake db:rollback
+WARNING: Nokogiri was built against LibXML version 2.7.3, but has dynamically loaded 2.7.8
+==  CreateLocationsTable: reverting ===========================================
+-- drop_table(:locations)
+   -> 0.0655s
+==  CreateLocationsTable: reverted (0.0656s) ==================================
+
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 09:20:42]
+└─[$] <git:(development✱✈)> rake db:migrate
+WARNING: Nokogiri was built against LibXML version 2.7.3, but has dynamically loaded 2.7.8
+==  CreateLocationsTable: migrating ===========================================
+-- create_table(:locations)
+NOTICE:  CREATE TABLE will create implicit sequence "locations_id_seq" for serial column "locations.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "locations_pkey" for table "locations"
+   -> 0.0765s
+==  CreateLocationsTable: migrated (0.0766s) ==================================
+
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 09:21:09]
+└─[$] <git:(development✱✈)> rake apartment:migrate
+WARNING: Nokogiri was built against LibXML version 2.7.3, but has dynamically loaded 2.7.8
+Migrating starbucks21 database
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 09:21:29]
+┌─[jasdeep@jasdeeps-imac] - [~/personal/platform] - [2013-01-10 09:46:41]
+└─[$] <git:(development✱✈)> cd ~/personal/brwnppl 
+┌─[jasdeep@jasdeeps-imac] - [~/personal/brwnppl] - [2013-01-11 08:51:49]
+└─[$] <git:(development✗✱✈)> clear
+
+                                                                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+┌─[jasdeep@jasdeeps-imac] - [~/personal/brwnppl] - [2013-01-11 08:51:50]
+└─[$] <git:(development✗✱✈)> rvm use 1.9.3
+Using /Users/jasdeep/.rvm/gems/ruby-1.9.3-p194
+Running /Users/jasdeep/.rvm/hooks/after_use
+┌─[jasdeep@jasdeeps-imac] - [~/personal/brwnppl] - [2013-01-11 08:51:54]
+└─[$] <git:(development✗✱✈)> rvm gemset use brwnppl
+Using ruby-1.9.3-p194 with gemset brwnppl
+┌─[jasdeep@jasdeeps-imac] - [~/personal/brwnppl] - [2013-01-11 08:52:06]
+└─[$] <git:(development✗✱✈)> rails c    
+WARNING: Nokogiri was built against LibXML version 2.7.3, but has dynamically loaded 2.7.8
+Loading development environment (Rails 3.2.1)
+1.9.3p194 :001 > User.destroy_all
+  User Load (12.3ms)  SELECT "users".* FROM "users" 
+   (0.1ms)  begin transaction
+  SQL (0.8ms)  DELETE FROM "stories" WHERE "stories"."user_id" = 29
+  SQL (0.3ms)  DELETE FROM "authentications" WHERE "authentications"."user_id" = 29
+  Relationship Load (0.4ms)  SELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = 29
+  Relationship Load (0.3ms)  SELECT "relationships".* FROM "relationships" WHERE "relationships"."followed_id" = 29
+  SQL (15.1ms)  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 29]]
+   (1.7ms)  commit transaction
+ => [#<User id: 29, username: "jasdeep", email: "narang.jasdeep@gmail.com", created_at: "2013-01-07 00:57:20", updated_at: "2013-01-07 03:57:15", avatar: "https://graph.facebook.com/1057851226/picture?type=...", name: "Jasdeep Narang", oauth_token: "AAAEouBL5RZAcBADRuZBwzZBnPC6utaXYlRafQ8X9pgzZCcJbw7...", state: "setup_completed", brownie_points: 0, bio: "yyz, toronto", share_activity_on_facebook: true>] 
+1.9.3p194 :002 > Story.destroy_all
+  Story Load (0.2ms)  SELECT "stories".* FROM "stories" 
+ => [] 
+1.9.3p194 :003 > Like.destroy_all
+  Like Load (7.6ms)  SELECT "likes".* FROM "likes" 
+   (0.1ms)  begin transaction
+  SQL (0.5ms)  DELETE FROM "likes" WHERE "likes"."id" = ?  [["id", 147]]
+   (1.5ms)  commit transaction
+   (0.1ms)  begin transaction
+  SQL (0.3ms)  DELETE FROM "likes" WHERE "likes"."id" = ?  [["id", 148]]
+   (0.8ms)  commit transaction
+ => [#<Like id: 147, story_id: 203, user_id: 28, created_at: "2013-01-06 23:54:16", updated_at: "2013-01-06 23:54:16">, #<Like id: 148, story_id: 208, user_id: 29, created_at: "2013-01-07 01:30:58", updated_at: "2013-01-07 01:30:58">] 
+1.9.3p194 :004 > Dislike.destroy_all
+  Dislike Load (6.5ms)  SELECT "dislikes".* FROM "dislikes" 
+   (0.1ms)  begin transaction
+  SQL (0.4ms)  DELETE FROM "dislikes" WHERE "dislikes"."id" = ?  [["id", 18]]
+   (3.1ms)  commit transaction
+ => [#<Dislike id: 18, story_id: 208, user_id: 29, created_at: "2013-01-07 01:34:53", updated_at: "2013-01-07 01:34:53">] 
+1.9.3p194 :005 > Comment.last
+  Comment Load (0.2ms)  SELECT "comments".* FROM "comments" ORDER BY "comments"."id" DESC LIMIT 1
+ => #<Comment id: 365, story_id: 218, user_id: 30, content: "more!", created_at: "2013-01-12 02:02:06", updated_at: "2013-01-12 02:02:06"> 
+1.9.3p194 :006 > Dislike.destroy_all

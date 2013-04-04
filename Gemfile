@@ -44,6 +44,7 @@ gem 'validate_url'
 
 group :production do
   gem 'pg'
+  gem 'therubyracer'
 end
 
 group :test, :development do
