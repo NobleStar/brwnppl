@@ -22,8 +22,6 @@ $(document).ready ->
       $('.backgroundContainer').animate { height: 71 }, 500, ->
         $(@).find('.communities').addClass('hidden')
 
-  $('.thumb_up').tooltipster()
-  $('.thumb_down').tooltipster()
   $('.repost_').tooltipster()
   $('.tooltip').tooltipster({
       fixedWidth: 400

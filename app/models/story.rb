@@ -67,12 +67,12 @@ class Story < ActiveRecord::Base
 
   def liked_by(user)
     if user.can_like_more?(self) || user.is_admin
-      likes << likes.build(:user => user)
+      likes.create(:user => user)
     end
   end
 
   def disliked_by(user)
-    dislikes << dislikes.build(:user => user)
+    dislikes.create(:user => user)
   end
 
   def post_to_facebook

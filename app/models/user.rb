@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def can_like_more?(story)
+    return true if self.is_admin
     if self.video_shared 
       story.likes.where(user_id: self.id).count < 2
     else

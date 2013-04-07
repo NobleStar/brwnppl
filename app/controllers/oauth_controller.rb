@@ -15,8 +15,10 @@ class OauthController < ApplicationController
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
       begin
-        @user = create_from(provider)
-        if provider == "facebook"
+        @user = create_and_validate_from(provider)
+        @user.username = Config.facebook.get_user_hash[:user_info]['id']
+        @user.bio = 'short bio'
+        if provider == "facebook" && @user.valid?
           @user.oauth_token = Config.facebook.access_token.token
           @user.save
         end

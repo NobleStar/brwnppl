@@ -37,6 +37,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'pry'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
@@ -59,7 +60,6 @@ group :test, :development do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'growl'
-  gem 'pry'
   gem 'shoulda-matchers'
   gem 'minitest'
 end
