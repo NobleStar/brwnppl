@@ -141,8 +141,8 @@ class Story < ActiveRecord::Base
 
   def last_post_was_10_minutes_ago
     last_story = self.user.stories.last
-    if last_story && (last_story.created_at + 10.minutes) > Time.zone.now
-      errors.add(:base, "You need to wait atleast 10 minutes before making new posts.")
+    if last_story && (last_story.created_at + 3.minutes) > Time.zone.now
+      errors.add(:base, "You need to wait atleast 3 minutes before making new posts.")
     end
   end
 

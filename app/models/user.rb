@@ -58,6 +58,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_publish_action_to_facebook?
+    if self.facebook?
+      @graph = Koala::Facebook::API.new(self.oauth_token)
+      permissions = @graph.get_connections('me','permissions')
+      permissions[0]['publish_actions']
+    end
+  end
+
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end
