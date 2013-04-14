@@ -1,0 +1,99 @@
+// Stories Homeopage
+#stories.current
+
+  .toolbar
+    %a.left_button{ :href => '/', :rel => 'external' } Home
+    - if params[:action] == 'community'
+      - title = @community.name.titleize
+    - else
+      - title = params[:action].titleize
+    %h1= title
+    - if current_user
+      %a.btn2.cube{ :href => '#user_page' }= current_user.username
+    - else
+      %a.btn2{ :href => '/oauth/facebook', :rel => 'external' } Login
+
+  .info
+    Brwnppl Mobile lets you view and vote on stories quickly. For all features visit us from your desktop browser.
+
+  %ul.individual
+    %li
+      %a{ :href => '/recent', :rel => 'external' } Recent
+    %li
+      %a{ :href => '#communities', :class => 'slideup' } Communities
+
+  %ul.rounded.scroll
+    - @stories.each do |story|
+      %li{ :"data-story-id" => story.id }
+        :plain
+          <a href="#{story.url}" rel='external'>
+            <span>#{story.title}</span>
+          </a>
+          <a href="#up" class='up slideup'>
+            <span class="up_vote">&#9650;</span>
+          </a>
+          <a href="#brownie_points" class='brownie_points'>
+            <span class="brownie_points">#{story.brownie_points}</span>
+          </a>
+          <a href="#down" class='down slideup'>
+            <span class="down_vote">&#9660;</span>
+          </a>
+           <!-- <span class="up">&#9660;</span>
+            <span class="brownie_points">#{story.brownie_points}</span>
+            <span class="down">&#9650;</span> -->
+
+          <a href="#story_comments#{story.id}" rel='external' class='story_comments'>
+            <span class='right'>#{story.comments_count} Comments | #{story.user.username}</span>
+          </a>
+
+  %ul.individual
+    - if link_to_previous_page @stories, 'Previous'
+      %li= link_to_previous_page @stories, 'Previous', :rel => 'external'
+    - if link_to_next_page @stories, 'Next'
+      %li= link_to_next_page @stories, 'Next', :rel => 'external'
+
+  .info
+    Brwnppl - Copyright 2009-2013
+
+
+// All the comments!
+
+- @stories.each do |story|
+  %div{ :id => "story_comments#{story.id}" }
+    %a.redButton{ :href => '#stories', :class => 'goback'} Go Back
+    %ul.rounded.scroll
+      - if story.comments.present?
+        - story.comments.each do |comment|
+          %li
+            :plain
+              <a href="#" rel='external'>
+                #{comment.content}
+              </a>
+              <a href='#' rel='external' class='right story_comments'>
+                <span class='right'>by #{comment.user.username} #{time_ago_in_words(comment.created_at)} ago</span>
+              </a>
+      - else
+        .info
+          No Comments for this story!
+
+// Communities Slideup
+
+#communities{ style: 'top: 0px;'}
+  .toolbar
+    %a{:href => '#', :class => 'back' } Back
+    %h1 Communities
+
+  %ul
+    - @communities.each do |community|
+      %li
+        :plain
+          <a href='/b/#{community.slug}' rel='external'>
+            #{community.name}
+          </a>
+
+
+// User Page.
+
+#user_page{ :style => 'top: 0px;' }
+  %a.cube.greenButton{ :href => '#stories', :class => 'goback'} Go Back
+  %a.redButton{:href => '/logout', :rel => 'external' } Logout

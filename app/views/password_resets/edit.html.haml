@@ -1,0 +1,49 @@
+- content_for(:title) do
+  Password Reset | Brwnppl
+
+:css
+  #CompleteAccount {
+    margin-left: 0px;
+  }
+
+#content
+  .content
+
+    .setupAccount
+      .header
+        %h1 Choose a new password
+
+      - if flash[:notice].present?
+        .alert.alert-success
+          %ul
+            %li= flash[:notice]
+
+      - if flash[:alert].present?
+        .alert.alert-error
+          %ul
+            %li= flash[:alert]
+
+      = form_for @user, :url => password_reset_path(@user), :html => {:method => :put, :class => 'RegisterForm', :id => "CompleteAccount"} do |f|
+        
+        - if @user.errors.any?
+          .alert.alert-error
+            %h4 Uh-oh! You mind fixing a few details?
+            %ul
+              - @user.errors.full_messages.each do |msg|
+                %li= msg
+
+        %ul.fields
+          %li.field
+            = f.text_field :email, :value => @user.email, :disabled => true
+
+          %li.field
+            = f.password_field :password, :placeholder => 'new password'
+
+          %li.field
+            = f.password_field :password_confirmation, :placeholder => 'password confirmation'
+            = hidden_field_tag :token, @token
+
+        .buttons
+          %button.Button.WhiteButton.Button13.ContrastButton Reset Password
+          %span.hidden
+            %img.loader{ :src => "/assets/loader.gif", :style => 'float: left' }
