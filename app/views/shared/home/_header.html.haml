@@ -43,6 +43,8 @@
           = link_to current_user.username, user_edit_url(current_user.username)
           = link_to 'Logout', logout_path, :class => 'category'
           .clear
+        - else
+          = link_to 'Login', login_path, :class => 'category'
 
 
 = yield(:comments_dropdown)

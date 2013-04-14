@@ -14,6 +14,8 @@ module ApplicationHelper
       cloudinary_url(user.authentications.first.uid + '.jpg', {:type => :facebook}.merge(options) )
     elsif user.twitter?
       cloudinary_url(user.authentications.first.uid + '.jpg', {:type => :twitter}.merge(options) )
+    else
+      "http://brwnppl.com/assets/default_user_image.jpg"
     end
   end
 

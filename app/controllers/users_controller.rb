@@ -1,12 +1,36 @@
 class UsersController < ApplicationController
 
-  before_filter :require_login, except: :show
+  before_filter :require_login, except: [:show, :new, :create, :activate]
   before_filter :account_setup_needed?, except: :update
   before_filter :account_should_be_new, only: :update
   before_filter :same_user?, only: :edit
 
   def show
     @user = User.where("LOWER(username) = ?", params[:username].to_s.downcase).first
+  end
+
+  def new
+    @user = User.new
+    render 'oauth/setup_account'
+  end
+
+  def activate
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.setup_account
+      @user.activate!
+      redirect_to(login_path, :notice => 'Your account has been successfully activated! You can login now.')
+    else
+      not_authenticated
+    end
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to root_url, :notice => "Thank you for signing up, Please check your email to confirm your account."
+    else
+      render 'oauth/setup_account'
+    end
   end
 
   def update

@@ -26,6 +26,7 @@ gem 'hirefireapp'
 gem 'redis'
 gem 'redis-store', git: 'git://github.com/jasdeepsingh/redis-store.git'
 gem 'redis-rails'
+gem 'mailjet'
 
 # Gems used only for assets and not required
 # in production environments by default.

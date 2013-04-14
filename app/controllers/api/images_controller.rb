@@ -1,5 +1,7 @@
 class Api::ImagesController < Api::BaseController
 
+  skip_before_filter :require_login 
+  
   def upload
     @response = Cloudinary::Uploader.upload(params[:image]) rescue nil
     if @response

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303165647) do
+ActiveRecord::Schema.define(:version => 20130412045116) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -118,20 +118,31 @@ ActiveRecord::Schema.define(:version => 20130303165647) do
   add_index "stories", ["slug"], :name => "index_stories_on_slug"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                                           :null => false
+    t.string   "username",                                                :null => false
     t.string   "email"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.string   "avatar"
     t.string   "name"
     t.string   "oauth_token"
     t.string   "state"
-    t.integer  "brownie_points",             :default => 0
+    t.integer  "brownie_points",                  :default => 0
     t.text     "bio"
-    t.boolean  "share_activity_on_facebook", :default => true
-    t.string   "account_type",               :default => "personal"
-    t.boolean  "video_shared",               :default => false
-    t.boolean  "is_admin",                   :default => false
+    t.boolean  "share_activity_on_facebook",      :default => true
+    t.string   "account_type",                    :default => "personal"
+    t.boolean  "video_shared",                    :default => false
+    t.boolean  "is_admin",                        :default => false
+    t.string   "activation_state"
+    t.string   "activation_token"
+    t.datetime "activation_token_expires_at"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
   end
+
+  add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
 end

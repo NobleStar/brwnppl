@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
-  attr_accessor :cloudinary_avatar
+  attr_accessor :cloudinary_avatar, :password_confirmation
 
   has_many :stories, :dependent => :delete_all
   has_many :authentications, :dependent => :delete_all
@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   validates_length_of :username, :minimum => 4, :maximum => 18
   validates_format_of :username, :with => /^[a-zA-Z.\d]*$/, :message => 'format is invalid, only alphabets and digits are allowed'
   validates_presence_of :email
+  validates_presence_of :password, :if => Proc.new {|user| !user.facebook? && user.new_record? }
+  validates_confirmation_of :password, :if => Proc.new {|user| !user.facebook? && user.password_confirmation.present? }
   validates :account_type, :inclusion => { :in => %w(personal business), :message => 'can either be personal or business'}
 
   state_machine :state, :initial => :new_user do

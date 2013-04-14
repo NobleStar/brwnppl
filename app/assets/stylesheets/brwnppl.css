@@ -98,13 +98,11 @@ html{
   width: 180px;
   margin: 0 auto;
   padding: 5px;
-  display: block;
-  color: 
-  #fff;
+  display: inline-block;
+  color: #fff;
   text-decoration: none;
   text-align: left;
-  border: 1px solid 
-  #562814;
+  border: 1px solid #562814;
   box-shadow: inset 1px 1px 0px rgba(255,255,255,0.5);
   margin-bottom: 20px;
 }

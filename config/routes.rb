@@ -35,10 +35,20 @@ Brwnppl::Application.routes.draw do
     resources :stories
   end
 
+  resources :users do
+    member do
+      get :activate
+    end
+  end
+
+  resources :sessions, :only => :create
+  resources :password_resets
+
   # Authentication Actions:
   match 'oauth/callback'    => 'oauth#callback'
   match 'oauth/:provider'   => 'oauth#start',         :as => :auth_at_provider
-  match 'logout'            => 'sessions#destroy',    :as => :logout
+  match '/logout'           => 'sessions#destroy',    :as => :logout
+  match '/login'            => 'sessions#new',        :as => :login
   match '/setup_account'    => 'oauth#setup_account', :as => :setup_account  
   match '/_=_'              => redirect('/')
 

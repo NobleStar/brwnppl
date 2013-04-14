@@ -66,7 +66,7 @@ class Story < ActiveRecord::Base
   end
 
   def liked_by(user)
-    if user.can_like_more?(self) || user.is_admin
+    if user.is_admin || user.can_like_more?(self)
       likes.create(:user => user)
     end
   end

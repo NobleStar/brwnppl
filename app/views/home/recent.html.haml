@@ -13,9 +13,13 @@
       .setupAccount
         .header
           %h2 Welcome to brwnppl, the community you help build by sharing the things brwnppl care about. Login to share, vote & comment on the stuff you like & the stuff you don't.
-      %a.loginButton{ :href => '/oauth/facebook' }
-        %img{ :src => '/assets/facebookIcon.png', :width => '8', :height => '17', :alt => 'Login with Facebook'}
-        Login With Facebook
+      
+      %div.signupOptions{ :style => 'text-align: center' }
+        %a.loginButton{ :href => '/oauth/facebook' }
+          %img{ :src => '/assets/facebookIcon.png', :width => '8', :height => '17', :alt => 'Login with Facebook'}
+          Login With Facebook
+        %a{ :href => '/users/new' }
+          or use old school Sign Up
 
   .clear
   #container

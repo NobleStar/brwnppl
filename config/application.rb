@@ -62,6 +62,18 @@ module Brwnppl
     
     # config.action_controller.perform_caching = true
     # config.cache_store :redis_store, ENV["REDISCLOUD_URL"]
+    config.action_mailer.raise_delivery_errors = true  
+    config.action_mailer.perform_deliveries = true 
+    config.action_mailer.delivery_method = :mailjet
+
+    config.action_mailer.smtp_settings = {  
+      :address => "in.mailjet.com",  
+      :enable_starttls_auto => true,  
+      :port => 587,  
+      :authentication => 'plain',  
+      :user_name => "7935c8192156ebcb0ba590545e94b7da",  
+      :password => "76dc65c3e7550d99f80beee27ac0a286"  
+    }  
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

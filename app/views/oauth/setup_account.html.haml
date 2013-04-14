@@ -31,8 +31,9 @@
       .header
         %h1 Welcome to Brwnppl
 
-      .social_banner.facebook
-        %h2 Connected as #{current_user.name}
+      - if @user.facebook?
+        .social_banner.facebook
+          %h2 Connected as #{current_user.name}
 
       - if @user.errors.present?
         .alert.alert-error
@@ -43,7 +44,7 @@
 
       #CompletePhoto
         .frame
-          %img{ :src => user_avatar(current_user), :width => "100%", :height => "223px" }
+          %img{ :src => user_avatar(@user), :width => "100%", :height => "223px" }
         .buttons
 
           = label_tag "Edit Profile Picture", "Edit Profile Picture", :id => 'profile_upload', :class => 'Button WhiteButton Button13 ContrastButton upload'
@@ -54,7 +55,15 @@
             = f.text_field :username, :placeholder => "username", :value => @user.username.present? ? @user.username : nil
 
           %li.field
-            = f.email_field :email, :disabled => true
+            = f.email_field :email, :disabled => !@user.new_record?, :placeholder => 'email'
+
+          - if @user.new_record?
+            %li.field
+              = f.password_field :password, :placeholder => 'password'
+
+            %li.field
+              = f.password_field :password_confirmation, :placeholder => 'password confirmation'
+
 
           %li.field
             = f.text_area :bio, :placeholder => "short bio", :rows => 4
