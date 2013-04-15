@@ -94,13 +94,13 @@ class Story < ActiveRecord::Base
   end
 
   def score
-    self.likes.count - self.dislikes.count
+    self.likes_count - self.dislikes_count
   end
 
   def self.populars
     on_top = Story.find_by_id(350)
     # populars = Story.all( :joins => :community, :order => 'updated_at DESC, brownie_points DESC', :limit => 100 )
-    stories = Story.includes(:likes, :dislikes).last(400)
+    stories = Story.joins(:likes, :dislikes).select('stories.*, COUNT(*) AS likes_count, COUNT(*) AS dislikes_count').group('stories.id').limit(500)
     populars = stories.sort_by { |s| s.rank }.reverse!
     on_top.present? ? [on_top] + populars : populars
   end
