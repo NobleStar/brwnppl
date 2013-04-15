@@ -76,13 +76,13 @@ class HomeController < ApplicationController
   def popular_cache
     if current_user
       if params[:page].present?
-        "logged_in/popular/#{current_user.id}/param[:page]"
+        "logged_in/popular/#{current_user.id}/#{params[:page]}"
       else
         "logged_in/popular/#{current_user.id}"
       end
     else
       if params[:page].present?
-        "logged_out/popular/params[:page]"
+        "logged_out/popular/#{params[:page]}"
       else
         "logged_out/popular"
       end
@@ -91,9 +91,17 @@ class HomeController < ApplicationController
 
   def recent_cache
     if current_user
-      "logged_in/recent/#{current_user.id}"      
+      if params[:page].present?
+        "logged_in/recent/#{current_user.id}/#{params[:page]}"
+      else
+        "logged_in/recent/#{current_user.id}"
+      end
     else
-      "logged_out/recent"
+      if params[:page].present?
+        "logged_out/recent/#{params[:page]}"
+      else
+        "logged_out/recent"
+      end
     end
   end
 
