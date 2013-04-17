@@ -16,9 +16,12 @@
 
   .postContent
     %h2
-      %a{ :href => "story/" + story.slug }
-        = story.title
-
+      - if !mobile_device?
+        %a{ :href => "story/" + story.slug }
+          = story.title
+      - else
+        %a{ :href => story.url }
+          = story.title
     .clear
 
     .postDetails
