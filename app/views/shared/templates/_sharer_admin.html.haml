@@ -21,8 +21,7 @@
 
       %input#urlField.linkBar{:type => 'text', :placeholder => 'Paste your link here or type a topic for discussion..'}
 
-      %span
-        %input#username.linkBar{ :type => 'text', :placeholder => 'new username to use or already existing username' }
+      = select_tag "username", options_from_collection_for_select(User.robots, :username, :username), :class => 'linkBar'
 
       %center
         %img#linkBarImage.hidden{ :src => '' }

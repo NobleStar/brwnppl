@@ -136,7 +136,7 @@ class SharerController
     @dom.find('select#content_type_dropdown')
 
   username: ->
-    @dom.find('input#username')
+    @dom.find('select#username')
 
 
 sharer = new SharerController()
