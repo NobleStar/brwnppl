@@ -91,11 +91,11 @@ class User < ActiveRecord::Base
   end
 
   def facebook?
-    self.authentications.map(&:provider).include?("facebook")
+    self.authentications.map {|a| a.provider.to_s }.include?("facebook")
   end
 
   def twitter?
-    self.authentications.map(&:provider).include?("twitter")
+    self.authentications.map {|a| a.provider.to_s }.include?("twitter")
   end
 
   def facebook
