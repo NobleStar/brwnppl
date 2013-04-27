@@ -22,7 +22,7 @@ class OauthController < ApplicationController
           @user.oauth_token = Config.facebook.access_token.token
           @user.save
         end
-        @user.delay.update_avatar(provider, Config.send(provider.to_sym).get_user_hash)
+        @user.update_avatar(provider, Config.send(provider.to_sym).get_user_hash)
         reset_session # protect from session fixation attack
         auto_login(@user)
         redirect_to setup_account_path, :notice => "Logged in from #{provider.titleize}!"
