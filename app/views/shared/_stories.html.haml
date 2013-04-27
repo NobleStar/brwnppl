@@ -2,6 +2,11 @@
   = render :partial => 'shared/story_sorter'
   = render :partial => 'shared/top_sorter' if params[:action] == 'top'
 
+  %p 
+    = link_to_previous_page stories, 'Previous Page', :params => {:time => params[:time]}
+    = " "
+    = link_to_next_page stories, 'Next Page', :params => {:time => params[:time]}
+
   .posts
     - unless stories.present?
       .post
