@@ -16,7 +16,6 @@ class HomeController < ApplicationController
   end
 
   def popular
-    @stories = Kaminari.paginate_array( Story.populars ).page(params[:page])
     render :recent
   end
 

@@ -1,50 +1,20 @@
-#notifications
+.container
+  .navbar.navbar-inverse
+    .navbar-inner
+      .container
+        %a.brand{:href => '/'} Brwnppl
 
-%header#header
-  .backgroundContainer
-    .background
-      = yield(:story_controls)
-      .center
-        %a.logo{:href => '/'}
-        .communities.hidden
-          = render partial: 'shared/communities_header'
-        .search.hidden
-          %input{ :type => 'text', :placeholder => 'enter some keywords here to search..'}
-          %button{ :value => 'Search'} Search
-
-
-  .content
-    .menu
-      %ul
-        %li
-          %a{ href: recent_path } Recent
-        %li
-          %a{ href: popular_path } Popular
-        %li
-          %a#communities{ href: '#' } Communities
-        - if params[:action] == 'community' || params[:action] == 'top_community'
-          %li
-            %a{ href: "/b/#{@community.slug}/top" } Top
-        - else
-          %li
-            %a{ href: top_path + "?time=all" } Top
-        / %li
-        /   %a#search{ href: '# '} Search
-        - if current_user
-          %li
-            %a{ href: '/my_brwnppl'} My brwnppl
-        - if current_user
-          %li
-            %a{ href: "/#{current_user.username}"} Me
-
-    - if params[:controller] != 'story_viewer'
-      .userOptions
-        - if logged_in?
-          = link_to current_user.username, user_edit_url(current_user.username)
-          = link_to 'Logout', logout_path, :class => 'category'
-          .clear
-        - else
-          = link_to 'Login', login_path, :class => 'category'
-
-
-= yield(:comments_dropdown)
+        .nav-collapse.collapse#nav-collapse-03
+          %ul.nav
+            %li
+              %a{ :href => '/recent'} Recent
+            %li
+              %a{ :href => '/popular'} Popular
+            %li
+              %a{ :href => '/communities'} Communities
+              %ul
+                - @communities.each do |community|
+                  %li
+                    %a{:href => "/b/#{community.slug}/top"}= community.name
+            %li
+              %a{ :href => '/top'} Top

@@ -54,15 +54,15 @@ class Story < ActiveRecord::Base
   end
 
   def likes_count
-    likes.count
+    likes.size
   end
 
   def dislikes_count
-    dislikes.count
+    dislikes.size
   end
 
   def comments_count
-    comments.count
+    comments.size
   end
 
   def liked_by(user)
@@ -100,7 +100,7 @@ class Story < ActiveRecord::Base
   def self.populars
     on_top = Story.find_by_id(350)
     # populars = Story.all( :joins => :community, :order => 'updated_at DESC, brownie_points DESC', :limit => 100 )
-    stories = Story.find(:all, :include => [:likes, :dislikes], :order => 'created_at DESC', :limit => 500)
+    stories = Story.find(:all, :include => [:likes, :dislikes, :comments, :user], :order => 'created_at DESC', :limit => 500)
     populars = stories.sort_by { |s| s.rank }.reverse!
     on_top.present? ? [on_top] + populars : populars
   end
@@ -143,6 +143,16 @@ class Story < ActiveRecord::Base
     last_story = self.user.stories.last
     if last_story && (last_story.created_at + 3.minutes) > Time.zone.now
       errors.add(:base, "You need to wait atleast 3 minutes before making new posts.")
+    end
+  end
+
+  def magnific_type
+    if content_type == "image"
+      "image"
+    elsif content_type == "video" || content_type == "audio"
+      "iframe"
+    elsif content_type == "discussion"
+      "discussion"
     end
   end
 

@@ -1,26 +1,4 @@
-= content_for(:title) do
-  = "Brwnppl | #{@community.try(:name) || params[:action].humanize}"
+= render partial: 'handlebars/story'
 
-#content
-  .content
-    = render partial: 'shared/flash_messages'
-    = render partial: 'shared/sharer'
-    
-    - if !logged_in?
-      .explainerVideo
-        :plain
-          <iframe width="560" height="315" src="http://www.youtube.com/embed/8V8b4qgGEY0" frameborder="0" allowfullscreen></iframe>
-      .setupAccount
-        .header
-          %h2 Welcome to brwnppl, the community you help build by sharing the things brwnppl care about. Login to share, vote & comment on the stuff you like & the stuff you don't.
-      
-      %div.signupOptions{ :style => 'text-align: center' }
-        %a.loginButton{ :href => '/oauth/facebook' }
-          %img{ :src => '/assets/facebookIcon.png', :width => '8', :height => '17', :alt => 'Login with Facebook'}
-          Login With Facebook
-        %a{ :href => '/users/new' }
-          or Sign Up with your email address
-
-  .clear
-  #container
-    = render partial: 'shared/stories', :locals => { :stories => @stories }
+.container
+  #app-root

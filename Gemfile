@@ -27,6 +27,7 @@ gem 'redis'
 gem 'redis-store', git: 'git://github.com/jasdeepsingh/redis-store.git'
 gem 'redis-rails'
 gem 'mailjet'
+gem 'rails-backbone'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,7 +40,7 @@ group :assets do
 end
 
 gem 'pry'
-gem 'jquery-rails'
+gem 'jquery-rails', "~>2.1"
 gem 'haml'
 gem 'haml-rails'
 gem 'sorcery'

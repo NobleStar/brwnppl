@@ -1,5 +1,5 @@
 json.id             story.id
-json.image          story.image
+json.image          story.image.present? ? story.image : "http://brwnppl.com/assets/default-story-image.png"
 json.slug           story.slug
 json.title          story.title
 json.url            story.url
@@ -11,3 +11,4 @@ json.user           story.user, :id, :name, :avatar, :username
 json.content_type   story.content_type
 json.brownie_points story.brownie_points
 json.reshare_count  story.reshare_count
+json.magnific_type  story.magnific_type

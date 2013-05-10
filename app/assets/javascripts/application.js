@@ -6,22 +6,29 @@
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
+// # OLD FILES:  
+// # require jquery.jscrollpane.min
+// # require jquery.mousewheel
+// # require jquery.ui.widget
+// # require jquery.iframe-transport
+// # require jquery.fileupload
+// # require jquery.equalheights.js
+// # require jquery.tooltipster.min.js
+// # require FileUpload/FileUpload
+// # require keypress.js
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.magnific
+//= require handlebars
 //= require underscore
+//= require backbone
 //= require brwnppl
-//= require jquery.jscrollpane.min
-//= require jquery.mousewheel
-//= require jquery.ui.widget
-//= require jquery.iframe-transport
-//= require jquery.fileupload
-//= require jquery.equalheights.js
-//= require jquery.tooltipster.min.js
-//= require FileUpload/FileUpload
-//= require keypress.js
-
-window.Brwnppl = {}
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers

@@ -1,0 +1,18 @@
+<script id="single-story" type="text/x-handlebars-template">
+  <div class="story row mfp-{{story.magnific_type}}" data-story-id={{story.id}} data-mfp-source="{{story.image}}">
+    <div class="span2"><img class="thumbnail" src="{{story.image}}"></div>
+    <div class="span9"><h5><a class="link mfp-{{story.magnific_type}}" href="{{story.url}}">{{story.title}}</a></h5></div>
+    <div class="clear"></div>
+    <div class="row">
+      <div class="span2">
+        <a href="#" class="fui-chat"></a>
+        <a href="#">{{story.comments_count}} comments</a>
+      </div>
+
+      <div class="span5">
+        <a href="#" class="fui-time"></a>
+        <a href="/{{story.user.username}}">posted {{story.posted_ago}} ago by <strong>{{story.user.username}}</strong></a>
+      </div>
+    </div>
+  </div>
+</script>
