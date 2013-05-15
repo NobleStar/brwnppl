@@ -1,6 +1,6 @@
 class Api::StoriesController < Api::BaseController
 
-  skip_before_filter :require_login, only: [:index, :show, :popular, :recent]
+  skip_before_filter :require_login, only: [:index, :show, :popular, :recent, :top]
 
   def index
     @stories = Story.latest.includes(:user).limit(10)
@@ -13,6 +13,11 @@ class Api::StoriesController < Api::BaseController
 
   def recent
     @stories = Story.latest.page(params[:page])
+    render :index
+  end
+
+  def top
+    @stories = Kaminari.paginate_array( Story.top(params[:time]) ).page(params[:page])
     render :index
   end
 

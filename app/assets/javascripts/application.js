@@ -20,9 +20,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require rollbar
 //= require jquery
 //= require jquery_ujs
 //= require jquery.magnific
+//= require brwnppl.magnific
+//= require bootstrap.min
 //= require handlebars
 //= require underscore
 //= require backbone

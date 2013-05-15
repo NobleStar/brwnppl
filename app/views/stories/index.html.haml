@@ -8,8 +8,25 @@
 = content_for(:title) do
   = "Brwnppl | #{@story.title}"
 
-#content
-  #container
-    .ribbon
-      .posts
-        = render partial: 'shared/single_story', :locals => { story: @story}
+.container
+  #app-root
+
+    #story
+      %h2
+        %a{ :href => "story/" + @story.slug }= @story.title
+
+    .row-fluid
+      .span6
+        %a{ :href => '#fake', :class => 'btn btn-huge btn-block btn-social-facebook'}
+          %i.fui-facebook
+            Share on Facebook
+
+      .span6
+        %a{ :href => '#fake', :class => 'btn btn-huge btn-block btn-social-twitter'}
+          %i.fui-twitter
+            Share on Twitter
+/ #content
+/   #container
+/     .ribbon
+/       .posts
+/         

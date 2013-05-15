@@ -227,6 +227,8 @@ GEM
     ref (1.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rollbar (0.9.10)
+      multi_json (~> 1.5)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -259,8 +261,6 @@ GEM
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
       oauth2 (~> 0.8.0)
-    spine-rails (0.1.0)
-      rails (>= 3.1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -335,11 +335,11 @@ DEPENDENCIES
   redis
   redis-rails
   redis-store!
+  rollbar (~> 0.9.6)
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   shoulda-matchers
   sorcery
-  spine-rails
   state_machine
   taps
   therubyracer

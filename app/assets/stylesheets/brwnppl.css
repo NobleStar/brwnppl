@@ -1,4 +1,4 @@
-html {
+body {
   background: url("mainBackground.jpg") repeat;
 }
 
@@ -10,6 +10,10 @@ html {
 
 .story {
   background-color: white !important;
+  padding: 15px 0px 15px 0px;
+  border-top: 1px solid brown;
+  border-right: 1px solid brown;
+  border-left: 1px solid brown;
 }
 
 .story.row {

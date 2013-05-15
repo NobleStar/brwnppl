@@ -88,7 +88,7 @@ Rails.application.config.sorcery.configure do |config|
     config.facebook.secret            = ENV['FACEBOOK_SECRET_KEY']
     config.facebook.callback_url      = ENV['APP_URL'].to_s + "/oauth/callback?provider=facebook"
     config.facebook.user_info_mapping = { :email => "email", :username => "username", :name => 'name'  }
-    config.facebook.scope             = "email,offline_access,user_hometown,user_interests,user_likes,user_photos,publish_actions,share_item"
+    config.facebook.scope             = "email,offline_access,publish_actions,share_item"
 
     # Twitter
     config.twitter.key                = ENV['TWITTER_APP_KEY']

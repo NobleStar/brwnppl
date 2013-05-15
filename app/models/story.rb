@@ -115,8 +115,8 @@ class Story < ActiveRecord::Base
   end
 
   def self.top(time)
-    return Story.all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'all'
-    return Story.where("DATE(created_at) = ?", Date.today).all(:order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'today'
+    return Story.find(:all, :include => [:likes, :dislikes, :comments, :user], :order => 'brownie_points DESC, updated_at DESC', :limit => 1000) if time == 'all'
+    return Story.where("DATE(created_at) = ?", Date.today).all(:order => 'brownie_points DESC, updated_at DESC', :include => [:likes, :dislikes, :comments, :user], :limit => 1000) if time == 'today'
   end
 
   def self.by_community(community)
@@ -151,8 +151,8 @@ class Story < ActiveRecord::Base
       "image"
     elsif content_type == "video" || content_type == "audio"
       "iframe"
-    elsif content_type == "discussion"
-      "discussion"
+    elsif content_type == "web_link" || content_type == "discussion"
+      "redirect"
     end
   end
 

@@ -59,6 +59,10 @@ h5, .h5 {
   color: #9A3D15;
 }
 
+h5.title {
+  color: white;
+}
+
 a {
   color: #9A3D15;
 }
@@ -66,4 +70,39 @@ a {
 a:hover {
   color: #8E3200;
   text-decoration: none;
+}
+
+.navbar .nav li.dropdown > .dropdown-toggle .caret {
+  border-bottom-color: white;
+  border-top-color: white;
+}
+
+.mfp-img {
+  float: left;
+}
+
+.mfp-iconbar {
+  background-color: #9A3D15;
+  top: 40px;
+  right: -84px;
+  margin: 0 auto;
+  float: right;
+  position: absolute;
+  border-radius: 2px !important;
+}
+
+.mfp-iframe-iconbar {
+  top: -4px !important;
+}
+
+.iconbar > ul > li > a:hover, .iconbar > ul > li > a:focus {
+  color: #E67E22;
+}
+
+.mbl, .mvl, .mal {
+  margin-bottom: 0px;
+}
+
+.pbl, .pvl, .pal {
+  padding-bottom: 0px;
 }

@@ -2,14 +2,10 @@
   .navbar.navbar-inverse
     .navbar-inner
       .container
-        %a.brand{:href => '/'} Brwnppl
+        %a.brand{:href => '/', "data-bypass" => true} Brwnppl
 
         .nav-collapse.collapse#nav-collapse-03
           %ul.nav
-            %li
-              %a{ :href => '/recent'} Recent
-            %li
-              %a{ :href => '/popular'} Popular
             %li
               %a{ :href => '/communities'} Communities
               %ul
@@ -17,4 +13,14 @@
                   %li
                     %a{:href => "/b/#{community.slug}/top"}= community.name
             %li
-              %a{ :href => '/top'} Top
+              %a{ :href => '/browse/recent'} Recent
+            %li
+              %a{ :href => '/browse/popular'} Popular
+            %li
+              %a{ :href => '/browse/top'} Top
+
+          %ul.nav.pull-right
+            %li.divider
+            %li
+              %a{ :href => '/login' } 
+                Sign In

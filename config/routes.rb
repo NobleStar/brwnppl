@@ -3,7 +3,8 @@ Brwnppl::Application.routes.draw do
   namespace :api do
     resources :stories do
       get 'popular', :on => :collection
-      get 'recent', :on => :collection
+      get 'recent',  :on => :collection
+      get 'top',     :on => :collection
       resources :comments
     end
     resources :url_fetcher

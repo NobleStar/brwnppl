@@ -8,7 +8,6 @@ gem 'rails', '3.2.11'
 gem 'thin'
 gem 'twitter'
 gem 'delayed_job_active_record'
-gem 'spine-rails'
 gem 'newrelic_rpm'
 gem 'jbuilder'
 gem 'opengraph'
@@ -28,6 +27,7 @@ gem 'redis-store', git: 'git://github.com/jasdeepsingh/redis-store.git'
 gem 'redis-rails'
 gem 'mailjet'
 gem 'rails-backbone'
+gem 'rollbar', '~> 0.9.6'
 
 # Gems used only for assets and not required
 # in production environments by default.
