@@ -5,7 +5,6 @@ class OauthController < ApplicationController
   end
 
   def callback
-    binding.pry
     provider = params[:provider]
     if @user = login_from(provider)
       @user.update_avatar(provider, Config.send(provider.to_sym).get_user_hash)

@@ -2,9 +2,10 @@ Brwnppl::Application.routes.draw do
 
   namespace :api do
     resources :stories do
-      get 'popular', :on => :collection
-      get 'recent',  :on => :collection
-      get 'top',     :on => :collection
+      get 'popular',   :on => :collection
+      get 'recent',    :on => :collection
+      get 'top',       :on => :collection
+      get 'community', :on => :collection
       resources :comments
     end
     resources :url_fetcher
@@ -46,6 +47,13 @@ Brwnppl::Application.routes.draw do
 
   resources :sessions, :only => :create
   resources :password_resets
+
+  get '/browse/top'       => 'browse#top'
+  get '/browse/popular'   => 'browse#popular'
+  get '/browse/recent'    => 'browse#recent'
+  get '/browse/top/:page_num'       => 'browse#top'
+  get '/browse/popular/:page_num'   => 'browse#popular'
+  get '/browse/recent/:page_num'    => 'browse#recent'
 
   # Authentication Actions:
   match 'oauth/callback'    => 'oauth#callback'

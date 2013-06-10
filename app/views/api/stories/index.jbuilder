@@ -1,9 +1,5 @@
 json.array!(@stories) do |json, story|
-  
   json.partial! "story", story: story
-
-  json.comments story.comments do |json, comment|
-    json.partial! "comment", comment: comment
-  end
-
+  json.next_page  @stories.last_page? ? nil : @stories.current_page + 1
+  json.previous_page @stories.first_page? ? nil: @stories.current_page - 1
 end

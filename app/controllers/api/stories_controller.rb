@@ -1,6 +1,6 @@
 class Api::StoriesController < Api::BaseController
 
-  skip_before_filter :require_login, only: [:index, :show, :popular, :recent, :top]
+  skip_before_filter :require_login, only: [:index, :show, :popular, :recent, :top, :community]
 
   def index
     @stories = Story.latest.includes(:user).limit(10)
@@ -18,6 +18,12 @@ class Api::StoriesController < Api::BaseController
 
   def top
     @stories = Kaminari.paginate_array( Story.top(params[:time]) ).page(params[:page])
+    render :index
+  end
+
+  def community
+    @community = Community.find_by_slug(params[:slug])
+    @stories = Kaminari.paginate_array( Story.top_by_community(@community) ).page(params[:page])
     render :index
   end
 
@@ -44,7 +50,7 @@ class Api::StoriesController < Api::BaseController
     if @story.save
       render json: { story: @story.to_json, header: 'Thanks for sharing!', messages: ['You can review your post by clicking \'Recent\' or \'Me\'.', 'Remember the more you share, the more brwni points you can earn.'], saved: true }
     else
-      render json: { header: 'Slow Down Cowboy!', messages: @story.errors.full_messages, saved: false }
+      render json: { header: 'Slow Down Cowboy!', messages: @story.errors.full_messages, saved: false }, status: :unprocessable_entity
     end
   end
 

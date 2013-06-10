@@ -12,3 +12,6 @@ json.content_type   story.content_type
 json.brownie_points story.brownie_points
 json.reshare_count  story.reshare_count
 json.magnific_type  story.magnific_type
+json.icon           story.icon
+json.facebook_share_link story.facebook_share_link
+json.twitter_share_link story.twitter_share_link

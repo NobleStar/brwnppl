@@ -5,4 +5,5 @@ class Brwnppl.Views.StoryView extends Backbone.View
   render: ->
     source = $('#single-story').html()
     template = Handlebars.compile(source)
-    $(@el).html( template({ story: @attributes }) )
+    $(@el).append( template({ story: @attributes }) )
+

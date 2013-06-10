@@ -1,10 +1,22 @@
 <script id="single-story" type="text/x-handlebars-template">
   <div class="story row-fluid mfp-{{story.magnific_type}}" data-story-id={{story.id}} data-mfp-source="{{story.image}}">
     <div class="span2"><img class="thumbnail" src="{{story.image}}"></div>
-    <div class="span9"><h5><a class="link mfp-{{story.magnific_type}}" href="/story/{{story.slug}}" data-mfp-like-count={{story.likes_count}} data-mfp-comment-count={{story.comments_count}} data-mfp-source={{story.url}}>{{story.title}}</a></h5></div>
+    <div class="span9">
+      <h5 data-original-title="Here is a sample of a long dark tooltip. Hell yeah.">
+        <a href="/story/{{story.slug}}" class="link mfp-{{story.magnific_type}} {{story.icon}}" 
+          data-facebook-share-link={{story.facebook_share_link}} 
+          data-twitter-share-link={{story.twitter_share_link}} 
+          data-mfp-like-count={{story.likes_count}}
+          data-mfp-comment-count={{story.comments_count}}
+          data-mfp-source={{story.url}} >
+            {{story.title}}
+        </a>
+      </h5>
+    </div>
+
     <div class="clear"></div>
     <!-- <div class="row-fluid"> -->
-      
+
       <div class="span2">
         <a href="#" class="fui-heart"></a>
         <a href="#">{{story.likes_count}} likes</a>

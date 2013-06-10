@@ -24,10 +24,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.magnific
+//= require textarea.autoresize
 //= require brwnppl.magnific
+//= require alertify.min
 //= require bootstrap.min
+//= require bootstrap.tooltip
 //= require handlebars
 //= require underscore
+//= require underscore.string
 //= require backbone
 //= require brwnppl
 //= require_tree ../templates

@@ -1,19 +1,12 @@
+.container
+  - if flash[:notice]
+    .alert.alert-success
+      %button.close.fui-cross{ 'data-dismiss' => 'alert', 'type' => 'button'}
+      %span.fui-check-inverted{:style => 'color: #16a085; font-size: 24px;'}
+      %h3{:style => 'display: inline-block;'}= flash[:notice]
 
-- if mobile_device?
-  %br
-  %br
-  .alert.alert-success
-    = "You are browsing Brwnppl from a mobile device, we have our mobile website & apps in the works. In the meantime, some pinching & zooming may be required :)"
-
-
-- if flash[:notice]
-  %br
-  %br
-  .alert.alert-success
-    = flash[:notice]
-
-- if flash[:alert]
-  %br
-  %br
-  .alert.alert-error
-    = flash[:alert]
+  - if flash[:alert]
+    .alert.alert-error
+      %button.close.fui-cross{ 'data-dismiss' => 'alert', 'type' => 'button'}
+      %span.fui-alert{:style => 'color: #e74c3c; font-size: 24px;'}
+      %h3{:style => 'display: inline-block;'}= flash[:alert]

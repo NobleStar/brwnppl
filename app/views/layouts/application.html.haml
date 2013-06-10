@@ -11,6 +11,15 @@
 
   %body
     = render partial: 'shared/home/header'
+    = render partial: 'shared/home/login'
+    = render partial: 'shared/home/sharer'
+    = render partial: 'shared/flash_messages'
+
+    = render partial: 'handlebars/story'
+    = render partial: 'handlebars/login'
+    = render partial: 'handlebars/pagination'
+    = render partial: 'handlebars/user_profile'
+
     = yield
 
     %footer

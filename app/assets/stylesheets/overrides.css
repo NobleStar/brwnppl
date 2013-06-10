@@ -106,3 +106,155 @@ a:hover {
 .pbl, .pvl, .pal {
   padding-bottom: 0px;
 }
+
+input[type="text"]:focus {
+  border-color: #9A3D15;
+}
+
+textarea:focus {
+  border-color: #9A3D15
+}
+
+input[type="password"]:focus {
+  border-color: #9A3D15;
+}
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: #9A3D15;
+}
+
+.tooltip-inner {
+  background-color: #9A3D15;
+  box-shadow: 4px 4px 20px black;
+  -webkit-box-shadow: 4px 4px 20px black;
+}
+.btn-social-facebook {
+  background-color: #2f4b93 !important;
+}
+
+.btn-social-twitter {
+  background-color: #00bdef !important;
+}
+
+.btn-social-facebook:hover, .btn-social-facebook:focus {
+  background-color: #596fa9 !important;
+}
+
+.btn-social-twitter:hover, .btn-social-twitter:focus {
+  background-color: #33caf2 !important;
+}
+
+.btn {
+  background: #9A3D15;
+}
+
+.btn:hover {
+  background: #E67E22;
+}
+
+input.fluid {
+  width: 98%;
+}
+
+.nav .dropdown-toggle .caret {
+  border-bottom-color: white;
+  border-top-color: white;
+}
+
+.dropdown-menu .divider {
+  margin: 0px;
+}
+
+.navbar .nav > li > ul.dropdown-menu {
+  padding-top: 0px !important;
+}
+
+.dropdown-menu .divider {
+  border-bottom: 1px solid #8E3200;
+}
+
+#add_story select {
+  width: 100%;
+  height: 3em;
+  font-size: 16px;
+}
+
+#add_story textarea {
+  width: 98%;
+}
+
+.modal-body {
+  max-height: 700px !important;
+}
+
+#preview {
+  text-align: center;
+}
+
+#storyPreview #video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16/9 ratio */
+  padding-top: 30px; /* IE6 workaround*/
+  height: 0;
+  overflow: hidden;
+}
+
+#storyPreview #video iframe,
+#storyPreview #video object,
+#storyPreview #video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#storyPreview #soundcloud iframe,
+#storyPreview #soundcloud object,
+#storyPreview #soundcloud embed {
+  width: 100%;
+  height: 170px;
+}
+
+#storyPreview #image {
+  text-align: center;
+}
+
+:root *> .alertify-hidden {
+    display: block;
+    visibility: hidden !important; /* <-- add this line */
+}
+
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+  color: #9A3D15 !important;
+}
+
+#storyPreview .alert p {
+  text-align: center;
+  font-size: 25px;
+}
+#storyPreview .alert p:after {
+  display: inline;
+  content: '\2192';
+}
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  img.thumbnail {
+    max-width: 270px !important;
+    max-height: 180px !important;
+  }
+
+  h2, .h2 {
+    font-size: 24px;
+  }
+
+  body {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  #app-root {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

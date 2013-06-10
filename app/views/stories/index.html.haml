@@ -6,27 +6,45 @@
   %meta{:property => "og:image",  :content => @story.fb_image          }
 
 = content_for(:title) do
-  = "Brwnppl | #{@story.title}"
+  = "#{@story.title} | Brwnppl"
 
 .container
+  #pagination.pagination
   #app-root
 
     #story
       %h2
-        %a{ :href => "story/" + @story.slug }= @story.title
+        %a{ :href => "story/" + @story.slug + "#disqus_thread" }= @story.title
+        %a{ :href => @story.url, 'data-bypass' => true, target: '_blank'}
+          %span.fui-link
+
+      %h5
+        posted by
+        %a{:href => "/#{@story.user.username}"}= "#{@story.user.username}"
+        = "#{time_ago_in_words(@story.created_at)} ago"
 
     .row-fluid
-      .span6
-        %a{ :href => '#fake', :class => 'btn btn-huge btn-block btn-social-facebook'}
+      .span8#storyPreview
+        :javascript
+          preview = new Brwnppl.Views.StoryPreview({url: "#{@story.url}", title: "#{@story.title.gsub(/\n/, '</br>')}" })
+          preview.render()
+
+      .span4
+        .row{ :style => 'padding-top: 10px'}
+        %a{ :href => '#', :class => 'btn btn-huge btn-block', :id => 'likeButton' }
+          %i.fui-heart
+            Like Story
+
+        %a{ :href => @story.facebook_share_link, :class => 'btn btn-huge btn-block btn-social-facebook', 'data-bypass' => true}
           %i.fui-facebook
             Share on Facebook
 
-      .span6
-        %a{ :href => '#fake', :class => 'btn btn-huge btn-block btn-social-twitter'}
+        %a{ :href => @story.twitter_share_link, :class => 'btn btn-huge btn-block btn-social-twitter', 'data-bypass' => true}
           %i.fui-twitter
             Share on Twitter
-/ #content
-/   #container
-/     .ribbon
-/       .posts
-/         
+
+    .row{ :style => 'padding-top: 20px'}
+
+    .row-fluid
+      .span12
+        = render partial: "shared/disqus"

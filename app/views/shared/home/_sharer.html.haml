@@ -1,0 +1,51 @@
+#add_story.modal.hide.fade{ :tabindex => "-1", :role => 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => true}
+  .modal-header
+    %button.close{ :type => 'button', 'data-dismiss' => 'modal', 'aria-hidden' => true} x
+    %h3#myModalLabel Share Story
+
+  .modal-body
+    .control-group
+      %p Click here to check our community Guidelines
+    
+      %ul.nav.nav-tabs.nav-append-content
+        %li.active
+          %a{ :href => '#tab2', 'data-bypass' => true} Link
+        %li
+          %a{ :href=> '#tab1', 'data-bypass' => true} Discussion
+
+      .tab-content
+        .tab-pane#tab1
+
+          %form#modal-form{ :action => '/api/stories.json' }
+            .control-group.large
+              %input#link.fluid{ :type => 'text', name: 'title', :placeholder => 'type a question or topic for discussion'}
+              %input.hidden{ :name => 'content_type', :value => 'discussion'}
+
+            = select_tag "community_id", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- What community does this best fit into? --', :class => 'hide', id: 'community'
+        
+        .tab-pane#tab2.active
+
+          %form#modal-form{ :action => '/api/stories.json' }
+            .control-group.large
+              %textarea.fluid.hide#title{ name: 'title'}
+                = "Give your story a title. ;)"
+
+            .control-group.large
+              %input#link.fluid{ :type => 'text', name: 'url', :placeholder => 'paste a link to share with other brwnppl'}
+
+            .control-group.hidden
+              %input#image.fluid{ :type => 'text', name: 'image'}
+              %input.hidden{ :name => 'content_type', :value => 'web_link'}
+
+            = select_tag "community_id", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- What community does this best fit into? --', :class => 'hide', id: 'community'
+
+    #preview
+
+
+  .modal-footer
+    %a{:style => 'margin-right: 20px'}
+      %img.hide.loader{:src => '/assets/ajax-loader.gif'}
+
+    %a#shareButton.btn.btn-large.pull-right{ :href => '/', 'data-bypass' => true}
+      %i.fui-export
+      Share

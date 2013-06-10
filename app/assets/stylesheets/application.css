@@ -11,6 +11,8 @@
  *= require bootstrap/css/bootstrap
  *= require bootstrap/css/bootstrap-responsive
  *= require flat-ui
+ *= require alertify.core
+ *= require alertify.flat-ui
  *= require overrides
  *= require brwnppl
  *= require magnific

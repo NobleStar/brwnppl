@@ -1,13 +1,14 @@
 window.Magnific =
   initialize: ->
     $('.link').magnificPopup({
-      gallery: {
-        enabled: true
-      },
+      preloader: true,
       callbacks: {
         elementParse: (item) ->
           item.src = item.el.data('mfp-source')
         markupParse: (template, values, item) ->
+          values.storyLink_href = $(item.el).attr('href')
+          values.facebookShareLink_href = item.el.data('facebook-share-link')
+          values.twitterShareLink_href = item.el.data('twitter-share-link')
           values.likesCount = item.el.data('mfp-like-count')
           values.commentCount = item.el.data('mfp-comment-count')
       },
@@ -21,10 +22,10 @@ window.Magnific =
           '</div>'+
           '<div class="mfp-iconbar iconbar iconbar-vertical">'+
             '<ul>'+
-              '<li><a href="#" class="fui-facebook"></a></li>'+
-              '<li><a href="#" class="fui-twitter"></a></li>'+
-              '<li><a href="#" class="fui-chat"><span class="iconbar-unread mfp-commentCount"></span></a></li>'+
-              '<li><a href="#" class="fui-heart"><span class="iconbar-unread mfp-likesCount"></span></a></li>'+
+              '<li><a data-bypass=true target="_blank" class="fui-facebook mfp-facebookShareLink"></a></li>'+
+              '<li><a data-bypass=true target="_blank" class="fui-twitter mfp-twitterShareLink"></a></li>'+
+              '<li><a data-bypass=true class="fui-chat mfp-storyLink"><span class="iconbar-unread mfp-commentCount"></span></a></li>'+
+              '<li><a data-bypass=true class="fui-heart mfp-storyLink"><span class="iconbar-unread mfp-likesCount"></span></a></li>'+
             '</ul>'+
           '</div>'+
         '</div>',
@@ -40,10 +41,10 @@ window.Magnific =
                   '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
                   '<div class="mfp-iconbar mfp-iframe-iconbar iconbar iconbar-vertical">'+
                     '<ul>'+
-                      '<li><a href="#" class="fui-facebook"></a></li>'+
-                      '<li><a href="#" class="fui-twitter"></a></li>'+
-                      '<li><a href="#" class="fui-chat"><span class="iconbar-unread mfp-commentCount"></span></a></li>'+
-                      '<li><a href="#" class="fui-heart"><span class="iconbar-unread mfp-likesCount"></span></a></li>'+
+                      '<li><a data-bypass=true target="_blank" class="mfp-facebookShareLink fui-facebook"></a></li>'+
+                      '<li><a data-bypass=true target="_blank" class="fui-twitter mfp-twitterShareLink"></a></li>'+
+                      '<li><a data-bypass=true class="fui-chat mfp-storyLink"><span class="iconbar-unread mfp-commentCount"></span></a></li>'+
+                      '<li><a data-bypass=true class="fui-heart mfp-storyLink"><span class="iconbar-unread mfp-likesCount"></span></a></li>'+
                     '</ul>'+
                   '</div>'+
                 '</div>',
@@ -63,6 +64,11 @@ window.Magnific =
             index: 'vimeo.com/',
             id: '/',
             src: '//player.vimeo.com/video/%id%?autoplay=1'
+          },
+          soundcloud: {
+            index: 'soundcloud.com/',
+            id: '',
+            src: 'https://w.soundcloud.com/player/?url=%id%&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'
           }
 
         }

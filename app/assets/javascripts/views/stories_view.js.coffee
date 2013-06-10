@@ -9,22 +9,27 @@ class Brwnppl.Views.StoriesView extends Backbone.View
     classList = event.target.classList
     redirect = _.contains classList, "mfp-redirect"
     if redirect
-      sourceUrl = $(event.target).data('mfp-source')
+      sourceUrl = $(event.target).attr('href')
       window.location.assign(sourceUrl)
 
-  remove: ->
-    $(@el).empty()
+  close: ->
+    @$el.empty()
+    @unbind()
+    @paginationView.close()
 
   renderAll: ->
-    _.each(
-      @collection.models
-      (story) ->
-        storyView = new Brwnppl.Views.StoryView(story)
-        $(@el).append( story.render().html() )
-      this
-      )
-
+    stories = @collection.map( (story) ->
+      storyView = new Brwnppl.Views.StoryView(story)
+      html = storyView.render().html()
+      story.on('remove', storyView.close, this)
+      return html
+    , this)
+    $(@el).html(stories)
     @enableMagnific()
+    @enableTooltips()
+
+  enableTooltips: ->
+    $("[data-toggle=tooltip]").tooltip("show");
 
   enableMagnific: ->
     Magnific.initialize();

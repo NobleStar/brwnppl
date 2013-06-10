@@ -1,26 +1,48 @@
-.container
-  .navbar.navbar-inverse
-    .navbar-inner
-      .container
-        %a.brand{:href => '/', "data-bypass" => true} Brwnppl
+.navbar.navbar-inverse
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar
+      %a.brand{:href => '/', "data-bypass" => true} Brwnppl
+      
+      .nav-collapse.collapse#nav-collapse-03
+        %ul.nav
+          %li
+            %a{ :href => '/communities'} Communities
+            %ul
+              - @communities.each do |community|
+                %li
+                  %a{:href => "/b/#{community.slug}/top", 'data-bypass' => true}= community.name
+          %li
+            %a{ :href => '/browse/recent'} Recent
+          %li
+            %a{ :href => '/browse/popular'} Popular
+          %li
+            %a{ :href => '/browse/top'} Top
 
-        .nav-collapse.collapse#nav-collapse-03
-          %ul.nav
+        %ul.nav.pull-right
+          %li.divider
+          %li
+            %a{ :href => 'http://www.facebook.com/Brwnppl', "data-toggle" => "modal", 'data-bypass' => true, :target => '_blank' }
+              %span.fui-facebook
+          %li
+            %a{ :href => 'https://twitter.com/brwnppl', "data-toggle" => "modal", 'data-bypass' => true, :target => '_blank'}
+              %span.fui-twitter
+          - if !current_user
             %li
-              %a{ :href => '/communities'} Communities
-              %ul
-                - @communities.each do |community|
-                  %li
-                    %a{:href => "/b/#{community.slug}/top"}= community.name
-            %li
-              %a{ :href => '/browse/recent'} Recent
-            %li
-              %a{ :href => '/browse/popular'} Popular
-            %li
-              %a{ :href => '/browse/top'} Top
-
-          %ul.nav.pull-right
-            %li.divider
-            %li
-              %a{ :href => '/login' } 
+              %a{ :href => '/#login', "data-toggle" => "modal", 'data-bypass' => true }
                 Sign In
+          - else
+            %li
+              %a{ :href => '/#add_story', "data-toggle" => "modal", 'data-bypass' => true }
+                %span.fui-plus
+            %li
+              %img{:src => current_user.avatar}
+            %li.divider
+
+            %li
+              %a.dropdown-toggle{ :href => '/logout', "data-toggle" => "dropdown", 'data-bypass' => true }
+                My Brwnppl
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{ :href => '/logout', 'data-bypass' => true} Logout

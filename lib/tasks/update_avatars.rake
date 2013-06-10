@@ -14,3 +14,9 @@
 #   end
 
 # end
+
+
+# TO DO TASKS
+
+# 1. Update All Avatars
+# 2. Update all Story images to use Default images

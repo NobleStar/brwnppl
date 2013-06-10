@@ -7,7 +7,7 @@ class Api::UsersController < Api::BaseController
   end
 
   def show
-    render json: User.find_by_username(params[:id])
+    @user = User.find_by_username(params[:id])
   end
 
   def me

@@ -25,7 +25,9 @@ class Story < ActiveRecord::Base
   #validates_presence_of :content_type
   validates :title, :length => { :maximum => 140 }
   validates_uniqueness_of :url, :message => 'has already been posted.'
-  validate :last_post_was_10_minutes_ago
+  validates_presence_of :content_type
+  validate :last_post_was_2_minutes_ago
+  validates_format_of :url, :with => URI::regexp(%w(http https))
 
   include FriendlyId
   friendly_id :title, :use => [:slugged, :history]
@@ -139,21 +141,81 @@ class Story < ActiveRecord::Base
     a.expire_fragment 'logged_out/popular'
   end
 
-  def last_post_was_10_minutes_ago
+  def last_post_was_2_minutes_ago
     last_story = self.user.stories.last
-    if last_story && (last_story.created_at + 3.minutes) > Time.zone.now
-      errors.add(:base, "You need to wait atleast 3 minutes before making new posts.")
+    if last_story && (last_story.created_at + 2.minutes) > Time.zone.now
+      errors.add(:base, "You need to wait atleast 2 minutes before making new posts.")
     end
   end
 
+  def url_host
+    URI.parse(self.url).host.gsub(/www./, '') rescue nil
+  end
+
+  def url_extension
+    File.extname(URI.parse(self.url).path) rescue nil
+  end
+
+  def video?
+    ['youtu.be', 'youtube.com', 'vimeo.com', 'dailymotion.com'].include?(url_host)
+  end
+
+  def audio?
+    ['soundcloud.com'].include?(url_host) #|| ['.mp3'].include?(url_extension)
+  end
+
+  def image?
+    ['.jpg', '.png', '.gif', '.bmp', '.tiff'].include?(url_extension)
+  end
+
   def magnific_type
-    if content_type == "image"
-      "image"
-    elsif content_type == "video" || content_type == "audio"
+    if self.video? || self.audio?
       "iframe"
-    elsif content_type == "web_link" || content_type == "discussion"
+    elsif self.image?
+      "image"
+    else
       "redirect"
     end
+  end
+
+  def facebook_share_link
+    params = ENV["FACEBOOK_APP_KEY"] + 
+      "&link=#{public_url}" +
+      "&name=#{CGI::escape(title)}" +
+      "&picture=#{image}" +
+      "&redirect_uri=#{public_url}"
+    "https://www.facebook.com/dialog/feed?app_id=" + params
+  end
+
+  def twitter_share_link
+    params = "original_referer=#{CGI::escape(public_url)}" +
+    "&text=#{CGI::escape(title)}" +
+    "&via=brwnppl" +
+    "&url=#{CGI::escape(public_url)}"
+    "https://twitter.com/intent/tweet?" + params
+  end
+
+  def redirect?
+    magnific_type == "redirect"
+  end
+
+  def icon
+    if content_type == "discussion"
+      "fui-bubble"
+    elsif self.video?
+      "fui-video"
+    elsif self.audio?
+      "fui-volume"
+    elsif self.image?
+      "fui-image"
+    else
+      "fui-exit"
+    end
+  end
+
+  def url
+    return self.public_url if self.is_a?(Discussion)
+    super
   end
 
 end

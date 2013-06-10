@@ -60,9 +60,9 @@ class OpenGraph::Object
   # This method in all cases should only manipulate or extract resource id's from the URL.
 
   def decorate_preview
-    preview_class = PREVIEW_NAMESPACE + self.site_name.downcase.classify
     # rescue for cases where we might not support the remote site preview decoration
     begin
+      preview_class = PREVIEW_NAMESPACE + self.try(:site_name).try(:downcase).classify
       self[:html] = preview_class.constantize.new.send(:html, self)
     rescue
       self[:html] = nil
