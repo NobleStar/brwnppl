@@ -1,12 +1,12 @@
-.container
-  - if flash[:notice]
-    .alert.alert-success
-      %button.close.fui-cross{ 'data-dismiss' => 'alert', 'type' => 'button'}
-      %span.fui-check-inverted{:style => 'color: #16a085; font-size: 24px;'}
-      %h3{:style => 'display: inline-block;'}= flash[:notice]
 
-  - if flash[:alert]
-    .alert.alert-error
-      %button.close.fui-cross{ 'data-dismiss' => 'alert', 'type' => 'button'}
-      %span.fui-alert{:style => 'color: #e74c3c; font-size: 24px;'}
-      %h3{:style => 'display: inline-block;'}= flash[:alert]
+- if flash[:notice]
+  .alert.alert-success
+    %button.close.fui-cross{ 'data-dismiss' => 'alert', 'type' => 'button'}
+    %span.fui-check-inverted{:style => 'color: #16a085; font-size: 24px;'}
+    %h3{:style => 'display: inline-block;'}= flash[:notice]
+
+- if flash[:alert]
+  .alert.alert-error
+    %button.close.fui-cross{ 'data-dismiss' => 'alert', 'type' => 'button'}
+    %span.fui-alert{:style => 'color: #e74c3c; font-size: 24px;'}
+    %h3{:style => 'display: inline-block;'}= flash[:alert]

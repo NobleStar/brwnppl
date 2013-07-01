@@ -13,7 +13,7 @@ class Like < ActiveRecord::Base
 
     # story brownie points
     self.story.brownie_points += 1
-    story.save
+    self.story.save
   end
 
 end

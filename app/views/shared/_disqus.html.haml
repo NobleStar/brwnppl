@@ -11,6 +11,30 @@
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <noscript>Please enable JavaScript to view the comments.</noscript>
+
+- if current_user
+  :plain
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.remote_auth_s3 = "#{@disqus_sso[:message].gsub(/\n/, '')} #{@disqus_sso[:hmac]} #{@disqus_sso[:timestamp]}";
+        this.page.api_key = "#{ENV['DISQUS_PUBLIC_KEY']}";
+      }
+    </script>
+- else
+  :plain
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.sso = {
+          name:   "Brwnppl",
+          button:  "http://brwnppl.herokuapp.com/assets/logo.png",
+          icon:    "http://brwnppl.herokuapp.com/assets/logo.png",
+          url:     "#{ENV['APP_URL']}/#login",
+          logout:  "#{ENV['APP_URL']}/logout/",
+          width:   "800",
+          height:  "400"
+        };
+      }
+    </script>
+
     

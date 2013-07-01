@@ -8,7 +8,7 @@
 }
 
 .navbar-inverse .brand {
-  border-bottom: 2px solid #8E3200;
+  border-bottom: 0px solid #8E3200;
   border-right: 2px solid #8E3200;
   color: #ffffff;
   padding: 10px 28px 11px 32px;
@@ -16,7 +16,7 @@
 
 .navbar-inverse .nav > li > a {
   font-size: 16.002px;
-  border-bottom: 2px solid #8E3200;
+  border-bottom: 0px solid #8E3200;
   border-left: 2px solid #8E3200;
   color: #ffffff;
   padding: 16px 20px 15px;
@@ -238,23 +238,77 @@ input.fluid {
   content: '\2192';
 }
 
+.story:last-child {
+  border-bottom: 1px brown solid;
+}
+
+.nav .dropdown-toggle:hover .caret {
+  border-top-color: #E67E22;
+  border-bottom-color: #E67E22;
+}
+
+#suggestedStories .thumbnail {
+  width: 280px;
+  height: 180px;
+}
+
+#suggestedStories .alert-info a {
+  color: #9A3D15;
+}
+
+.modal-header {
+  padding: 20px 17px;
+}
+
 @media only screen and (min-width : 320px) and (max-width : 480px) {
   img.thumbnail {
     max-width: 270px !important;
     max-height: 180px !important;
   }
 
+  #suggestedStories .thumbnail {
+    width: 220px !important;
+    height: auto !important
+  }
+
+  .pagination {
+    margin: 0px 0px;
+  }
+
   h2, .h2 {
     font-size: 24px;
   }
 
+  html {
+    overflow-x:hidden;
+  }
+
   body {
+    overflow-x:hidden;
     padding-right: 0px;
     padding-left: 0px;
   }
 
   #app-root {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
+
+  .container {
+    padding-top: 0px !important;
+  }
+
+  footer {
+    display:none;
+  }
+
+  .mobilePadding {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #add_story {
+    position: absolute;
+  }
+
 }

@@ -1,7 +1,7 @@
 <script id="single-story" type="text/x-handlebars-template">
   <div class="story row-fluid mfp-{{story.magnific_type}}" data-story-id={{story.id}} data-mfp-source="{{story.image}}">
     <div class="span2"><img class="thumbnail" src="{{story.image}}"></div>
-    <div class="span9">
+    <div class="span9 mobilePadding">
       <h5 data-original-title="Here is a sample of a long dark tooltip. Hell yeah.">
         <a href="/story/{{story.slug}}" class="link mfp-{{story.magnific_type}} {{story.icon}}" 
           data-facebook-share-link={{story.facebook_share_link}} 
@@ -17,17 +17,17 @@
     <div class="clear"></div>
     <!-- <div class="row-fluid"> -->
 
-      <div class="span2">
+      <div class="span2 mobilePadding">
         <a href="#" class="fui-heart"></a>
         <a href="#">{{story.likes_count}} likes</a>
       </div>
       
-      <div class="span2">
+      <div class="span2 mobilePadding">
         <a href="#" class="fui-chat"></a>
         <a href="#">{{story.comments_count}} comments</a>
       </div>
 
-      <div class="span5">
+      <div class="span5 mobilePadding">
         <a href="#" class="fui-time"></a>
         <a href="/{{story.user.username}}">posted {{story.posted_ago}} ago by <strong>{{story.user.username}}</strong></a>
       </div>

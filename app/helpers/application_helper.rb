@@ -48,5 +48,16 @@ module ApplicationHelper
       "You need to login to be able to re-share this story!"
     end
   end
+
+  def disqus_sso(user)
+    data = { id: user.id, username: user.username, email: user.email, avatar: user.avatar }
+    message = Base64.encode64(data.to_json).gsub("\n", "")
+    timestamp = Time.now.to_i
+    { 
+      hmac:      OpenSSL::HMAC.hexdigest('sha1', ENV['DISQUS_SECRET_KEY'], '%s %s' % [message, timestamp]),
+      timestamp: timestamp,
+      message:   message 
+    }
+  end
   
 end

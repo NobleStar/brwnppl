@@ -1,4 +1,4 @@
-.navbar.navbar-inverse
+.navbar.navbar-inverse.navbar-fixed-top
   .navbar-inner
     .container
       %a.btn.btn-navbar
@@ -7,7 +7,9 @@
       .nav-collapse.collapse#nav-collapse-03
         %ul.nav
           %li
-            %a{ :href => '/communities'} Communities
+            %a.dropdown-toggle{ :href => '/communities'} 
+              Communities
+              %b.caret  
             %ul
               - @communities.each do |community|
                 %li

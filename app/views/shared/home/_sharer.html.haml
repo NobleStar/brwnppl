@@ -27,8 +27,7 @@
 
           %form#modal-form{ :action => '/api/stories.json' }
             .control-group.large
-              %textarea.fluid.hide#title{ name: 'title'}
-                = "Give your story a title. ;)"
+              %textarea.fluid#title{ name: 'title', placeholder: 'Give your story a title. ;)'}
 
             .control-group.large
               %input#link.fluid{ :type => 'text', name: 'url', :placeholder => 'paste a link to share with other brwnppl'}
@@ -37,7 +36,7 @@
               %input#image.fluid{ :type => 'text', name: 'image'}
               %input.hidden{ :name => 'content_type', :value => 'web_link'}
 
-            = select_tag "community_id", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- What community does this best fit into? --', :class => 'hide', id: 'community'
+            = select_tag "community_id", options_from_collection_for_select(Community.all, "id", "name"), :prompt => '-- What community does this best fit into? --', id: 'community'
 
     #preview
 

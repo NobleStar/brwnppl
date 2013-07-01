@@ -2,12 +2,13 @@
   {{#if paginate.next_page}}
     <a href="/browse/{{paginate.sort}}/{{paginate.next_page}}" class="btn previous">
       <i class="fui-arrow-left"></i>
-      OLDER
+      PREVIOUS
     </a>
   {{/if}}
+    <ul style="display: none"></ul>
   {{#if paginate.previous_page}}
     <a href="/browse/{{paginate.sort}}/{{paginate.previous_page}}" class="btn next">
-      NEWER
+      NEXT
       <i class="fui-arrow-right"></i>
     </a>
   {{/if}}

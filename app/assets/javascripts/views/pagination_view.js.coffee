@@ -1,6 +1,6 @@
 class Brwnppl.Views.PaginationView extends Backbone.View
 
-  el: '#pagination'
+  el: '.pagination'
   tagName: 'div'
 
   render: ->

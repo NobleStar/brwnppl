@@ -1,21 +1,26 @@
 class Brwnppl.Views.StoryPreview extends Backbone.View
 
-  el: '#storyPreview'
+  el: '#storyGrid'
 
   events: 
     'click #likeButton': 'likeStory'
 
-  likeStory: ->
-    console.log 'shall like story'
+  likeStory: (event) ->
+    event.preventDefault()
+    @story.likeStory( @ )
+
+  anonLike: ->
+    $(@el).find('#likeButton').html("<i class=fui-check></i>You like this!")
 
   initialize: (options) ->
     @url = options.url
     @title = options.title
+    @story = new Brwnppl.Models.Story({id: options.id})
 
   render: ->
     adapter = @scanForAdapter(@url)
     html = @[adapter](@url)
-    $(@el).append(html)
+    $(@el).find('#storyPreview').append(html)
 
   scanForAdapter: (url) ->
     return 'youtube_short'  if _.str.include(url, 'youtu.be/')

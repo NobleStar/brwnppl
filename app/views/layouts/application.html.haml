@@ -3,7 +3,8 @@
   %head
     %title= yield(:title) || Brwnppl
     <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
+    %meta{ :id => "viewport", :name => 'viewport', :content => 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'}
+    %meta{ :name =>"apple-mobile-web-app-capable", :content=>"yes"}
     %link{ :rel => 'shortcut icon', :href => '/assets/favicon.png'}
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
@@ -13,14 +14,15 @@
     = render partial: 'shared/home/header'
     = render partial: 'shared/home/login'
     = render partial: 'shared/home/sharer'
-    = render partial: 'shared/flash_messages'
 
     = render partial: 'handlebars/story'
     = render partial: 'handlebars/login'
     = render partial: 'handlebars/pagination'
     = render partial: 'handlebars/user_profile'
 
-    = yield
+    .container{ :style => 'padding-top: 60px'}
+      = render partial: 'shared/flash_messages'
+      = yield
 
     %footer
       = render partial: 'shared/home/footer'

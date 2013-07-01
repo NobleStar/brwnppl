@@ -4,6 +4,7 @@ class Brwnppl.Views.StoriesView extends Backbone.View
 
   events: 
     'click .link': 'interceptStoryView'
+    'click .thumbnail': 'interceptStoryView'
 
   interceptStoryView: (event)->
     classList = event.target.classList

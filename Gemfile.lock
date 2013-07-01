@@ -97,6 +97,7 @@ GEM
     ffi (1.8.1)
     formatador (0.2.4)
     friendly_id (4.0.9)
+    gibberish (1.2.2)
     growl (1.0.3)
     guard (1.8.0)
       formatador (>= 0.2.4)
@@ -306,6 +307,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   friendly_id (~> 4.0.1)
+  gibberish
   growl
   guard-rspec
   haml

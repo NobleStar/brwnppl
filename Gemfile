@@ -28,6 +28,7 @@ gem 'redis-rails'
 gem 'mailjet'
 gem 'rails-backbone'
 gem 'rollbar', '~> 0.9.6'
+gem 'gibberish'
 
 # Gems used only for assets and not required
 # in production environments by default.

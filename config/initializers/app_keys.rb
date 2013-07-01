@@ -24,5 +24,10 @@ elsif Rails.env.development?
   ENV['TWITTER_OAUTH_TOKEN']  = '23608012-eOC1FeiwEGdD5F8D5vsF7OGyG03q2GI1Yx1eKOmkM'
   ENV['TWITTER_OAUTH_SECRET'] = 'LNcNbXuHoD4gi1Ch8H8V9okjR4LZTDvDbbYgJqypQ'
 
+  # Disqus
+  ENV['DISQUS_PUBLIC_KEY']    = "q6hqElw10kyIo89bqLsuHHxLGxvzsz2U9JxYNrDYsgDlLmHTLlbBRiy3HldKGiVg"
+  ENV['DISQUS_API_KEY']       = "q6hqElw10kyIo89bqLsuHHxLGxvzsz2U9JxYNrDYsgDlLmHTLlbBRiy3HldKGiVg"
+  ENV['DISQUS_SECRET_KEY']    = "DWjRh2IzIdwFFbTr3tYfBFFODPywkPgCAGHcxf88tq6QGsAyzDD5ieGaOlsamEeu"
+
 end
   

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   protect_from_forgery
 
   before_filter :load_communities
@@ -19,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def load_communities
+    @disqus_sso = disqus_sso(current_user) if current_user.present?
     @communities = Community.all
   end
 

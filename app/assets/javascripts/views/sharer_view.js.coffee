@@ -69,11 +69,11 @@ class Brwnppl.Views.SharerView extends Backbone.View
     @communitySelect().val("")
     @contentTypeSelect().val("")
     @hiddenImageField().val("")
-    @previewArea().empty()
+    # @previewArea().empty()
 
-    @titleField().hide()
-    @communitySelect().hide()
-    @contentTypeSelect().hide()
+    # @titleField().hide()
+    # @communitySelect().hide()
+    # @contentTypeSelect().hide()
 
   failedFetching: (data, status)->
     alertify.alert('Failed to fetch this story.')

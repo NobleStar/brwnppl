@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412045116) do
+ActiveRecord::Schema.define(:version => 20130701200314) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130412045116) do
     t.integer  "reshare_count",     :default => 0
     t.integer  "abuse_count",       :default => 0
     t.boolean  "is_staff_post",     :default => false
+    t.integer  "comments_count",    :default => 0,     :null => false
   end
 
   add_index "stories", ["slug"], :name => "index_stories_on_slug"

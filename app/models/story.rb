@@ -3,7 +3,7 @@ class Story < ActiveRecord::Base
   paginates_per 15
 
   attr_accessor :oauth_token
-  attr_accessible :type, :url, :image, :title, :community_id, :description, :content_type
+  attr_accessible :type, :url, :image, :title, :community_id, :description, :content_type, :comments_count
   after_create :post_to_facebook, :if => :owner_is_from_facebook_and_sharing_enabled?
   after_save   :expire_cache
 
@@ -63,14 +63,14 @@ class Story < ActiveRecord::Base
     dislikes.size
   end
 
-  def comments_count
-    comments.size
-  end
-
   def liked_by(user)
     if user.is_admin || user.can_like_more?(self)
       likes.create(:user => user)
     end
+  end
+
+  def image_link
+    image.present? ? image : "http://brwnppl.com/assets/default-story-image.png"
   end
 
   def disliked_by(user)
