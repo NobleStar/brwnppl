@@ -1,6 +1,25 @@
 <script id="user-profile" type="text/x-handlebars-template">
-  <div id="avatar">
-    <img src={{user.avatar}}>
-  </div>
+  <br>
+  <div class='row'>
+    <div class='span3'>
+      <div class='tile'>
+        <img src={{user.avatar}} class='profileOwner'>
+        <h4>@{{user.username}}</h4>
+        <p>{{user.bio}}</p>
+        <a class="btn btn-danger btn-block" >
+          <span class="fui-plus"></span>Follow
+        </a>
+        <br>
+        <a class="btn btn-danger btn-block btn-small" >
+          {{user.follower_count}} followers
+        </a>
+        <a class="btn btn-danger btn-small btn-block" >
+          {{user.following_count}} following
+        </a>
+      </div>
+    </div>
+    <div class='span9' id='user_stories'>
 
+    </div>
+  </div>
 </script>

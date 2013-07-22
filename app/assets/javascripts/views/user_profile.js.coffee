@@ -13,3 +13,14 @@ class Brwnppl.Views.UserProfile extends Backbone.View
     $('.pagination').empty()
     $(@el).empty()
     $(@el).append( template({user: @model.attributes }) )
+
+    userStories = new Brwnppl.Collections.Stories([], {})
+    userStories.reset(@model.get('stories'))
+
+    html = _.map userStories.models, (story) =>
+      storyView = new Brwnppl.Views.StoryView(story)
+      storyView.render().html()
+
+    @$el.find('#user_stories').html html
+
+    Magnific.initialize()

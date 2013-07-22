@@ -11,6 +11,7 @@
     = yield(:head)
 
   %body
+    = render partial: 'shared/uservoice'
     = render partial: 'shared/home/header'
     = render partial: 'shared/home/login'
     = render partial: 'shared/home/sharer'
@@ -21,6 +22,7 @@
     = render partial: 'handlebars/user_profile'
 
     .container{ :style => 'padding-top: 60px'}
+      = render partial: 'shared/youtube_video'
       = render partial: 'shared/flash_messages'
       = yield
 

@@ -1,17 +1,18 @@
 <script id="pagination_template" type="text/x-handlebars-template">
-  {{#if paginate.next_page}}
-    <a href="/browse/{{paginate.sort}}/{{paginate.next_page}}" class="btn previous">
+  {{#if paginate.previous_page}}
+    <a href="/browse/{{paginate.sort}}/{{paginate.previous_page}}" class="btn next">
       <i class="fui-arrow-left"></i>
       PREVIOUS
     </a>
   {{/if}}
     <ul style="display: none"></ul>
-  {{#if paginate.previous_page}}
-    <a href="/browse/{{paginate.sort}}/{{paginate.previous_page}}" class="btn next">
+  {{#if paginate.next_page}}
+    <a href="/browse/{{paginate.sort}}/{{paginate.next_page}}" class="btn previous">
       NEXT
       <i class="fui-arrow-right"></i>
     </a>
   {{/if}}
+  
     <a href="#" class="hide loader" style="margin-left: 10px;">
       <img src="/assets/ajax-loader.gif">
     </a>

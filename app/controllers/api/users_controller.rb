@@ -1,6 +1,6 @@
 class Api::UsersController < Api::BaseController
   helper :application
-  skip_before_filter :require_login, :only => [:me]
+  skip_before_filter :require_login, :only => [:me, :show]
 
   def index
     render json: [current_user]

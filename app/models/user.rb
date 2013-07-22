@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
 
   end
 
+  def recent_stories
+    stories.limit(50)
+  end
+
   def can_like_more?(story)
     return true if self.is_admin
     if self.video_shared 

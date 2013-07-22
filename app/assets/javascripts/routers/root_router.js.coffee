@@ -30,6 +30,8 @@ class Brwnppl.Routers.RootRouter extends Backbone.Router
     console.log 'will add story'
 
   storyViewer: (slug) ->
+    $('.explainerVideo').hide()
+    $('.setupAccount').hide()
     console.log slug
 
   login: ->
@@ -37,8 +39,9 @@ class Brwnppl.Routers.RootRouter extends Backbone.Router
     @loginView.render()
 
   userProfile: (username) ->
+    $('.explainerVideo').hide()
+    $('.setupAccount').hide()
     if username == '_=_'
       @index()
     profile = new Brwnppl.Views.UserProfile({ username: username })
-    profile.render()
 

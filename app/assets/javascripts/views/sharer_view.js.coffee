@@ -69,7 +69,7 @@ class Brwnppl.Views.SharerView extends Backbone.View
     @communitySelect().val("")
     @contentTypeSelect().val("")
     @hiddenImageField().val("")
-    # @previewArea().empty()
+    @previewArea().empty()
 
     # @titleField().hide()
     # @communitySelect().hide()
