@@ -5,6 +5,9 @@
   .span6
     #pagination.pagination.pagination-success
   .span3{:style => 'float: right'}
-    %a{:href => '/#add_story', :class => 'btn btn-huge btn-primary btn-embossed mlm btn-block mobilePadding', :'data-bypass'=> true, :'data-toggle'=>"modal"} Share A Link
+    - if current_user
+      %a{:href => '/#add_story', :class => 'btn btn-huge btn-primary btn-embossed mlm btn-block mobilePadding', :'data-bypass'=> true, :'data-toggle'=>"modal"} Share A Link
+    - else
+      %a{:href => '/#login', :class => 'btn btn-huge btn-primary btn-embossed mlm btn-block mobilePadding', :'data-bypass'=> true, :'data-toggle'=>"modal"} Share A Link
 #app-root
 #pagination.pagination.pagination-success

@@ -6,9 +6,15 @@
         <img src={{user.avatar}} class='profileOwner'>
         <h4>@{{user.username}}</h4>
         <p>{{user.bio}}</p>
-        <a class="btn btn-danger btn-block" >
-          <span class="fui-plus"></span>Follow
-        </a>
+        {{#if user.following}}
+          <a class="btn btn-danger btn-block" id="unfollow" data-user-handle="{{user.username}}" data-bypass='true'>
+            <span class="fui-cross"></span>Unfollow
+          </a>
+        {{ else }}
+          <a class="btn btn-danger btn-block" id="follow" data-user-handle="{{user.username}}" data-bypass='true'>
+            <span class="fui-plus"></span>Follow
+          </a>
+        {{/if}}
         <br>
         <a class="btn btn-danger btn-block btn-small" >
           {{user.follower_count}} followers

@@ -17,6 +17,13 @@ Brwnppl::Application.routes.draw do
 
     resources :users, :constraints  => { :id => /[0-z\.]+/ } do
     	get :me, :on => :collection
+      member do
+        get :following, :followers
+      end
+      member do
+        get :follow
+        get :unfollow
+      end
     end
 
     resources :images do

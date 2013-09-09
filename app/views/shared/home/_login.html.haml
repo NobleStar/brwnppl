@@ -3,15 +3,18 @@
     %button.close{ :type => 'button', 'data-dismiss' => 'modal', 'aria-hidden' => true} x
     %h3#myModalLabel Sign in to Brwnppl
 
+  .modal-body#message
+
+
   .modal-body
     %form#modal-form{ :action => '/some'}
       .control-group.large
-        %input.fluid{ :type => 'text', :placeholder => 'username'}
+        %input.fluid#email{ :type => 'text', :placeholder => 'email'}
 
       .control-group.large
-        %input.fluid{ :type => 'password', :placeholder => 'password'}
+        %input.fluid#password{ :type => 'password', :placeholder => 'password'}
 
-      %a.btn.btn-large.pull-right{ :href => '#'}
+      %a.btn.btn-large.pull-right#login{ :href => '#'}
         %i.fui-lock
         Login
 
@@ -27,3 +30,21 @@
       %a.btn.btn-large.btn-social-facebook{ :href => auth_at_provider_path(:provider => :facebook), 'data-bypass' => true }
         %i.fui-facebook
         Connect with Facebook
+
+
+:javascript
+  $(document).ready(function() {
+
+    $('#login').click(function(event) {
+      var email = $('#email').val()
+      var password = $('#password').val()
+      $.post('/sessions', { email: email, password: password }, function(data) {
+        if (data.redirect_to) {
+          window.location.replace(data.redirect_to)
+        } else {
+          $('#message').html('Login Failed!')
+        }     
+      })
+    })
+
+  });

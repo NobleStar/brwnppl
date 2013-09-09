@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   before_filter :same_user?, only: :edit
 
   def show
-    @user = User.where("LOWER(username) = ?", params[:username].to_s.downcase).first
+    @user = User.where_username(params[:username]).first # User.where("LOWER(username) = ?", params[:username].to_s.downcase).first
+    render 'home/recent'
   end
 
   def new

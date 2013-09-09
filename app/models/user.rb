@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :cloudinary_avatar, :password_confirmation
 
-  scope :robots, where('email LIKE ?', '%@brwnppl.com')
+  scope :robots, -> { where('email LIKE ?', '%@brwnppl.com') }
+  scope :where_username, lambda { |username| where('LOWER(username) = ?', username.downcase) }
 
   has_many :stories, :dependent => :delete_all
   has_many :authentications, :dependent => :delete_all
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def recent_stories
-    stories.limit(50)
+    stories.order('created_at DESC').limit(50)
   end
 
   def can_like_more?(story)

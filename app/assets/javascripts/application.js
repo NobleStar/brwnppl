@@ -33,6 +33,7 @@
 //= require underscore
 //= require underscore.string
 //= require backbone
+//= require resize-crop.min
 //= require brwnppl
 //= require_tree ./models
 //= require_tree ./collections

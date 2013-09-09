@@ -7,7 +7,7 @@ class Api::UsersController < Api::BaseController
   end
 
   def show
-    @user = User.find_by_username(params[:id])
+    @user = User.where_username(params[:id]).first
   end
 
   def me
@@ -16,6 +16,24 @@ class Api::UsersController < Api::BaseController
   	  render 'show.json'
     else
       render json: false, :status => :unprocessable_entity
+    end
+  end
+
+  def follow
+    @user = User.where_username(params[:id]).first
+    if current_user.follow!(@user)
+      render json: true
+    else
+      render json: false, status: :unprocessable_entity
+    end
+  end
+
+  def unfollow
+    @user = User.where_username(params[:id]).first
+    if current_user.unfollow!(@user)
+      render json: true
+    else
+      render json: false, status: :unprocessable_entity
     end
   end
 

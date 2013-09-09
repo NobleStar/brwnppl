@@ -36,6 +36,8 @@ $(document).ready ->
     $(this).tab("show");
   )
 
+  $('img.side-thumbnail').resizecrop({ width: 300, height: 180})
+
 # Fix for pushState on Links:
 $(document).on('click', 'a:not([data-bypass])', (evt) -> 
   href = $(this).attr('href');
@@ -44,4 +46,3 @@ $(document).on('click', 'a:not([data-bypass])', (evt) ->
     evt.preventDefault();
     window.router.navigate(href, true);
 );
-

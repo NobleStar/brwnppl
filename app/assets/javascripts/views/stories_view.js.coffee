@@ -5,6 +5,7 @@ class Brwnppl.Views.StoriesView extends Backbone.View
   events: 
     'click .link': 'interceptStoryView'
     'click .thumbnail': 'interceptStoryView'
+    'click .story .mobilePadding a': 'preventDefaultAction'
 
   interceptStoryView: (event)->
     classList = event.target.classList
@@ -12,6 +13,9 @@ class Brwnppl.Views.StoriesView extends Backbone.View
     if redirect
       sourceUrl = $(event.target).attr('href')
       window.location.assign(sourceUrl)
+
+  preventDefaultAction: (event) ->
+    event.preventDefault()
 
   close: ->
     @$el.empty()
